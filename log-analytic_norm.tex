@@ -68,7 +68,7 @@
 \DeclareMathOperator{\Id}{\operatorname{Id}}
 \DeclareMathOperator{\e}{{\mathbf{e}}}
 
-\DeclareMathOperator{\g}{{\mathbf{g}}}
+\DeclareMathOperator{\g}{{g}}
 
 
 
@@ -166,6 +166,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Introduction}
 A now-classical theorem due to Anderson \cite{And} and Bando-Kasue-Nakajima \cite{BKN} states that if $(M, g_j)$ is a sequence of
 Einstein metrics on a four-manifold $M$ with fixed diameter, and with a uniform local volume density, then 
@@ -177,13 +179,13 @@ $(Z, g_Z)$.  In fact, a more careful version of this rescaling argument produces
 
 It is natural to ask about a converse: namely, given an Einstein orbifold $(M^4_0, g_0)$ with an orbifold
 point modelled on $\RR^4/\Gamma$ for some discrete group $\Gamma \subset \mathrm{SO}(4)$, and a
-Ricci-flat ALE space $(Z, g_Z)$ whose tangent cone at infinity is the same cone, is it possible to desingularize
+Ricci-flat ALE (asymptotically locally Euclidean) space $(Z, g_Z)$ whose tangent cone at infinity is the same cone, is it possible to desingularize
 $M_0$ to obtain a family of smooth Einstein metrics $(M, g_\epsilon)$ by gluing a truncation of $Z$ to a 
 truncation of $M_0$?   This is an obstructed problem and the answer is generally no.  However, in some cases
 this has been done succcessfully.  Biquard \cite{Biq1} carried out this gluing, but assuming that $(M_0, g_0)$
 is a Poincar\'e-Einstein space, i.e., an asymptotically hyperbolic space with Einstein metric, which moreover
 satisfies an extra compatibility condition at the orbifold point. That paper carries out the gluing when the discrete 
-group is $\ZZ_2$ and the ALE space $Z$ is the Eguchi-Hansen space. A sequence of later papers provided
+group is $\ZZ_2$ and the ALE space $Z$ is the Eguchi-Hanson space. A sequence of later papers provided
 further refinements and a path to carrying out the gluing for more general groups $\Gamma$. The reason for passing 
 from the compact to the asymptotically hyperbolic setting is that it is easier to control the cokernel of the
 linearized problem that must be analyzed to carry out the gluing.
@@ -237,6 +239,22 @@ around each of which the Einstein metric is asymptotic to the flat metric $\RR^4
 For simplicity, in this paper we always assume that $N = 1$, but the extension of all our methods and results
 to the general case involves only more notation.  Indeed, the fact that the analysis on an orbifold is the same as on a smooth space (up to finite quotients around singularities) allows us to iterate the construction to the whole tree of singularities dealing with one singularity and the corresponding Ricci-flat ALE orbifold at a time.
 
+\subsection{Gauged Einstein operator}
+
+For an Einstein metric $g$, define $B_{g}:= \delta_g+\frac{1}{2} d\mathrm{tr}_g$ the Bianchi operator, where $\delta_g$ is the divergence with the convention that in coordinates, for a $1$-form $\omega$, $\delta_g\omega := -g^{ij}\nabla_j\omega_{i}$ and for a symmetric $2$-tensor $h$, $(\delta_gh)_k := -g^{ij}\nabla_jh_{ik}$. Note that for a vector field $X$ identified with the $1$-form canonically associated by $g$, we find $$2\delta^*_g X = \mathcal{L}_Xg$$ where $\mathcal{L}$ is the Lie derivative and $\delta^*_g$, the formal adjoint of $\delta_g$. 
+Notice that a metric $g$ in dimension $4$ is Einstein if and only if it is a zero of $$E(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g,$$
+    and moreover that $B_gE(g)= 0$ by the Bianchi identity. We will be interested in the operator
+    $$\mathbf{\Phi}_{g_1}(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g + \delta_{g_1}^*B_{g_1}g$$
+    on metrics close to $g_1$. Denoting $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big)$ for an orthonormal basis $e_i$, we have the following expression of the linearization: for $h$ satisfying $\int_M\textup{tr}_{g_1}h dv(g)=0$,
+    \begin{align}
+    P_{{g_1}}(h):=& \;d_{g_1}\mathbf{\Phi}_{g_1}(h) = \frac{1}{2}\nabla^*_{g_1}\nabla_{g_1} h  -\mathring{\R}_{g_1}(h)+\frac{1}{2}\Big(\Ric_{g_1}\circ h+h\circ \Ric_{g_1} - \frac{\overline{\R}({g_1})}{2}h\Big)\nonumber\\
+    &+ \frac{1}{4\vol({g_1})}\int_M\Big\langle\Ric({g_1})-\frac{\R({g_1})}{2}g_1, h\Big\rangle_{g_1} dv_{g_1}.\label{bar P g}
+    \end{align}
+    which would reduce to $ P:=  \frac{1}{2}\nabla^*\nabla  -\mathring{\R} $ if the metric $g_1$ were Einstein.
+
+
+\subsection{Orbifold region}
+
 Call this sole orbifold point $p$. There is a neighborhood $\calU$ of $p$ which is diffeomorphic to
 a truncated cone $C_{0,1}(S^3/\Gamma)$.  There is an asymptotic normal form for the metric $g_0$ 
 in this neighborhood, namely
@@ -249,6 +267,29 @@ smooth tensors on $Y$. The exponents $\gamma_j$ are a strictly positive monotone
 real numbers. Thus $\tilde{h}(r)$ is a polyhomogeneous family of $2$-tensors on $Y$, with the expansion as given. 
 In some cases it is surely possible to prove that this is a convergent expansion, but we do not need this here.
 
+\subsubsection{Formal definitions and linear analysis}
+\todo[inline]{To adapt->}
+\begin{defn}[Orbifold (with isolated singularities)]\label{orb Ein}
+    We will say that a metric space $(M_o,g_o)$ is an orbifold if there exists $\epsilon_0>0$ and a finite number of points $(p_k)_k$ of $M_o$ which we will call \emph{singular} such that we have the following:
+    \begin{enumerate}
+        \item the space $(M_o\backslash\{p_k\}_k,g_o)$ is a Riemannian manifold,
+        \item for each singular point $p_k$ of $M_o$, there exists a neighborhood of $p_k$, $ U_k\subset M_o$, a finite subgroup acting freely on the sphere, $\Gamma_k\subset SO(4)$, and a diffeomorphism $ \Phi_k: B_\mathbf{e}(0,\epsilon_0)\subset\mathbb{R}^4\slash\Gamma_k \to U_k\subset M_o $ for which, for any $l\in \mathbb{N}$, there exists $C_l>0$ such that $$r^l|\nabla^l(\Phi_k^* g_o - \mathbf{e})|_{C^2(\mathbf{e})}\leqslant C_l r^2.$$
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[The function $r_o$ on an orbifold]\label{ro}
+    We define $r_o$, a smooth function on $M_o$ satisfying $\Phi_k^*r_o:=  r$ on each $U_k$, and such that on $M_o\backslash U_k$, we have $\epsilon_0<r_o<1$ (the different choices will be equivalent for our applications).
+    
+    We will denote, for $0<\epsilon\leqslant\epsilon_0$, $$M_o(\epsilon):= \{r_o>\epsilon\} = M_o\backslash  \Big(\bigcup_k \Phi_k(B_\mathbf{e}(0,\epsilon)) \Big).$$
+\end{defn}
+
+\begin{defn}[Infinitesimal deformations of an Einstein orbifold metric]
+    Let $(M_o,g_o)$ be an Einstein orbifold. We define $\mathbf{O}(g_o)$ as the finite dimensional kernel of the elliptic operator $P_{g_o}:= \frac{1}{2}\nabla^*_{g_o}\nabla_{g_o}- \mathring{\R}_{g_o}$ on $2$-tensors of $L^2(g_o)$, where  $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big),$.
+\end{defn}
+\todo[inline]{}
+
+\subsubsection{Cut-off orbifold with boundary}
+
 In the following we shall fix some sufficiently small value $a > 0$ and consider the truncated orbifold
 \begin{equation}
 M_0' = M_0 \setminus \{ r < a\}.
@@ -256,6 +297,8 @@ M_0' = M_0 \setminus \{ r < a\}.
 \end{equation}
 This is a manifold with boundary, and the parameter $a$ will be chosen eventually so that the remainder term
 $\tilde{h}(a)$ is sufficiently small.
+
+\subsection{ALE region}
 
 Next, let $(Z, g_Z)$ be a four-dimensional Ricci-flat ALE space which is modeled at infinity by the same cone
 $C(S^3/\Gamma)$.  It follows from the classical theorem of Bando-Kasue-Nakajima \cite{BKN} that there
@@ -266,7 +309,111 @@ g_Z = d\rho^2 + \rho^2 h_0 + \hat{h}(\rho), \ \ \hat{h}(\rho) \sim \sum_{j=1}^\i
 \label{gZ}
 \end{equation}
 
-Define gauged Einstein equation, Jacobi operators. 
+\subsubsection{Formal definitions and linear analysis}
+
+\begin{defn}[ALE orbifold (with isolated singularities and one end)]\label{def orb ale}
+    An ALE orbifold $(N,b)$ is a orbifold for which there exists $\epsilon_0>0$ and a compact $K\subset N$ for which there exists a diffeomorphism $\Psi_\infty: (\mathbb{R}^4\slash\Gamma_\infty)\backslash B_\mathbf{e}(0,\epsilon_0^{-1}) \to N\backslash K$ such that we have $$r^l|\nabla^l(\Psi_\infty^* b - \mathbf{e})|_{C^2(\mathbf{e})}\leqslant C_l r^{-4}.$$
+\end{defn}
+
+
+\begin{defn}[The function $r_{b}$ on an ALE orbifold]
+We define $r_{b}$ a smooth function on $N$ satisfying $\Psi_k^*r_{b}:=  r$ on each neighborhood $U_k$ of a singular point of definition \ref{orb Ein}, and $ \Psi_\infty^* r_{b}:=r$ on $U_\infty$, and such that $\epsilon_0<r_{b}<\epsilon_0^{-1}$ on the rest of $N$ (the different choices are equivalent for our applications).
+
+For $0<\epsilon\leqslant\epsilon_0$, we will denote $$N(\epsilon):= \{\epsilon<r_b<\epsilon^{-1}\} = N\backslash  \Big(\bigcup_k \Psi_k(B_\mathbf{e}(0,\epsilon)) \cup \Psi_\infty \big((\mathbb{R}^4\slash\Gamma_\infty)\backslash B_\mathbf{e}(0,\epsilon^{-1})\big)\Big).$$
+\end{defn}
+
+\begin{defn}[Infinitesimal deformations of Ricci-flat ALE orbifolds]
+    Let $(N,\mathbf{b})$ be a Ricci-flat ALE orbifold. We define the space $\mathbf{O}(\mathbf{b})$ as the kernel of the operator $P_{\mathbf{b}}:= \frac{1}{2}\nabla_{\mathbf{b}}^*\nabla_{\mathbf{b}} - \mathring{\mathrm{R}}_{\mathbf{b}}$ on $L^2(\mathbf{b})$.
+    
+    For any $h\in \mathbf{O}(\mathbf{b})$, we have
+    \begin{enumerate}
+        \item $h = \mathcal{O}(r_b^{-4})$,
+        \item $\delta_{\mathbf{b}}h=0$, and
+        \item $ \textup{tr}_{\mathbf{b}}h=0 $.
+    \end{enumerate}
+\end{defn}
+There is a particular infinitesimal Ricci-flat ALE deformation by rescaling and reparametrization which we denote $\mathbf{o}_1$. It is of the form $\mathcal{L}_{X}\mathbf{b}$ for a harmonic vector field $X$ asymptotic to $r_b\partial_{r_b}$ at infinity. It is linked to the notion of reduced volume of Ricci-flat ALE metric introduced in \cite{bh}, see \cite{ozu4}.
+\begin{defn}[Normalized Ricci-flat ALE metric]
+    A \emph{normalized Ricci-flat ALE orbifold} is a Ricci-flat ALE metric with reduced volume $-1$. 
+\end{defn}
+This prevents rescaling of the metric and Ricci-flat ALE deformation in the direction $\mathbf{o}_1$. We will denote $\mathbf{O}_0(\mathbf{b})$ the $L^2(\mathbf{b})$-orthogonal of $ \mathbf{o}_1 $ in $\mathbf{O}(\mathbf{b})$. These are the infinitesimal Ricci-flat ALE deformations preserving the reduced volume at first order.
+
+\subsubsection{Cut-off ALE space with boundary}
+
+\subsection{Naïve gluings and Moduli space of Einstein metrics}
+
+
+\subsubsection{Naïve gluing}
+
+\paragraph{Cut-off functions with small scale invariant derivatives.}
+
+Let $u: \mathbb{R}\to\mathbb{R}^+$ be a $C^\infty$ cut-off function, identically equal $1$ on $[-\infty,0]$, and vanishing on $[1,+\infty]$. Let $a>0$ and $b>1$ and consider the following function:
+    \begin{equation}
+        \chi_{a,b}:x\in \mathbb{R}^4\mapsto u\Big(\frac{\log(|x|/a)}{\log b}\Big).\label{cut-off low derivative}
+    \end{equation}
+    Then, $\chi_{a,b}$ is a cut-off function supported in $[0,ab]$ and equal to $1$ on $[0,a]$. Moreover, for all $k\in \mathbb{N}$, there exists $C_k$ such that for all $l\leqslant k$,
+    $$|x|^l\big| \nabla^l\chi_{a,b} \big|(x)\leqslant \frac{C_k}{\log b}.$$
+
+In the rest of the article, we fix $b>1$ large enough so that our derivatives are small enough for our applications, and we will denote $\chi:= \chi_{1,b}$ a cut-off function decaying from $1$ to $0$ between $1$ and $b$.
+
+\paragraph{Naïve gluing of ALE spaces to orbifold singularities.}
+ Let $0<\epsilon<\epsilon_0b^{-2}$ be a fix constant, $0<t<\epsilon^4$, $(M_o,\mathbf{g}_o)$ an orbifold and $\Phi: B_\mathbf{e}(0,\epsilon_0)\subset\mathbb{R}^4\slash\Gamma \to U$ a local chart around a singular point $p\in M_o$ such that the metric $\Phi^*\mathbf{g}_o$ is analytic. Let also $(N,\mathbf{b})$ be an ALE orbifold asymptotic to $\mathbb{R}^4\slash\Gamma$, and $\Psi_\infty: (\mathbb{R}^4\slash\Gamma_\infty)\backslash B_\mathbf{e}(0,\epsilon_0^{-1}) \to N\backslash K$ a chart at infinity in which $\Psi_\infty^* \mathbf{b}$ equals a power series in $r^{-1}$.
+    
+\begin{defn}[Naïve desingularization of an orbifold by an ALE space]
+    We define a \emph{naïve desingularization} of an orbifold $(M_o,g_o)$ at $p$ by $(N,b)$ at scale $t$, which we will denote $(M_o\#N,g_o\#_{p,t}b)$ by putting $g_o\#_{p,t}b=g_o$ on $M\backslash U$, $g_o\#_{p,t}b=tb$ on $K$, and 
+    $$g_o\#_{p,t}b = \chi\big((b\epsilon)^{-1}r\big)\Phi^*g_o + \chi\big((b\epsilon)^{-1}r\big)\chi\big(b(\epsilon^{-1}\sqrt{t})^{-1}r\big) \mathbf{e} + \big(1-\chi(b(\epsilon^{-1}\sqrt{t})^{-1}r)\big) \Psi_\infty^*b$$
+    on $A_\mathbf{e}((b\epsilon)^{-1}\sqrt{t},b^2\epsilon)$. 
+\end{defn}
+\begin{rem}\label{relation scales}
+   In these naïve gluings, we essentially identify $r_o$ and $\sqrt{t}\cdot r_b$. 
+\end{rem}
+More generally, it is possible to desingularize iteratively by trees of ALE orbifolds. For $t = (t_j)_j$, if $N_j$ is glued to $p_j\in N_{j_1}$, and $N_{j_1}$ is glued to $p_{j_1}\in N_{j_2}$, ..., $N_{j_{k-1}}$ is glued to $N_{j_k}$, which is glued to $M_o$, we define $T_j:= t_{j_1}t_{j_2}...t_{j_k}$. This way, on each $N_j(b\epsilon)$, the metric is $T_jb_j$. We then obtain a covering of the manifold $M = M_o\#_jN_j$ adapted to a degeneration at relative scales $(t_j)_j$:
+\begin{equation}
+    M = \bigcup_j\big(N_j(\epsilon)\cup A_j(t,\epsilon)\big) \cup   M_o(\epsilon),\label{covering M}
+\end{equation}
+where for each $j$, $A_j(t,\epsilon) :=  A_\mathbf{e}(\epsilon^{-1}\sqrt{T_j}\sqrt{t_j},\epsilon\sqrt{T_j})$ is an intermediate annulus where the metric is flat. A configuration as above is called a \emph{desingularization pattern} and denoted by $D$ as in $g^D_t$.
+
+
+    We define cut-off functions on $M_o$ and on $N$, and the associated gluing annuli ${A_j(t,\epsilon)}$. These cutoff functions are actually a partition of the unity on $M$, associated to the covering \eqref{covering M} that is,
+\begin{equation}
+    1 \equiv \chi_{M_o(\epsilon)} +\sum_j \big(\chi_{N_j(\epsilon)} + \chi_{A_j(t,\epsilon)} \big).\label{somme totale}
+\end{equation}
+    Finally, on a naïve desingularization $(M,g^D)$, we define a function $r_D$ in the following way: $r_D = r_o$ on $M_o(\epsilon)$, $r_D = \sqrt{T_j}r_{b_j}$ on each $N_j(\epsilon)$, and $r_D = r$ on each $A_j(t,\epsilon)$. The function $r_D$ is smooth on $M$. 
+
+\begin{rem}\label{rem def tilde go tilde gbj}
+    On the compact sets $M_o(\epsilon^{-1}\sqrt{t})$ and $N_j(\epsilon^{-1}\sqrt{t})$, the metric $g^D$ respectively equals
+    \begin{equation}
+        \tilde{g}_o:= \chi_{M_o(\epsilon)}g_o + (1-\chi_{M_o(\epsilon)})\mathbf{e},\label{eq def tilde g_o}
+    \end{equation}
+    and
+    \begin{equation}
+        \tilde{g}_{b_j}:= \chi_{N_j(\epsilon)}b_j + (1-\chi_{N_j(\epsilon)})\mathbf{e},\label{eq def tilde gb}
+    \end{equation}
+    where $\mathbf{e}$ is a flat metric to which $g_o$ and the $b_j$ are asymptotic at their singular points and infinities.
+\end{rem}
+
+
+
+\subsubsection{Gauged Einstein equation close to a naïve gluing}
+
+    
+    
+    Let $K_o$ be the $L^2$-kernel of $B_{g_o}\delta_{g_o}^* = \nabla_{g_o}^*\nabla_{g_o}-\Ric(g_o)$ on $1$-forms of $(M_o,g_o)$, define
+    $\tilde{\mathbf{K}}_o:= \chi_{M_o(b\epsilon)}\mathbf{K}_o,$, 
+    $$\tilde{B}_{g^D}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{g^D}\textup{ and }\tilde{B}_{\tilde{g}_o}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{\tilde{g}_o}.$$ 
+
+ Ads in the first section, we will be interested in the operator
+    $$\mathbf{\Phi}_{g^D}(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g + \delta_{g^D}^*\tilde{B}_{g^D}g$$
+    on metrics close to $g^D$. Denoting $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big)$ for an orthonormal basis $e_i$, we have the following expression of the linearization: for $h$ satisfying $\int_M\textup{tr}_{g^D}h dv(g)=0$,
+    \begin{align}
+    P_{{g^D}}(h):=& \;d_{g^D}\mathbf{\Phi}_{g^D}(h) = \frac{1}{2}\nabla^*_{g^D}\nabla_{g^D} h  -\mathring{\R}_{g^D}(h)+\frac{1}{2}\Big(\Ric_{g^D}\circ h+h\circ \Ric_{g^D} - \frac{\overline{\R}({g^D})}{2}h\Big)\nonumber\\
+    &+ \frac{1}{4\vol({g^D})}\int_M\Big\langle\Ric({g^D})-\frac{\R({g^D})}{2}, h\Big\rangle_{g^D} dv_{g^D}{g^D} - \delta_{{g^D}}^*B_{g^D}h+\delta^*_{g^D}\tilde{B}_{g^D} h.\label{bar P g}
+    \end{align}
+    which would reduce to $ P:=  \frac{1}{2}\nabla^*\nabla  -\mathring{\R} $ if the metric $g^D$ were Einstein and $\tilde{B} = B$.
+
+\subsection{Moduli space of Einstein metrics near an Einstein orbifold}
+
+\todo[inline]{The moduli space consists in perturbations of naïve gluings}
 
 \section{Spaces of log-analytic functions}
 We recall from the introduction that a log-analytic function of a single variable $t$ is one which
@@ -511,22 +658,189 @@ and therefore,
 
 \section{$\log$-analytic maps between Banach spaces}
 
-\subsection{Definitions}
-
-
-
-\subsection{$\log$-analytic inverse function theorem and applications}
 
 ** Inverse function theorem, strategy of Buffoni-Toland from the techniques used to prove Weierstrass division theorem for converging power series, cite Lojasiewicz-Maszczyk-Rusek
 
 ** Applications: log-analytic implicit function theorem, composition of log-analytic functions is log-analytic.
+  
+    Let us extend the classical inverse and implicit function theorems for real-analytic maps to maps with \emph{converging} polyhomogeneous developments. We mostly follow the strategy of \cite{bt} and extend it to the presence of powers of logarithms.
+
+    Let $X$ and $Y$ be Banach spaces (over $\mathbb{R}$) and $U\subset X$ open. We say that $f: \mathbb{R}\times U\to Y$ is real-\emph{analytic} at $x_0$ if for $\|x-x_0\|$ small enough, one has:
+    $$ f(x) = f(x_0)+ \sum_{k=1}^\infty m_k(x-x_0)^k $$
+    where the different $m_k: X^k\to Y$ are symmetric $k$-linear and satisfy: there exists $r>0$ such that for all $k$,
+    $$ \sup_{k\geqslant 1} r^k\|m_k\| <+\infty, $$
+    where $\|m_k\| := \sup_{\forall l,\|x_l\|\leqslant 1} \|m_k(x_1,...,x_k)\|$. The supremum of the $r$ as above is the \emph{radius of convergence} of $f$ at $x_0$.
+    
+    We say that $F : (-\epsilon,\epsilon)\times U \to Y$ for $\epsilon>0$ is $\log$-\emph{analytic} at $x_0$ if there exists $f: (-\epsilon,\epsilon)\times (-\epsilon\log \epsilon,\epsilon\log \epsilon) \times U \to Y$ real-analytic at $(0,0,x_0)$ such that
+    $$F(t,x) = f(s,s\log |s|,x)$$ 
+    for all $ s\in (-\epsilon,\epsilon) $ and $x\in U$. 
+    
+    \todo[inline]{It might be some $s\log^\alpha s$ instead}
+    
+    \begin{defn}
+    More generally, we say that $F:\mathcal{U}\subset X\to Y$ is $\log$-analytic if around each $x_0\in X$, there exists a finite linearly independent family of vectors $e_1,...,e_n\in X$\todo{the number of vectors clearly depends on the point} and a complement $X'$ such that $$\mathbb{R}e_1\oplus...\oplus \mathbb{R}e_n\oplus X'=X$$ such that 
+    $$F(s_1e_1+...+s_ne_n+x') = f(s_1,s_1\log|s_1|,...,s_n,s_n\log|s_n|,x') $$
+    for $f : \mathbb{R}^{2n}\times X'$ real-analytic on the associated neighborhood of $x_0$.
+    \todo[inline]{Is that a good definition?}
+    \end{defn}
+    
+    
+    \subsection{$\log$-analytic inverse and implicit function theorems}
+    
+    Let $(E_r,\|\cdot\|_r)$ be the Banach space of functions $u: B_{\mathbb{R}\times X}(0,r^2)\times B_{\mathbb{R}\times X}(0,r)\to Y$ with 
+    $$ u\left((s,x),(t,y)\right) = \sum_{m,n,a,b\geqslant 0} u_{m,n}^{a,b}(x,y)s^m\log^a|s|\cdot t^n\log^b|t|, $$
+    \todo[inline]{We should add a bound on $a,b$, probably $a\leqslant m$ and $b\leqslant n$}
+    where $u_{m,n}^{a,b}(x,y) = \sum_{p,q} u_{m,n;p,q}^{a,b}x^py^q$ is real-analytic from $X\times X$ to $Y$
+    $$\|u\|_r = \sum_{m,n,a,b,p,q\geqslant 0} \|u_{m,n;p,q}^{a,b}\|r^{2(m+p)+(n+q)}$$
+    which can also be seen as:
+    $$\|u\|_r = \sum_{m,n,a,b\geqslant 0} \|u_{m,n}^{a,b}\|_r r^{2m+n},$$
+    where $$\|u_{m,n}^{a,b}\|_r:= \sum_{p,q\geqslant 0}\|u_{m,n;p,q}^{a,b}\|r^{2p+q}$$
+    as in \cite{bt}.
+    
+    Denote $$F_r:=\{u\in E_r, u((s,x);(0,0))=0,\; \forall (s,x)\} =  \{u\in E_r, u_{m,0;p,0}^{a,b}=0, \; \forall m,p,a,b\}.$$ 
+    Following \cite{bt}, we define for any $w\in E_r$ and $u\in F_r$
+    \begin{align*}
+        L_wu((s,x),(t,y)) =&\; \partial_{(t,y)} u\left[(s,x),(t,y)\right] w ((s,x),(t,y)) \\
+        &-\partial_{(t,y)}u\left[(s,x),(0,0)\right] w ((s,x),(0,0)).
+    \end{align*}
+    We will also denote $w_0((s,x),(t,y)) = (t,y)$.
+    
+    Let us then define a \emph{linear} operator:
+    $L(u): F_r\to F_r$
+    which is chosen to satisfy: $ L_{w_0} \circ L = \operatorname{I}_{F_r}$, the identity of $F_r$, that is:
+    \begin{equation}
+        \partial_{(t,y)} \big(L(u)\big)\left[(s,x),(t,y)\right](t,y) = \sum_{m,n,a,b,p,q\geqslant 0,\\ n+q\geqslant1} u_{m,n;p,q}^{a,b} x^py^qs^m\log^a|s|\cdot
+             t^n\log^b|t|\label{prop Lu}
+    \end{equation}
+    thanks to the formula:
+    $$ \partial_{t} t^n\log^b|t| = nt^{n-1}\log^{b}|t| + bt^{n-1}\log^{b-1}|t|$$
+    for $t>0$, as well as $ y\partial_yy^n = n y^n$. Finding the right linear transformation $L$ on the coefficients $u_{m,n}^{a,b}$ amounts to inverting the $(b_n+2)\times (b_n+2)$ matrix with diagonal $(n,...,n)$ and subdiagonal $(0,1,...,b_n-1,b_n)$, where $b_n$ is the maximum of $b$ such that there is a (non zero) $t^n\log^b|t|$ term in the sum. The coefficients seem to be bounded by $\max(1/n,b_n/n)$\todo{if needed}.
+    
+    
+    We then have the following property.
+    
+    \begin{lem}\label{control Lw o L}
+        The linear operator $L_w\circ L : F_r\to F_r$ satisfies: $$\|L_w\circ L\|\leqslant \frac{\|w\|_r}{r}.$$
+    \end{lem}
+    \begin{proof}
+        As in \cite{bt}, using \eqref{prop Lu}, for $u\in F_r$, with
+        $$ u\left((s,x),(t,y)\right) = \sum_{m,n,a,b\geqslant 0} u_{m,n}^{a,b}(x,y)s^m\log^a|s|\cdot t^n\log^b|t|,$$
+        and for $p',q',a',b'\geqslant0$, define
+        $$w = x^{p'}y^{q'} s^{m'}\log^{a'}|s|\cdot t^{n'}\log^{b'}|t|,$$
+        we find:
+        \begin{align*}
+            L_w\circ L u\left((s,x),(t,y)\right) =&\;\sum_{m,n,a,b,p,q\geqslant 0,\; n+q\geqslant1} u_{m,n;p,q}^{a,b} x^py^qs^m\log^a|s|\cdot
+             t^n\log^b|t|\\&\times x^{p'}y^{q'} s^{m'}\log^{a'}|s|\cdot t^{n'}\log^{b'}|t|\\
+            &- \sum_{m\geqslant 0,a \geqslant 0}(u_{m,1;p,0}^{a,b}+u_{m,0;p,1}^{a,b})x^ps^m\log^a|s|\\
+            &\times x^{p'} s^{m'}\log^{a'}|s|\epsilon(q',b'),
+        \end{align*}
+       where $\epsilon(q',b') = 1$ if $(q',b') = (0,0)$ and $\epsilon(q',b') = 0$ otherwise.
+       
+        And we therefore find: 
+        \begin{align*}
+            \|L_w \circ L u\|_r &\leqslant \sum_{M\geqslant 0, N\geqslant 1} r^{2M+N}\sum_{m+p+p' = M , n+q+q'=N+1} \| u_{m,n;p,q}^{a,b}\|\\
+            &=\frac{1}{r} \Big( \sum_{m,p,n,q\geqslant 0, n+q\geqslant 1} r^{2(m+p)+(n+q)} \| u_{m,n;p,q}^{a,b} \| \Big)r^{p'+q'}\\
+            &= \frac{\|w\|_r\|u\|_r}{r} 
+        \end{align*}
+        By bilinearity of $ (u,w)\mapsto L_w\circ L u $, and triangle inequality we conclude that for arbitrary $(w,u)\in E_r\times F_r$
+        $$\|L_w\circ L u\|_r \leqslant \frac{\|w\|_r\|u\|_r}{r}.$$
+    \end{proof}
+    
+    This lets us prove the main step of the proof of our inverse and implicit function theorems in next subsection.
+    \begin{prop}
+        Suppose that $F$ is a $\log$-analytic map from a neighborhood of ${\mathbb{R}\times X}$ to itself and that $F(0)=0$ as well as $dF[0] = \operatorname{I}_{\mathbb{R}\times X}$, the identity of ${\mathbb{R}\times X}$. Then, there exist open neighborhoods $\mathcal{U}$ and $\mathcal{V}$ of $0\in {\mathbb{R}\times X}$ and a $\log$-analytic function $G : V\to {\mathbb{R}\times X}$ such that we have:
+        $$ F(t,y) = (s,x),\; (t,y)\in \mathcal{U}\; \iff\; G(s,x) = (t,y),\; x\in \mathcal{V}. $$
+    \end{prop}
+    \begin{proof}
+        For $r>0$ sufficiently small, let $v,w\in E_r$ defined for $((s,x),(t,y))\in B_{\mathbb{R}\times X}(0,r^2)\times B_{\mathbb{R}\times X}(0,r)$ by:
+        $$v((s,x),(t,y)):=F(t,y)-(s,x)\; \text{ and }\; w((s,x),(t,y)) = v((s,x),(t,y))-(t,y).$$
+        And denote the coefficients of the expansion of $F$:
+        $$F(t,y) = \sum_{n,b,p\geqslant 0} F^b_{n;p} t^n\log^b|t| y^p. $$
+        
+        Then, 
+        $$ w((s,x),(t,y)) = -(s,x) + \sum_{b \geqslant 0,\;n+p\geqslant 2} F_{n;p}^bt^n\log^b|t| y^p $$
+        because $dF[0] = F = \operatorname{I}_{\mathbb{R}\times X}$. This yields:
+        $$ \|w\|_r \leqslant r^2 + \sum_{b \geqslant 0,\;n+p\geqslant 2} \|F_{n;p}^b\|r^{n+p}\leqslant r^2 C(F) $$
+        for some constant $C(F)>0$. 
+        
+        Now, by definition of $v$, $w$ and $w_0$, and \eqref{prop Lu} we have:
+        $ L_v\circ L-I_{\mathbb{R}\times X} = L_w\circ L. $
+        In particular, by Lemma \ref{control Lw o L}, we find:
+        $$\|L_v\circ L-I_{\mathbb{R}\times X}\|\leqslant r C(F)$$
+        for $r>0$ sufficiently small. Therefore, choosing $r$ small enough, $L_v\circ L$ is an isomorphism of $F_r$ and we can define $u_0$ uniquely by:
+        \begin{equation}
+            L_v \circ Lu_0 ((s,x),(t,y)) = (t,y)\label{def u0}
+        \end{equation}
+        
+        As in \cite{bt}, by defining
+        \begin{equation}
+            G(s,x):= \partial_{(t,y)}(Lu_0)[(s,x),(0,0)](s,x)\label{def G}
+        \end{equation}
+        we find:
+        \begin{align*}
+            (t,y) - G(s,x) &=L_v \circ Lu_0 ((s,x),(t,y)) -\partial_{(t,y)}(Lu_0)[(s,x),(0,0)](s,x)\\
+            &= L_v \circ Lu_0 ((s,x),(t,y)) +\partial_{(t,y)}(Lu_0)[(s,x),(0,0)]v((s,x),(0,0))\\
+            &=\partial_{(t,y)}(L u_0)[(s,x),(t,y)] (v((s,x),(t,y)))\\
+            &=\partial_{(t,y)}(L u_0)[(s,x),(t,y)] (F(t,y)-(s,x))
+        \end{align*}
+        where we successively used \eqref{def u0} and \eqref{def G}, the fact that $v((s,x),(0,0)) = -(s,x)$, the definition of $L_v$, and the definition of $v$.
+        
+        In particular, as in the statement of the Proposition, in well-chosen neighborhoods of $0$, $F(t,y)=(s,x)$ if and only if $ G(s,x)=(t,y)$ because $\partial_{(t,y)}(L u_0)[(s,x),(t,y)]$ is a bijection. It is clear that $G$ is $\log$-analytic and this proves the proposition.
+    \end{proof}
+    
+    
+    \subsection{Inverse and implicit function theorems}
+    
+    Up to a translation from $x_0\in X$ and a linear transformation by $\left(dF[x_0]\right)^{-1}$, we have the following general inverse function theorem.
+    
+    \begin{thm}\label{inverse fct theorem log}
+    		Let $F:\mathbb{R}\times X \to Y$ be a $\log$-analytic map and assume that the linearization of $F$ at $(s_0,x_0)\in \mathbb{R}\times X$ is invertible. Then there exists a local inverse $G: \mathcal{V}\subset Y\mapsto \mathcal{U}\subset\mathbb{R}\times X$ which is $\log$-analytic in the following sense:
+    		$$ G = \tilde{G}\circ (d_{x_0}F)^{-1} $$
+    		where $\tilde{G}:\mathbb{R}\times X \to \mathbb{R}\times X $ is $\log$-analytic.
+    \end{thm}
+    \todo[inline]{We need no logarithm at the linear level linearization -- The "$\mathbb{R}$" factor on the image $Y$, where logarithmic terms may appear is the image of the $\mathbb{R}$ factor of $\mathbb{R}\times X$ by the linearization of $F$.}
+    
+    
+    This classically also implies the following implicit function theorem.
+    
+    \begin{thm}\label{implicit fct theorem log}
+         Let $X$, $Y$ and $Z$ be Banach spaces, and let $\mathcal{U}\subset X\times Y$ be open, $(x_0,y_0)\subset X\times Y$ and $F:\mathcal{U}\to Z$ be $\log$-analytic. Assume that the partial derivative $\partial_xF[x_0,y_0]$ is a homeomorphism.
+         
+         Then, there exists an open neighborhood $\mathcal{V} \subset Y$ of $y_0$, $\mathcal{W}\subset\mathcal{U}$ neighborhood of $(x_0,y_0)$ and $ \phi:\mathcal{V}\to X$ $\log$-analytic such that:
+         $$F^{-1}(\{F(x_0,y_0)\})\cap W = \{(\phi(y),y), y\in \mathcal{V} \}.$$
+    \end{thm}
+    \begin{proof}
+    The idea is to invert $H(x,y):=(y,F(x,y))$...
+    \end{proof}
+    
+    Another consequence which might very well be important for us is the fact that the composition of $\log$-analytic maps is also $\log$-analytic.    
+    
+\begin{thm}\label{composition log}
+		A composition of $\log$-analytic maps is $\log$-analytic.
+\end{thm}
 
 
 \section{Cauchy-data matching for the projected problem}
 
+
 \subsection{Linear problem on each region}
 
+
+
 \subsubsection{Linear problem on the ALE and orbifold spaces}
+
+\paragraph{Linearization of Einstein operator on a compact orbifold.}
+
+
+    On an orbifold, the linear operator $L_o:\tilde{\mathbf{O}}(g_o)\oplus H^{s+1/2}(M_o)\cap \tilde{\mathbf{O}}(g_o)^\perp\to H^{s-3/2}(M_o)$,
+    $$ L_o(\mathbf{o}_o,h)\mapsto  $$
+    is an isomorphism. 
+    
+    The leading terms of the elements of the kernel on the orbifold: if there is some $\phi_m$ associated to the m-th eigenvalue of the spherical Laplacian, then the associated element of the kernel of $L_{g_o}$ has a development:
+    $$ r^{-2-m}\phi_m + \mathcal{O}(r^{-2-m+1}) $$
+    hence, restricted to some small $r$, one mostly sees that first term (it's the only one remaining as $r\to 0$)...
+    
+
 
 ** Kernel/cokernel of the linearization on the orbifold/ALE
 
@@ -535,6 +849,14 @@ and therefore,
 ** Linear Dirichlet to Neumann problem on the orbifold/ALE with boundary
 
 ** invertibility for the Linear Dirichlet to Neumann problem projected on the high frequencies 
+\paragraph{Linearization on an ALE space.}
+
+    On an ALE space, the linear operator $L_Z:\tilde{\mathbf{O}}(g_Z)\oplus H^{s+1/2}(Z)\cap \tilde{\mathbf{O}}(g_Z)^\perp\to H^{s-3/2}(Z)$,
+    $$ L_Z(\mathbf{o}_Z,h)\mapsto  $$
+    is an isomorphism. 
+    
+    Here, the leading term for the Dirichlet problem from some $\phi_m$ is this time in $r^m\phi_m + \mathcal{O}(r^{m-1})$. 
+    
 
 \subsubsection{Linear problem on a flat annulus}
 
@@ -544,6 +866,58 @@ and therefore,
 
 ** invertibility for the Linear Dirichlet to Neumann problem projected on the high frequencies
 
+    \todo[inline]{See notations:}
+    Let us now consider the Dirichlet-to-Neumann map obtained on the annulus.
+    
+    Let $A_e(r_1,r_2)$ be a flat annulus and consider $H(r_1)$ and $H(r_2)$ be functions in $H^s(\mathbb{S}^3)$. We define $ H $ the unique harmonic function with Dirichlet conditions $H(r_1)$ and $H(r_2)$ at $r=r_1$ and $r=r_2$. We then denote $H'(r_1)$ and $H'(r_2)$ as the restrictions of $\nabla_{r\partial_r}H$ respectively at $r=r_1$ and
+    $r=r_2$.
+    
+    \begin{defn}[Linear Dirichlet-to-Neumann map on a flat annulus]
+        We define $\operatorname{DtN}: H^s(\mathbb{S}^3)^2 \to H^{s-1}(\mathbb{S}^3)^2$, by $$\operatorname{DtN}:\big(H(r_1),H(r_2)\big)\mapsto \big(H'(r_1),H'(r_2)\big).$$
+    \end{defn}
+    
+    \begin{defn}[Boundary conditions $ H^s_{0} $ and $H^{s-1}_{Im}$]
+        We define $ H^s_{0} $ as the subspace of $H^s(\mathbb{S}^3)^2$ consisting of functions $\big(H(r_1),H(r_2)\big)$ such that the average of $H(r_1)$ is equal to the opposite of the average of $H(r_2)$. 
+        
+        We also define $H^{s-1}_{Im}$ as the subspace of $H^{s-1}(\mathbb{S}^3)^2$ consisting of functions $\big(H(r_1),H(r_2)\big)$ such that the average of $H(r_1)$ is equal to the average of $-\epsilon^4H(r_2)$. 
+    \end{defn}
+    \begin{rem}
+        This represents a complement of constant functions which will be both the kernel and cokernel of our Dirichlet-to-Neumann operator $\operatorname{DtN}$.
+    \end{rem}
+    
+    \begin{prop}\label{inverse DtN}
+        The map $\operatorname{DtN}: H^s_{0}\to H^{s-1}_{Im}$ is a continuous linear isomorphism.
+    \end{prop}
+    \begin{proof}
+        As in the previous section, let us limit ourselves to the situation when $r_1 = \epsilon$ and $r_2 = \epsilon^{-1}$ for some $0<\epsilon<1$.
+        
+        We have an explicit expression of $H$ by \eqref{système}. This directly gives us the following values:
+        \begin{align*}
+            H'(\epsilon) &=\sum_k\frac{k\epsilon^{2k}}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon^{-1}) -\epsilon^{4+2k}H_{k}(\epsilon) \big)\\
+            &\;\;\;\;+\frac{-2-k}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon) - \epsilon^{2k} H_{k}(\epsilon^{-1})\big)\\
+            &=\sum_k\frac{(2+2k)\epsilon^{2k}}{1-\epsilon^{4+4k}}H_{k}(\epsilon^{-1})\\
+            &\;\;\;\;+\frac{-2-k-k\epsilon^{4+4k}}{1-\epsilon^{4+4k}}H_{k}(\epsilon).
+        \end{align*}
+        and
+        \begin{align*}
+            H'(\epsilon^{-1}) &=\sum_k\frac{k}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon^{-1}) -\epsilon^{4+2k}H_{k}(\epsilon) \big)\\
+            &\;\;\;\;+\frac{(-2-k)\epsilon^{4+2k}}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon) - \epsilon^{2k} H_{k}(\epsilon^{-1})\big)\\
+            &=\sum_k\frac{k+(2+k)\epsilon^{4+4k}}{1-\epsilon^{4+4k}}H_{k}(\epsilon^{-1})\\
+            &\;\;\;\;+\frac{(-2-2k)\epsilon^{4+2k}}{1-\epsilon^{4+4k}}H_{k}(\epsilon).
+        \end{align*}
+        We therefore see that for $\epsilon>0$ small enough and $k\geqslant 1$, the map $(H_k(\epsilon),H_k(\epsilon^{-1}))\to (H_k'(\epsilon),H_k'(\epsilon^{-1}))$ is invertible, where $(H_k'(\epsilon),H_k'(\epsilon^{-1}))$ is the projection on the $k$-th eigenvalue of the spherical Laplacian.
+        
+        There remains to study the case of $k=0$ separately to determine the kernel and cokernel of our Dirichlet-to-Neumann operator. Let us first rewrite the associated components:
+        \begin{align*}
+            H'_0(\epsilon) &=\frac{-2}{1-\epsilon^{4}}\big(H_{0}(\epsilon) - H_{0}(\epsilon^{-1})\big),
+        \end{align*}
+        and
+        \begin{align*}
+            H'_0(\epsilon^{-1}) &=\frac{-2\epsilon^{4}}{1-\epsilon^{4}}\big(H_{0}(\epsilon) -  H_{0}(\epsilon^{-1})\big).
+        \end{align*}
+        We see that the kernel of the operator corresponds to restrictions of constant $2$-tensors, i.e. $H_0(\epsilon) = H_0(\epsilon^{-1})$. We also see that the cokernel is composed of elements satisfying $ H'_0(\epsilon)=-\epsilon^4H'_0(\epsilon^{-1})$.
+    \end{proof}
+    
 \subsection{The non linear situation}
 
 ** Application of log-analytic implicit function theorem
@@ -557,7 +931,46 @@ and therefore,
 ** Invertibility of linear DtN problem
 
 ** Application of log-analytic implicit function theorem
+ \subsubsection{Cut-off of the kernel}
  
+ \todo[inline]{To arrange ->}
+ 
+ Let us define the projection of $\mathbf{O}(g_o)$ and the $\mathbf{O}(\mathbf{b}_j)$ on $(M,g^D)$ by cut-off:
+    \begin{equation}
+        \tilde{\mathbf{O}}(g_o):=\chi_{M_o(b\epsilon)}\mathbf{O}(g_o),\label{tildOgo}
+    \end{equation}
+    \begin{equation}
+        \tilde{\mathbf{O}}(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}(\mathbf{b}_j), \text{ and } \tilde{\mathbf{O}}_0(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}_0(\mathbf{b}_j) \label{tildOgb}
+    \end{equation}
+    and finally the approximate kernel on $(M,g^D_t)$,
+    \begin{equation}
+        \tilde{\mathbf{O}}(g^D):= \bigoplus_j\tilde{\mathbf{O}}(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(g_o) \text{ and } \tilde{\mathbf{O}}_0(g^D):= \bigoplus_j\tilde{\mathbf{O}}_0(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(g_o).\label{tildOgD}
+    \end{equation}
+    
+    We are interested in the operator $\mathbf{\Psi}_{g^D}: \big(g^D+C^{2,\alpha}_{\beta,*}(g^D)\cap \tilde{\mathbf{O}}(g^D)^\perp\big)\times \tilde{\mathbf{O}}(g^D)\to r_D^{-2}C^\alpha_\beta(g^D)$,
+    \begin{equation}
+        \mathbf{\Psi}_{g^D}(g,\tilde{\mathbf{o}}):=\mathbf{\Phi}_{g^D}(g) +\tilde{\mathbf{o}}.\label{def Psi gD}
+    \end{equation}
+\subsubsection{Einstein modulo obstructions metrics}
+    
+    \begin{defn}[Einstein modulo obstructions metric]\label{gluing modulo obstructions}
+        For any $(t,v)\in \mathbb{R}^+_*\times \tilde{\mathbf{O}}_0(g^D)$ close enough to $(0,0)$ there exists a \emph{unique} solution $\hat{g}_{t,v}$ to the equation 
+        $$\mathbf{\Phi}(\hat{g}_{t,v})\in \tilde{\mathbf{O}}(g^D_t),$$
+        satisfying the following conditions: 
+        \begin{enumerate}
+            \item $\|\hat{g}_{t,v}-g^D_t\|_{C^{2,\alpha}_{\beta,*}}\leqslant C (t^2+\|v\|_{L^2}^2)$, for some $C>0$,
+            \item $\hat{g}_{t,v}-(g^D_t+v)$ is $L^2(g^D_t)$-orthogonal to $\tilde{\mathbf{O}}_0(g^D_t)$, and
+            \item $\tilde{B}_{g^D_t}\hat{g}_{t,v} = 0$.
+        \end{enumerate}
+        It is called an \emph{Einstein modulo obstructions} desingularization of $(M_o,\mathbf{g}_o)$. We will denote  $-\hat{\mathbf{o}}_{t,v}=\mathbf{\Phi}(\hat{g}_{t,v})\in \tilde{\mathbf{O}}(g^D_t),$ for which $ \mathbf{\Psi}_{g^D_t}(\hat{g}_{t,v},\hat{\mathbf{o}}_{t,v})=0  $.
+    \end{defn}
+    \begin{rem}
+        Note that if the obstructions vanish for a metric $\hat{g}_{t,v}$, then it is Einstein. Indeed, we know that $\tilde{B}_{\hat{g}_{t,v}}E(\hat{g}_{t,v})=0$ and by the first condition, $\hat{g}_{t,v}$ and $g^D$ are very close to each other hence $\tilde{B}_{\hat{g}_{t,v}}\delta^*_{g^D_t}$ restricted to the orthogonal of $\tilde{\mathbf{K}}_o$ (the image of $\tilde{B}_{\hat{g}_{t,v}}$) is injective.
+    \end{rem}
+   
+\todo[inline]{}
+
+
 \appendix
 
 
@@ -587,7 +1000,7 @@ We start by defining our model spaces asymptotic to some quotient of the Euclide
 \end{defn}
 
 \begin{defn}[Infinitesimal deformations of an Einstein orbifold metric]
-    Let $(M_o,\mathbf{g}_o)$ be an Einstein orbifold. We define $\mathbf{O}(\mathbf{g}_o)$ as the finite dimensional kernel of the elliptic operator $P_{\mathbf{g}_o}:= \frac{1}{2}\nabla^*_{\mathbf{g}_o}\nabla_{\mathbf{g}_o}- \mathring{\R}_{\mathbf{g}_o}$ on $2$-tensors of $L^2(\mathbf{g}_o)$, where  $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big),$.
+    Let $(M_o,g_o)$ be an Einstein orbifold. We define $\mathbf{O}(g_o)$ as the finite dimensional kernel of the elliptic operator $P_{g_o}:= \frac{1}{2}\nabla^*_{g_o}\nabla_{g_o}- \mathring{\R}_{g_o}$ on $2$-tensors of $L^2(g_o)$, where  $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big),$.
 \end{defn}
 
 \paragraph{ALE Ricci-flat metrics and their deformations.}
@@ -623,36 +1036,6 @@ This prevents rescaling of the metric and Ricci-flat ALE deformation in the dire
 
 \subsection{Einstein modulo obstructions metrics}
     
-    Define $B_{g}:= \delta_g+\frac{1}{2} d\mathrm{tr}_g$ the Bianchi operator, where $\delta$ is the divergence. Note that for a vector field $X$ identified with the $1$-form canonically associated by $g$, $2\delta^*_g X = \mathcal{L}_Xg$, where $\mathcal{L}$ is the Lie derivative. Let $\mathbf{K}_o$ be the $L^2$-kernel of $B_{\mathbf{g}_o}\delta_{\mathbf{g}_o}^* = \nabla_{\mathbf{g}_o}^*\nabla_{\mathbf{g}_o}-\Ric(\mathbf{g}_o)$ on $1$-forms of $(M_o,\mathbf{g}_o)$, define
-    $\tilde{\mathbf{K}}_o:= \chi_{M_o(b\epsilon)}\mathbf{K}_o,$, 
-    $$\tilde{B}_{g^D}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{g^D}\textup{ and }\tilde{B}_{\tilde{g}_o}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{\tilde{g}_o}$$
-    (this projection is necessary to ensure that it is always possible to put metrics in gauge with respect to $g^D$). Notice that a metric $g$ in dimension $4$ is Einstein if and only if it is a zero of $$E(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g,$$
-    and that $B_gE(g)= 0$ by the Bianchi identity. We will be interested in the operator
-    $$\mathbf{\Phi}_{g^D}(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g + \delta_{g^D}^*\tilde{B}_{g^D}g$$
-    on metrics close to $g^D$. Denoting $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big)$ for an orthonormal basis $e_i$, we have the following expression of the linearization: for $h$ satisfying $\int_M\textup{tr}_{g^D}h dv(g)=0$,
-    \begin{align}
-    P_{{g^D}}(h):=& \;d_{g^D}\mathbf{\Phi}_{g^D}(h) = \frac{1}{2}\nabla^*_{g^D}\nabla_{g^D} h  -\mathring{\R}_{g^D}(h)+\frac{1}{2}\Big(\Ric_{g^D}\circ h+h\circ \Ric_{g^D} - \frac{\overline{\R}({g^D})}{2}h\Big)\nonumber\\
-    &+ \frac{1}{4\vol({g^D})}\int_M\Big\langle\Ric({g^D})-\frac{\R({g^D})}{2}, h\Big\rangle_{g^D} dv_{g^D}{g^D} - \delta_{{g^D}}^*B_{g^D}h+\delta^*_{g^D}\tilde{B}_{g^D} h.\label{bar P g}
-    \end{align}
-    which would reduce to $ P:=  \frac{1}{2}\nabla^*\nabla  -\mathring{\R} $ if the metric $g^D$ were Einstein and $\tilde{B} = B$.
-    
-    \subsubsection{Approximate obstructions}
-    Let us define the projection of $\mathbf{O}(\mathbf{g}_o)$ and the $\mathbf{O}(\mathbf{b}_j)$ on $(M,g^D)$ by cut-off:
-    \begin{equation}
-        \tilde{\mathbf{O}}(\mathbf{g}_o):=\chi_{M_o(b\epsilon)}\mathbf{O}(\mathbf{g}_o),\label{tildOgo}
-    \end{equation}
-    \begin{equation}
-        \tilde{\mathbf{O}}(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}(\mathbf{b}_j), \text{ and } \tilde{\mathbf{O}}_0(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}_0(\mathbf{b}_j) \label{tildOgb}
-    \end{equation}
-    and finally the approximate kernel on $(M,g^D_t)$,
-    \begin{equation}
-        \tilde{\mathbf{O}}(g^D):= \bigoplus_j\tilde{\mathbf{O}}(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(\mathbf{g}_o) \text{ and } \tilde{\mathbf{O}}_0(g^D):= \bigoplus_j\tilde{\mathbf{O}}_0(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(\mathbf{g}_o).\label{tildOgD}
-    \end{equation}
-    
-    We are interested in the operator $\mathbf{\Psi}_{g^D}: \big(g^D+C^{2,\alpha}_{\beta,*}(g^D)\cap \tilde{\mathbf{O}}(g^D)^\perp\big)\times \tilde{\mathbf{O}}(g^D)\to r_D^{-2}C^\alpha_\beta(g^D)$,
-    \begin{equation}
-        \mathbf{\Psi}_{g^D}(g,\tilde{\mathbf{o}}):=\mathbf{\Phi}_{g^D}(g) +\tilde{\mathbf{o}}.\label{def Psi gD}
-    \end{equation}
 
 
 \section{Definition of the norm on an annulus}
@@ -825,7 +1208,7 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
    for some boundary condition $\phi: \epsilon^{-1}\mathbb{S}^3\slash\Gamma \to \operatorname{Sym}^2(T\mathbb{R}^4\slash\Gamma)$. Similarly, on the orbifold, the problem becomes:
    \begin{equation}
        \left\{\begin{aligned}
-            P_{\mathbf{g}_o} h &=0,\\
+            P_{g_o} h &=0,\\
             h &= \phi \text{ on } \epsilon\mathbb{S}^3\slash\Gamma.
        \end{aligned}\right.\label{boundary orb}
    \end{equation}
@@ -886,7 +1269,7 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
         \end{enumerate}
    \end{prop}
    
-   There are similar results for orbifolds where the kernel of $P_o$ includes every $\frac{\phi_j}{r^{2+j}}$ except those which appear in the developments of the elements of $\mathbf{O}(\mathbf{g}_o)$, the $L^2$-kernel.
+   There are similar results for orbifolds where the kernel of $P_o$ includes every $\frac{\phi_j}{r^{2+j}}$ except those which appear in the developments of the elements of $\mathbf{O}(g_o)$, the $L^2$-kernel.
    
    \subsection{Solving the boundary value problem modulo obstructions}
    
@@ -899,13 +1282,13 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
    We can however solve it modulo obstruction using Proposition \ref{resolutino modulo obst linear} in order to ``replace'' $\frac{\phi_2}{r^4}$ by $r^2\phi_2$. That is solve:
    \begin{equation}
        \left\{\begin{aligned}
-            P_{\mathbf{g}_o} h &\in \mathbf{O}(\mathbf{b}) \text{ or } \chi\mathbf{O}(\mathbf{b}) \text{ for some cut-off } \chi \text{ supported in a large region},\\
+            P_{g_o} h &\in \mathbf{O}(\mathbf{b}) \text{ or } \chi\mathbf{O}(\mathbf{b}) \text{ for some cut-off } \chi \text{ supported in a large region},\\
             h &= \phi \text{ on } \epsilon\mathbb{S}^3\slash\Gamma,
        \end{aligned}\right.\label{boundary orb obst}
    \end{equation}
    and chose the solutions growing polynomially at infinity.
    \begin{rem}
-    Here the solution is probably not unique as we can compensate portions of $\phi_2$ by either the element asymptotic to $\frac{\phi_2}{r^4}$ or $r^2\phi_2$? This kind of non uniqueness is expected as in the end, there is $\mathbf{O}(\mathbf{b})\oplus \mathbf{O}(\mathbf{g}_o)$ degrees of freedom.
+    Here the solution is probably not unique as we can compensate portions of $\phi_2$ by either the element asymptotic to $\frac{\phi_2}{r^4}$ or $r^2\phi_2$? This kind of non uniqueness is expected as in the end, there is $\mathbf{O}(\mathbf{b})\oplus \mathbf{O}(g_o)$ degrees of freedom.
    \end{rem}
    
    The boundary value for all of the $2$-tensors $h_j$ satisfying
@@ -927,7 +1310,7 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
    
    \subsection{Matching boundary values}
    
-   The orbifold is solution of $\Ric(\mathbf{g}_o) = \Lambda \mathbf{g}_o$ with boundary $$\mathbf{e} + \sum_{i=2}^{+\infty} \epsilon^{i}\phi_i$$ on $\epsilon \mathbb{S}^3\slash\Gamma$, and the Ricci-flat ALE metric is solution of $\Ric(\mathbf{b}) = 0$ with boundary condition $$\mathbf{e} + \sum_{j=2}^{+\infty} \epsilon^{j+2}\psi_j$$
+   The orbifold is solution of $\Ric(g_o) = \Lambda g_o$ with boundary $$\mathbf{e} + \sum_{i=2}^{+\infty} \epsilon^{i}\phi_i$$ on $\epsilon \mathbb{S}^3\slash\Gamma$, and the Ricci-flat ALE metric is solution of $\Ric(\mathbf{b}) = 0$ with boundary condition $$\mathbf{e} + \sum_{j=2}^{+\infty} \epsilon^{j+2}\psi_j$$
    on $\epsilon^{-1} \mathbb{S}^3\slash\Gamma$.
    
    \begin{conj}
@@ -940,4 +1323,3 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
    
     
 \end{document}
-
