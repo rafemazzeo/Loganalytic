@@ -201,7 +201,7 @@ obstructions in the `log-analytic' category, and from this deduce from a version
 theorem that the Einstein moduli space itself has a log-semi-analytic structure.  From this we 
 can deduce answers to some classical questions about the set of Einstein metrics that can exist on a given 4-manifold $M$.
 
-A function $f(t)$ of one variable is said to be log-analytic if it can be expressed as a convergent sum
+A function $f(t)$ of one variable is said to be log-analytic if it can be expressed as a \emph{convergent} sum
 \begin{equation}
 f(t) = \sum_{j=0}^\infty \sum_{k=0}^{N_j}  a_{jk} t^j (\log t)^k
 \label{logan}
@@ -235,7 +235,7 @@ As explained in the introduction, let $(M_0, g_0)$ be a four-dimensional Einstei
 is an Einstein metric on the regular set of $M_0$, while the singular set consists of $N$ points, $p_1, \ldots, p_N$,
 around each of which the Einstein metric is asymptotic to the flat metric $\RR^4/\Gamma_j$, $j = 1, \ldots, N$.
 For simplicity, in this paper we always assume that $N = 1$, but the extension of all our methods and results
-to the general case involves only more notation.   
+to the general case involves only more notation.  Indeed, the fact that the analysis on an orbifold is the same as on a smooth space (up to finite quotients around singularities) allows us to iterate the construction to the whole tree of singularities dealing with one singularity and the corresponding Ricci-flat ALE orbifold at a time.
 
 Call this sole orbifold point $p$. There is a neighborhood $\calU$ of $p$ which is diffeomorphic to
 a truncated cone $C_{0,1}(S^3/\Gamma)$.  There is an asymptotic normal form for the metric $g_0$ 
@@ -321,12 +321,12 @@ be necessary to replace this last spectral condition with some obvious generaliz
 %     \begin{defn}[Family $\mathcal{T}$ of developments]
 %         We define $\mathcal{T}$ as the space of functions with development
 %         \begin{equation}
-%             u(r,x) = \sum_{m,a,n,b}\Big(\frac{r}{r_2}\Big)^{m}\Big(\frac{r}{r_1}\Big)^{-n}\log^a\Big(\frac{r}{r_2}\Big)\log^b\Big(\frac{r}{r_1}\Big) u_{m,a,n,b}(x)\label{eq dvt T}
+%             u(r,x) = \sum_{m,a,n,b}\Big(\frac{r}{r_2}\Big)^{m}\Big(\frac{r}{r_1}\Big)^{-n}\log^a\Big(\frac{r}{r_2}\Big)\log^b\Big(\frac{r}{r_1}\Big) u_{manb}(x)\label{eq dvt T}
 %         \end{equation}
-%     with $x\in \mathbb{S}^3 \mapsto u_{m,a,n,b}(x) \in E$ where $E$ is some vector subbundle of $(T^*\mathbb{R}^4)^{l_-}\times (T\mathbb{R}^4)^{l_+}$ satisfying:
+%     with $x\in \mathbb{S}^3 \mapsto u_{manb}(x) \in E$ where $E$ is some vector subbundle of $(T^*\mathbb{R}^4)^{l_-}\times (T\mathbb{R}^4)^{l_+}$ satisfying:
 %         \begin{itemize}
 %             \item $a\leqslant m$, $b\leqslant n-2$, 
-%             \item $u_{m,a,n,b}$ is a linear combination of the $\max(m,n-2)$ first harmonics of the Laplacian of $\mathbb{S}^3$.
+%             \item $u_{manb}$ is a linear combination of the $\max(m,n-2)$ first harmonics of the Laplacian of $\mathbb{S}^3$.
 %         \end{itemize}
 %     \end{defn}
 
@@ -334,7 +334,7 @@ Next, we introduce a doubly-indexed scale of norms on elements of $\calT$:
 \begin{defn}
 Fix $s > 3/2$ and $\alpha > 0$.  Define, for any $u \in \calT$ with sufficiently fast decaying coefficients, the norm
 \[
-\|u\|_{s,\alpha}^2:= \sum_{m,a,n,b} (1+m)^{2\alpha}(1+n)^{2\alpha} \|u_{m,a,n,b}\|_{H^s(S^3/\Gamma)}^2. 
+\|u\|_{s,\alpha}^2:= \sum_{m,a,n,b} (1+m)^{2\alpha}(1+n)^{2\alpha} \|u_{manb}\|_{H^s(S^3/\Gamma)}^2. 
 \]
 This defines a Banach space, which we denote $\calA_{s,\alpha}^0$. 
 
@@ -357,7 +357,7 @@ Observe that if $u \in \calA^p_{s,\alpha}$ for some $p, s, \alpha$, then
 u(r_1,y)=\sum_{j k \ell} u_{j k \ell 0}(y) \left(\frac{r_1}{r_2} \right)^j \left( \log \left(\frac{r_1}{r_2} \right) \right)^k
 \]
 is a log-analytic function in the variable $t = r_1/r_2$ with values in  $H^s(S^3/\Gamma)$.  The analogous
-statement is true for $u(r_2, y0$. 
+statement is true for $u(r_2, y)$. 
 
 \begin{rem}
    The normal derivative of a function with bounded $\|.\|_{s,\alpha}$-norm is a $H^{s-1}(\mathbb{S}^3)$-function. More precisely, if we consider the derivative in the direction $r\partial_r$, then we obtain a $\log$-analytic development in $\frac{r_1}{r_2}$.
@@ -371,7 +371,7 @@ statement is true for $u(r_2, y0$.
 %     If one considers 
 %     \begin{itemize}
 %     \item $r_1=0$,
-%     \item $u_{m,n,a,b} = 0$ if $a\neq 0$ or $b\neq 0$ or $n\neq 0$, and
+%     \item $u_{manb} = 0$ if $a\neq 0$ or $b\neq 0$ or $n\neq 0$, and
 %     \item the harmonics of $u_{m,0,0,0}$ have the same parity as $m$,
 %     \end{itemize}
 %     then one finds real-analytic functions.
@@ -386,7 +386,7 @@ bundle over $S^3/\Gamma$.  It is particularly simple to do this when $E$ is the 
 $2$-tensors. 
  % vector bundle $E$ in $\mathbb{R}^4$ simply by looking at them in the coordinates given by an orthonormal basis of $\mathbb{R}^4$ and consider a specific convenient norm on this bundle $E$. For instance, for symmetric $2$-tensors on $\mathbb{R}^4$ identified with $4\times 4$ matrices, we will choose it to be submultiplicative (taking for instance the operator norm) to have a Banach algebra structure. 
 
-\subsection{Properties of the Banach spaces $A^k_{s,\alpha}$} 
+\subsection{Properties of the Banach spaces $\calA^k_{s,\alpha}$} 
 
     Let us start with the behavior of the family $\mathcal{T}$ with respect to usual operations.
  
@@ -407,32 +407,32 @@ $2$-tensors.
     Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
     \begin{enumerate}
         \item By construction,
-    $$\|h\|_{A^k_{s,\alpha}}\leqslant \|h\|_{A_{s,\alpha}^l}$$
+    $$\|h\|_{\calA^k_{s,\alpha}}\leqslant \|h\|_{\calA_{s,\alpha}^l}$$
     if $k\leqslant l$. 
     \item Moreover, the linear maps
-    $$ h\in A^{k+2}_{s,\alpha}\to \nabla^lh\in A^{k+2-l}_{s,\alpha} $$
-    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in A^{k+2}_{s,\alpha}\mapsto \Delta h \in A^{k+2-l}_{s,\alpha}$. 
+    $$ h\in \calA^{k+2}_{s,\alpha}\to \nabla^lh\in \calA^{k+2-l}_{s,\alpha} $$
+    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in \calA^{k+2}_{s,\alpha}\mapsto \Delta h \in \calA^{k}_{s,\alpha}$. 
     \item For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
-    $$ \|Q(u_1,...,u_l)\|_{A^{k}_{s,\alpha}} \leqslant C\|u_1\|_{_{s,\alpha}}\ldots \|u_l\|_{_{s,\alpha}},$$ where $C>0$ depends on $Q$.
-    \item The map $h\in _{s,\alpha}\mapsto(\mathbf{e}+h)^{-1}\in A^k_{s,\alpha}$ is also $\log$-analytic. 
+    $$ \|Q(u_1,...,u_l)\|_{\calA^{k}_{s,\alpha}} \leqslant C\|u_1\|_{_{s,\alpha}}\ldots \|u_l\|_{_{s,\alpha}},$$ where $C>0$ depends on $Q$.
+    \item The map $h\in _{s,\alpha}\mapsto(\mathbf{e}+h)^{-1}\in \calA^k_{s,\alpha}$ is also $\log$-analytic. 
     \end{enumerate}
     \end{prop}
     \begin{proof}
         The first two points are direct consequences of the definition.
         
         For the third point, Cauchy product formula applied to the product of
-        $$= \sum_{m,a,n,b}\Big(\frac{r}{r_2}\Big)^{m}\Big(\frac{r}{r_1}\Big)^{-n}\log^a\Big(\frac{r}{r_2}\Big)\log^b\Big(\frac{r}{r_1}\Big) u_{m,a,n,b}$$
+        $$\sum_{m,a,n,b}\Big(\frac{r}{r_2}\Big)^{m}\Big(\frac{r}{r_1}\Big)^{-n}\log^a\Big(\frac{r}{r_2}\Big)\log^b\Big(\frac{r}{r_1}\Big) u_{manb}$$
         and
-        $$\sum_{p,q,c,d}\Big(\frac{r}{r_2}\Big)^{p}\Big(\frac{r}{r_1}\Big)^{-q}\log^c\Big(\frac{r}{r_2}\Big)\log^d\Big(\frac{r}{r_1}\Big) v_{p,q,c,d}$$
+        $$\sum_{p,q,c,d}\Big(\frac{r}{r_2}\Big)^{p}\Big(\frac{r}{r_1}\Big)^{-q}\log^c\Big(\frac{r}{r_2}\Big)\log^d\Big(\frac{r}{r_1}\Big) v_{pqcd}$$
         gives:
-        $$\sum_{M,N,A,B}\Big(\frac{r}{r_2}\Big)^{M}\log^A\Big(\frac{r}{r_2}\Big)\Big(\frac{r}{r_1}\Big)^{-N}\log^B\Big(\frac{r}{r_1}\Big) \sum u_{m,a,n,b}v_{p,q,c,d}$$
-        where the second sum is taken among $m+p = M$, $ n+q = N $, $a+c = A$ and $ b+d=B $. Since $ H^s(\mathbb{S}^{n-1}) $ is a Banach algebra for $s>3/2$, we have $$ \big\|\sum u_{m,a,n,b}v_{p,q,c,d}\big\|_{H^s(\mathbb{S}^{n-1})} \leqslant \sum \| u_{m,n,a,b}\|_{H^s(\mathbb{S}^{n-1})}\|v_{p,q,c,d}\|_{H^s(\mathbb{S}^{n-1})}.$$
+        $$\sum_{M,N,A,B}\Big(\frac{r}{r_2}\Big)^{M}\log^A\Big(\frac{r}{r_2}\Big)\Big(\frac{r}{r_1}\Big)^{-N}\log^B\Big(\frac{r}{r_1}\Big) \sum u_{manb}v_{pqcd}$$
+        where the second sum is taken among $m+p = M$, $ n+q = N $, $a+c = A$ and $ b+d=B $. Since $ H^s(\mathbb{S}^{n-1}) $ is a Banach algebra for $s>3/2$, we have $$ \big\|\sum u_{manb}v_{pqcd}\big\|_{H^s(\mathbb{S}^{n-1})} \leqslant C \sum \| u_{manb}\|_{H^s(\mathbb{S}^{n-1})}\|v_{pqcd}\|_{H^s(\mathbb{S}^{n-1})}.$$
         We therefore find
         \begin{align*}
-            \sum_{M,N,A,B}&(1+M)^{2\alpha}(1+N)^{2\alpha}\big\|\sum u_{m,n}^{a,b}v_{p,q}^{c,d}\big\|^2_{H^s(\mathbb{S}^{n-1})}\\
-            &\leqslant C \sum_{M,N,A,B}(1+M)^{2\alpha}(1+N)^{2\alpha} \sum \| u_{m,n,a,b}\|^2_{H^s(\mathbb{S}^{n-1})}\|v_{p,q,c,d}\|^2_{H^s(\mathbb{S}^{n-1})}\\
-            &\leqslant C\Big(\sum_{m,n,a,b}(1+m)^{2\alpha}(1+n)^{2\alpha}\| u_{m,n,a,b}\|^2_{H^s(\mathbb{S}^{n-1})}\Big)\Big(\sum_{p,q,c,d}(1+p)^{2\alpha}(1+q)^{2\alpha}\|v_{p,q,c,d}\|^2_{H^s(\mathbb{S}^{n-1})} \Big)\\
-            &= \|u\|^2_{A_{s,\alpha}}\|v\|^2_{A_{s,\alpha}}
+            \sum_{M,N,A,B}&(1+M)^{2\alpha}(1+N)^{2\alpha}\big\|\sum u_{manb}v_{pqcd}\big\|^2_{H^s(\mathbb{S}^{n-1})}\\
+            &\leqslant C \sum_{M,N,A,B}(1+M)^{2\alpha}(1+N)^{2\alpha} \sum \| u_{manb}\|^2_{H^s(\mathbb{S}^{n-1})}\|v_{pqcd}\|^2_{H^s(\mathbb{S}^{n-1})}\\
+            &\leqslant C\Big(\sum_{m,n,a,b}(1+m)^{2\alpha}(1+n)^{2\alpha}\| u_{manb}\|^2_{H^s(\mathbb{S}^{n-1})}\Big)\Big(\sum_{p,q,c,d}(1+p)^{2\alpha}(1+q)^{2\alpha}\|v_{pqcd}\|^2_{H^s(\mathbb{S}^{n-1})} \Big)\\
+            &= \|u\|^2_{\calA_{s,\alpha}}\|v\|^2_{\calA_{s,\alpha}}
         \end{align*}
         where we again used Cauchy product formula.
         
@@ -441,7 +441,7 @@ $2$-tensors.
         \\
         
         Let us finally turn to the last point. Equipping the pointwise norm of symmetric $2$-tensors seen as matrices on the tangent spaces with a Banach algebra norm yields the same result and the control:
-        $$ \|u\circ v\|_{0,\epsilon}\leqslant \|u\|_{0,\epsilon}\|v\|_{0,\epsilon}$$
+        $$ \|u\circ v\|_{\calA_{s,\alpha}}\leqslant C \|u\|_{\calA_{s,\alpha}}\|v\|_{0,\epsilon}$$
         where $\circ$ is pointwise the matrix composition on each tangent space. From the expression
         $$ (\mathbf{e}+h)^{-1} = \sum_{k}^{+\infty}(-h)^k, $$
         where $(-h)^k = (-h)\circ\ldots\circ(-h)$, we find the result.
@@ -449,18 +449,18 @@ $2$-tensors.
     
     \subsection{Boundary conditions.}
     \begin{defn}
-        Let $h\in A^{k+2}_{s,\alpha}$ be a $2$-tensor. We define
+        Let $h\in \calA^{k+2}_{s,\alpha}$ be a $2$-tensor. We define
         $\pi_Hh$ as the unique harmonic symmetric $2$-tensor whose restriction to $ r= r_1 $ and $r=r_2$ is equal to the restriction of $h$ on the same spheres.
     \end{defn}
     
-    Without loss of generality, for simpler formulas, we will restrict ourselves to the situation where $r_1 = \epsilon$ and $r_2 = \epsilon^{-1}$. The general situation of an annulus $A_e(r_1',r_2')$ is reduced to this by a change of variable $r' = \sqrt{r_1'r_2'}$ which gives $ \epsilon = \sqrt{\frac{r_1'}{r_2'}} $.
+    Without loss of generality, for simpler formulas, we will restrict ourselves to the situation where $r_1 = \epsilon$ and $r_2 = \epsilon^{-1}$. The general situation of an annulus $\calA_e(r_1',r_2')$ is reduced to this by a change of variable $r' = \sqrt{r_1'r_2'}$ which gives $ \epsilon = \sqrt{\frac{r_1'}{r_2'}} $.
     \\
     
     We can explicit the projection $\pi_H$ in the following form 
     \begin{equation}
         \pi_Hh = \sum_{k\geqslant 0}(\epsilon r_e)^k \tilde{H}_{k}^+    + (\epsilon^{-1} r_e)^{-2-k} \tilde{H}_{k}^-\label{projection harmonic annulus}
     \end{equation}
-    where the $\tilde{H}_{k}^\pm$ are homogeneous with $|\tilde{H}_{k}^+|_{g_e} \sim r_e^0$ and which, once restricted to the sphere are eigenvectors associated to $-k(k+2)$. Indeed, if we decompose in spherical harmonics $ h_{|S_e(\epsilon)} =: \sum_{k} H_{k}(\epsilon)$ and $ h_{|S_e(\epsilon^{-1})} =: \sum_{k} H_{k}(\epsilon^{-1})$, we have the system
+    where the $\tilde{H}_{k}^\pm$ are homogeneous with $|\tilde{H}_{k}^+|_{g_e} \sim r_e^0$ and whose coefficients (in the canonical basis of $\mathbb{R}^4$), once restricted to the sphere are eigenvectors associated to $-k(k+2)$. Indeed, if we decompose in spherical harmonics $ h_{|S_e(\epsilon)} =: \sum_{k} H_{k}(\epsilon)$ and $ h_{|S_e(\epsilon^{-1})} =: \sum_{k} H_{k}(\epsilon^{-1})$, we have the system
     \begin{equation}
   \left\{
       \begin{aligned}
@@ -480,11 +480,11 @@ and therefore,
 \end{equation}
     
     \begin{prop}
-        The projection $\pi_H: A^{k+2}_{s,\alpha}\to A^{k+2}_{s,\alpha}$ is continuous.
+        The projection $\pi_H: \calA^{k+2}_{s,\alpha}\to \calA^{k+2}_{s,\alpha}$ is continuous.
     \end{prop}
     \begin{proof}
         Let us start by writing the explicit developments of the boundary conditions $h_{S(\epsilon)\cup S(\epsilon^{-1})}$ for $h\in \mathcal{T}$ with
-        $$h(r,x):=\sum_{m,a,n,b}\Big(\frac{r}{\epsilon^{-1}}\Big)^{m}\Big(\frac{r}{\epsilon}\Big)^{-n}\log^a\Big(\frac{r}{\epsilon^{-1}}\Big)\log^b\Big(\frac{r}{\epsilon}\Big) h_{m,a,n,b}(x) $$
+        $$h(r,x):=\sum_{m,a,n,b}\Big(\frac{r}{\epsilon^{-1}}\Big)^{m}\Big(\frac{r}{\epsilon}\Big)^{-n}\log^a\Big(\frac{r}{\epsilon^{-1}}\Big)\log^b\Big(\frac{r}{\epsilon}\Big) h_{manb}(x) $$
         
         At $S(\epsilon)$, with the above notations of we have: 
         \begin{equation}
@@ -507,7 +507,7 @@ and therefore,
         \end{align*}
     \end{proof}
     
-        In particular, the linear subspace $\mathring{A}_{s,\alpha}^{k+2} = \ker_{A_{s,\alpha}^{k+2}} \pi_H$ is closed and therefore a (sub)Banach space.
+        In particular, the linear subspace $\mathring{A}_{s,\alpha}^{k+2} = \ker_{\calA_{s,\alpha}^{k+2}} \pi_H$ is closed and therefore a (sub)Banach space.
 
 \section{$\log$-analytic maps between Banach spaces}
 
@@ -661,7 +661,7 @@ This prevents rescaling of the metric and Ricci-flat ALE deformation in the dire
     \subsection{Solving the Dirichlet problem}
     
     \begin{lem}\label{invertibility linearization}
-        The map $\mathbf{\Phi}: A^{k+2}_{s,\alpha}\to A^{k}_{s,\alpha}$ defined by
+        The map $\mathbf{\Phi}: \calA^{k+2}_{s,\alpha}\to \calA^{k}_{s,\alpha}$ defined by
         $$\mathbf{\Phi}: h\mapsto \Ric(\mathbf{e}+h)+ \delta^*_{\mathbf{e}}B_{\mathbf{e}}(h)$$
         is $\log$-analytic. Its linearization at $0$ restricted to $\mathring{A}_{s,\alpha}^{k+2}$ is moreover a homeomorphism.
     \end{lem}
@@ -672,13 +672,13 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
     
     The composition of $\log$-analytic functions is $\log$-analytic by Theorem \ref{}\todo{ref}. Therefore, by the above Proposition \ref{properties A epsilon k}, the map $\mathbf{\Phi}$ is indeed a $\log$-analytic map between Banach spaces.
     
-    Now, the linearization of $\mathbf{\Phi}$ at $0$ is simply $-\frac{1}{2}\Delta_{\mathbb{R}^4}:\mathring{A}_{s,\alpha}^{k+2}\to A^k_{s,\alpha}$ which is continuous by definition of the norms. It is moreover injective on symmetric $2$-tensors satisfying $h_{|\mathbb{S}^n} \equiv 0$ by the classification of harmonic tensors (or functions) on $\mathbb{R}\backslash B(0,\epsilon)$. 
+    Now, the linearization of $\mathbf{\Phi}$ at $0$ is simply $-\frac{1}{2}\Delta_{\mathbb{R}^4}:\mathring{A}_{s,\alpha}^{k+2}\to \calA^k_{s,\alpha}$ which is continuous by definition of the norms. It is moreover injective on symmetric $2$-tensors satisfying $h_{|\mathbb{S}^n} \equiv 0$ by the classification of harmonic tensors (or functions) on $\mathbb{R}\backslash B(0,\epsilon)$. 
     
     It is also surjective because we allowed logarithmic terms, see for instance the proof of Lemma \ref{stability T}, where the inverse is explicited -- up to adding harmonic terms to ensure that the condition $h_{|\mathbb{S}^n} \equiv 0$ is satisfied. This inverse is moreover continuous by Banach's inverse theorem.
     \end{proof}
     
     
-    Let us define our operator\todo{Revoir les notations et définir $H$} $\mathbf{\Psi}:A_{\epsilon,H}^{k+2}\times A_{\epsilon,0}^{k+2}\to A_{\epsilon}^k$ by:
+    Let us define our operator\todo{Revoir les notations et définir $H$} $\mathbf{\Psi}:\calA_{\epsilon,H}^{k+2}\times \calA_{\epsilon,0}^{k+2}\to \calA_{\epsilon}^k$ by:
     $$ \mathbf{\Psi}(H,h_0):= \mathbf{\Phi}(H,h_0). $$
     
     \begin{thm}\label{Dirichlet problem}
@@ -686,9 +686,9 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
         Moreover, $H\mapsto h_0(H)$ is $\log$-harmonic.
     \end{thm}
     \begin{proof}
-        The map $\mathbf{\Psi}$ is $\log$-analytic and its linearization in the $\mathring{A}_{s,\alpha}^{k+2}$ direction is invertible by Lemma \ref{invertibility linearization}. By our implicit function theorem Theorem \ref{} in the Appendix, there exists a $\log$-analytic map $H\mapsto h_0(H)$ from $A_{s,\alpha,H}^{k+2}$ to $\mathring{A}_{s,\alpha}^{k+2}$ in a neighborhood of $0$ so that the set of zeroes of $\mathbf{\Psi}$ about $(0,0)$ is parametrized by $A_{s,\alpha,H}^{k+2}$ and given by: 
+        The map $\mathbf{\Psi}$ is $\log$-analytic and its linearization in the $\mathring{A}_{s,\alpha}^{k+2}$ direction is invertible by Lemma \ref{invertibility linearization}. By our implicit function theorem Theorem \ref{} in the Appendix, there exists a $\log$-analytic map $H\mapsto h_0(H)$ from $\calA_{s,\alpha,H}^{k+2}$ to $\mathring{A}_{s,\alpha}^{k+2}$ in a neighborhood of $0$ so that the set of zeroes of $\mathbf{\Psi}$ about $(0,0)$ is parametrized by $\calA_{s,\alpha,H}^{k+2}$ and given by: 
         $$\mathbf{\Psi}(H,h_0(H))$$
-        for $H$ in a neighborhood of  $0\in A_{s,\alpha,H}^{k+2}$.
+        for $H$ in a neighborhood of  $0\in \calA_{s,\alpha,H}^{k+2}$.
     \end{proof}
     
     \subsection{Dirichlet-to-Neumann map on the annulus}
@@ -754,7 +754,7 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
     $r=r_2$.
     
     \begin{defn}[Nonlinear Dirichlet-to-Neumann map on a flat annulus]
-        We define for $s>3/2$, $\mathcal{D}t\mathcal{N}: H^s(\mathbb{S}^3) \to H^{s-1}(\mathbb{S}^3)$, by $$\mathcal{D}t\mathcal{N}:\big(H(r_1),H(r_2)\big)\mapsto \big(\mathcal{H}'(r_1),\mathcal{H}'(r_2)\big).$$
+        We define for $s>5/2$, $\mathcal{D}t\mathcal{N}: H^s(\mathbb{S}^3) \to H^{s-1}(\mathbb{S}^3)$, by $$\mathcal{D}t\mathcal{N}:\big(H(r_1),H(r_2)\big)\mapsto \big(\mathcal{H}'(r_1),\mathcal{H}'(r_2)\big).$$
     \end{defn}
     \begin{thm}
         The map $\pi_{H^{s-1}_{Im}}\mathcal{D}t\mathcal{N}: H^{s}_0\to H^{s-1}_{Im}$ has a $\log$-analytic inverse in a neighborhood of $0\in H^{s}(\mathbb{S}^3)^2$.
@@ -940,3 +940,4 @@ Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in co
    
     
 \end{document}
+
