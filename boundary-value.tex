@@ -1,0 +1,1251 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{bbold}
+
+\usepackage{hyperref}
+
+\usepackage[top=3cm,left=3cm,right=3cm,bottom=3.5cm]{geometry}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+%\usepackage[cyr]{aeguill}
+%\usepackage{csquotes}
+\usepackage{esint}
+
+\usepackage{authblk}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage[colorinlistoftodos,prependcaption]{todonotes}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\scal}[2]{\langle #1, #2 \rangle}
+\newcommand{\clinterval}[1]{\ensuremath{\left[#1\right]}}% \ointerval{<interval>} -> ]#1[
+\newcommand{\ointerval}[1]{\ensuremath{\left]#1\right[}}% \ointerval{<interval>} -> ]#1[
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+\newcommand{\maps}[1]{\mathfrak{M}(#1)}
+\newcommand{\module}[1]{\left|#1\right|} 
+\newcommand{\ens}[1]{\left\{#1\right\}}
+
+\newcommand{\Addresses}{{% additional braces for segregating \footnotesize
+		\bigskip
+		\footnotesize
+		
+	 \textsc{MIT, Dept. of Math., 77 Massachusetts Avenue, Cambridge, MA 02139-4307.}\par\nopagebreak
+		\textit{E-mail address}, \texttt{ozuch@mit.edu}
+	}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{thmdef}[thm]{Theorem-Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{quest}[thm]{Question}
+
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{note}[thm]{Note}
+
+\DeclareMathOperator{\Hess}{\operatorname{Hess}}
+\DeclareMathOperator{\Rm}{\operatorname{Rm}}
+\DeclareMathOperator{\R}{\operatorname{R}}
+\DeclareMathOperator{\vol}{\operatorname{Vol}}
+\DeclareMathOperator{\Ric}{\operatorname{Ric}}
+\DeclareMathOperator{\Rico}{\mathring{\operatorname{Ric}}}
+\DeclareMathOperator{\tr}{\operatorname{tr}}
+\DeclareMathOperator{\E}{\operatorname{E}}
+
+\DeclareMathOperator{\Id}{\operatorname{Id}}
+\DeclareMathOperator{\e}{{\mathbf{e}}}
+
+\DeclareMathOperator{\g}{{\mathbf{g}}}
+
+\newcommand*{\aperp}{\underset{{\raisebox{.0ex}[0pt][0pt]{$\sim$}}}{\perp}}
+
+\newcommand{\del}{\partial}
+\newcommand{\calU}{\mathcal U}
+\newcommand{\calG}{\mathcal G}
+\newcommand{\calH}{\mathcal H}
+\newcommand{\calN}{\mathcal N}
+\newcommand{\calA}{\mathcal A}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\calF}{\mathcal F}
+\newcommand{\calM}{\mathcal M}
+%\DeclareMathOperator{\calN}{{\mathcal{N}}}
+\newcommand{\calC}{\mathcal C}
+\newcommand{\calO}{\mathcal O}
+\newcommand{\calV}{\mathcal V}
+\newcommand{\calB}{\mathcal B}
+\newcommand{\calR}{\mathcal R}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\calD}{\mathcal D}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\Ve}{\mathcal V_{\mathrm{e}}}
+\newcommand{\Diffe}{\mathrm{Diff}_e}
+%\newcommand{\phg}{\mathrm{phg}}
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\frakL}{\mathfrak{L}}
+\newcommand{\fdiag}{\mathrm{fdiag}}
+
+\title{Structure moduli space}
+\author{Rafe Mazzeo and Tristan Ozuch}
+\date{ }
+
+\begin{document}
+
+\maketitle
+
+
+  \tableofcontents
+
+  \section{Einstein modulo obstructions desingularizations}
+
+\subsection{Orbifolds, ALE spaces and naïve desingularizations}
+
+\subsubsection{Orbifolds and ALE spaces}
+
+We start by defining our model spaces asymptotic to some quotient of the Euclidean space $(\mathbb{R}^4\slash\Gamma,\mathbf{e})$ for $\Gamma\subset SO(4)$ acting freely on $\mathbb{S}^3$. We also denote $r=d_\mathbf{e}(0,.)$.
+
+\paragraph{Einstein metrics and their deformations on an orbifold.}
+
+\begin{defn}[Orbifold (with isolated singularities)]\label{orb Ein}
+    We will say that a metric space $(M_o,g_o)$ is an orbifold if there exists $\epsilon_0>0$ and a finite number of points $(p_k)_k$ of $M_o$ which we will call \emph{singular} such that we have the following:
+    \begin{enumerate}
+        \item the space $(M_o\backslash\{p_k\}_k,g_o)$ is a Riemannian manifold,
+        \item for each singular point $p_k$ of $M_o$, there exists a neighborhood of $p_k$, $ U_k\subset M_o$, a finite subgroup acting freely on the sphere, $\Gamma_k\subset SO(4)$, and a diffeomorphism $ \Phi_k: B_\mathbf{e}(0,\epsilon_0)\subset\mathbb{R}^4\slash\Gamma_k \to U_k\subset M_o $ for which, for any $l\in \mathbb{N}$, there exists $C_l>0$ such that $$r^l|\nabla^l(\Phi_k^* g_o - \mathbf{e})|_{C^2(\mathbf{e})}\leqslant C_l r^2.$$
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[The function $r_o$ on an orbifold]\label{ro}
+    We define $r_o$, a smooth function on $M_o$ satisfying $\Phi_k^*r_o:=  r$ on each $U_k$, and such that on $M_o\backslash U_k$, we have $\epsilon_0<r_o<1$ (the different choices will be equivalent for our applications).
+    
+    We will denote, for $0<\epsilon\leqslant\epsilon_0$, $$M_o(\epsilon):= \{r_o>\epsilon\} = M_o\backslash  \Big(\bigcup_k \Phi_k(B_\mathbf{e}(0,\epsilon)) \Big).$$
+\end{defn}
+
+\begin{defn}[Infinitesimal deformations of an Einstein orbifold metric]
+    Let $(M_o,\mathbf{g}_o)$ be an Einstein orbifold. We define $\mathbf{O}(\mathbf{g}_o)$ as the finite dimensional kernel of the elliptic operator $P_{\mathbf{g}_o}:= \frac{1}{2}\nabla^*_{\mathbf{g}_o}\nabla_{\mathbf{g}_o}- \mathring{\R}_{\mathbf{g}_o}$ on $2$-tensors of $L^2(\mathbf{g}_o)$, where  $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big),$.
+\end{defn}
+
+\paragraph{ALE Ricci-flat metrics and their deformations.}
+
+Let us now turn to ALE Ricci-flat metrics.
+
+\begin{defn}[ALE orbifold (with isolated singularities and one end)]\label{def orb ale}
+    An ALE orbifold $(N,b)$ is a orbifold for which there exists $\epsilon_0>0$ and a compact $K\subset N$ for which there exists a diffeomorphism $\Psi_\infty: (\mathbb{R}^4\slash\Gamma_\infty)\backslash B_\mathbf{e}(0,\epsilon_0^{-1}) \to N\backslash K$ such that we have $$r^l|\nabla^l(\Psi_\infty^* b - \mathbf{e})|_{C^2(\mathbf{e})}\leqslant C_l r^{-4}.$$
+\end{defn}
+
+
+\begin{defn}[The function $r_{b}$ on an ALE orbifold]
+We define $r_{b}$ a smooth function on $N$ satisfying $\Psi_k^*r_{b}:=  r$ on each neighborhood $U_k$ of a singular point of definition \ref{orb Ein}, and $ \Psi_\infty^* r_{b}:=r$ on $U_\infty$, and such that $\epsilon_0<r_{b}<\epsilon_0^{-1}$ on the rest of $N$ (the different choices are equivalent for our applications).
+
+For $0<\epsilon\leqslant\epsilon_0$, we will denote $$N(\epsilon):= \{\epsilon<r_b<\epsilon^{-1}\} = N\backslash  \Big(\bigcup_k \Psi_k(B_\mathbf{e}(0,\epsilon)) \cup \Psi_\infty \big((\mathbb{R}^4\slash\Gamma_\infty)\backslash B_\mathbf{e}(0,\epsilon^{-1})\big)\Big).$$
+\end{defn}
+
+\begin{defn}[Infinitesimal deformations of Ricci-flat ALE orbifolds]
+    Let $(N,\mathbf{b})$ be a Ricci-flat ALE orbifold. We define the space $\mathbf{O}(\mathbf{b})$ as the kernel of the operator $P_{\mathbf{b}}:= \frac{1}{2}\nabla_{\mathbf{b}}^*\nabla_{\mathbf{b}} - \mathring{\mathrm{R}}_{\mathbf{b}}$ on $L^2(\mathbf{b})$.
+    
+    For any $h\in \mathbf{O}(\mathbf{b})$, we have
+    \begin{enumerate}
+        \item $h = \mathcal{O}(r_b^{-4})$,
+        \item $\delta_{\mathbf{b}}h=0$, and
+        \item $ \textup{tr}_{\mathbf{b}}h=0 $.
+    \end{enumerate}
+\end{defn}
+There is a particular infinitesimal Ricci-flat ALE deformation by rescaling and reparametrization which we denote $\mathbf{o}_1$. It is of the form $\mathcal{L}_{X}\mathbf{b}$ for a harmonic vector field $X$ asymptotic to $r_b\partial_{r_b}$ at infinity. It is linked to the notion of reduced volume of Ricci-flat ALE metric introduced in \cite{bh}, see \cite{ozu4}.
+\begin{defn}[Normalized Ricci-flat ALE metric]
+    A \emph{normalized Ricci-flat ALE orbifold} is a Ricci-flat ALE metric with reduced volume $-1$. 
+\end{defn}
+This prevents rescaling of the metric and Ricci-flat ALE deformation in the direction $\mathbf{o}_1$. We will denote $\mathbf{O}_0(\mathbf{b})$ the $L^2(\mathbf{b})$-orthogonal of $ \mathbf{o}_1 $ in $\mathbf{O}(\mathbf{b})$. These are the infinitesimal Ricci-flat ALE deformations preserving the reduced volume at first order.
+
+    \subsection{Function spaces}
+    Let us recall the definitions of the function spaces introduced in \cite{ozu2}.
+    
+    For a tensor $s$, a point $x$, $\alpha>0$ and a metric $g$, the Hölder seminorm in dimension $n$ is defined as
+$$ [s]_{C^\alpha(g)}(x):= \sup_{\{y\in \mathbb{R}^n,|y|< \textup{inj}_g(x)\}} \Big| \frac{s(x)-s(\exp^g_x(y))}{|y|^\alpha} \Big|_g.$$
+
+For orbifolds, we will consider a norm which is bounded for tensors decaying at the singular points.
+\begin{defn}[Weighted Hölder norms on an orbifold]
+    Let $\beta\in \mathbb{R}$, $k\in\mathbb{N}$, $0<\alpha<1$ and $(M_o,\mathbf{g}_o)$ an orbifold. Then, for all tensor $s$ on $M_o$, we define
+    \begin{align*}
+        \| s \|_{C^{k,\alpha}_{\beta}(\mathbf{g}_o)} &:= \sup_{M_o}r_o^{-\beta}\Big(\sum_{i=0}^k r_o^{i}|\nabla_{\mathbf{g}_o}^i s|_{\mathbf{g}_o} + r_o^{k+\alpha}[\nabla_{\mathbf{g}_o}^ks]_{C^\alpha(\mathbf{g}_o)}\Big).
+    \end{align*}
+\end{defn}
+
+For ALE orbifolds, we will consider a norm which is bounded for tensors decaying at the singular points and at infinity.
+
+\begin{defn}[Weighted Hölder norms on an ALE orbifold]
+Let $\beta\in \mathbb{R}$, $k\in\mathbb{N}$, $0<\alpha<1$ and $(N,\mathbf{b})$ be an ALE orbifold. Then, for all tensor $s$ on $N$, we define
+   \begin{align*}
+       \| s \|_{C^{k,\alpha}_{\beta}(\mathbf{b})}:= \sup_{N}\Big\{\max(r_b^\beta,r_b^{-\beta})\Big( \sum_{i=0}^kr_b^{i}|\nabla_{\mathbf{b}}^i s|_{\mathbf{b}} + r_b^{k+\alpha}[\nabla_{\mathbf{b}}^ks]_{C^\alpha({\mathbf{b}})}\Big)\Big\}.
+   \end{align*}
+\end{defn}
+
+On $M$, using a partition of unity, we can define a global norm.
+
+\begin{defn}[Weighted Hölder norm on a naïve desingularization]\label{norme a poids M}
+		Let $\beta\in \mathbb{R}$, $k\in\mathbb{N}$ and $0<\alpha<1$. We define for $s\in TM^{\otimes l_+}\otimes T^*M^{\otimes l_-}$ a tensor $(l_+,l_-)\in \mathbb{N}^2$, with $l:= l_+-l_-$ the associated conformal weight.
+		$$ \|s\|_{C^{k,\alpha}_{\beta}(g^D)}:= \| \chi_{M_o^t} s \|_{C^{k,\alpha}_{\beta}(\mathbf{g}_o)} + \sum_j T_j^\frac{l}{2}\|\chi_{N_{j}^t}s\|_{C^{k,\alpha}_{\beta}(\mathbf{b}_j)}.$$
+\end{defn}
+
+\paragraph{Decoupling norms.}
+
+We will actually need a last family of norms to get good analytic properties for our operators.
+
+\begin{defn}[$\|.\|_{C^{k,\alpha}_{\beta,*}}$ norm on $2$-tensors]
+    Let $ h $ be a $2$-tensor on $(M,g^D)$, $(M_o,\mathbf{g}_o)$ or $(N,\mathbf{b})$. We define its $C^{k,\alpha}_{\beta,*}$-norm by
+    $$\|h\|_{C^{k,\alpha}_{\beta,*}}:= \inf_{h_*,H_k} \|h_*\|_{C^{k,\alpha}_{\beta}} + \sum_k |H_k|_{\mathbf{e}},$$
+    where the infimum is taken on the $(h_*,H_k)$ satisfying $h= h_*+\sum_k \chi_{A_k(t,\epsilon)}H_k$ for $(M,g^D)$ or $h= h_*+\sum_k \chi_{B_k(\epsilon)}H_k$ for $(M_o,\mathbf{g}_o)$ or $(N,\mathbf{b})$, where each $H_k$ is some constant and trace-free $2$-tensors on $\mathbb{R}^4\slash\Gamma_k$, and where $\chi_{B_k(\epsilon)}= \chi(\epsilon^{-1}r)$.
+\end{defn}
+
+The point is that considering some Laplacian-like operator $P: C^{k+2,\alpha}_{-\beta} \to r^{-2}C^{k,\alpha}_{-\beta}$ (notice the $-\beta$), we have $P^{-1}\big(r^{-2}C^{k,\alpha}_{\beta}\big) = C^{k+2,\alpha}_{\beta,*}$ and controls on $P: C^{k+2,\alpha}_{\beta,*}\to r^{-2}C^{k,\alpha}_{\beta}$ and its inverse (orthogonally to the kernel/cokernel).
+
+\subsection{Einstein modulo obstructions metrics}
+    
+    Define $B_{g}:= \delta_g+\frac{1}{2} d\mathrm{tr}_g$ the Bianchi operator, where $\delta$ is the divergence. Note that for a vector field $X$ identified with the $1$-form canonically associated by $g$, $2\delta^*_g X = \mathcal{L}_Xg$, where $\mathcal{L}$ is the Lie derivative. Let $\mathbf{K}_o$ be the $L^2$-kernel of $B_{\mathbf{g}_o}\delta_{\mathbf{g}_o}^* = \nabla_{\mathbf{g}_o}^*\nabla_{\mathbf{g}_o}-\Ric(\mathbf{g}_o)$ on $1$-forms of $(M_o,\mathbf{g}_o)$, define
+    $\tilde{\mathbf{K}}_o:= \chi_{M_o(b\epsilon)}\mathbf{K}_o,$, 
+    $$\tilde{B}_{g^D}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{g^D}\textup{ and }\tilde{B}_{\tilde{g}_o}:= \pi_{\tilde{\mathbf{K}}_o^\perp}B_{\tilde{g}_o}$$
+    (this projection is necessary to ensure that it is always possible to put metrics in gauge with respect to $g^D$). Notice that a metric $g$ in dimension $4$ is Einstein if and only if it is a zero of $$E(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g,$$
+    and that $B_gE(g)= 0$ by the Bianchi identity. We will be interested in the operator
+    $$\mathbf{\Phi}_{g^D}(g):= \Ric(g)-\frac{\overline{\R}(g)}{4}g + \delta_{g^D}^*\tilde{B}_{g^D}g$$
+    on metrics close to $g^D$. Denoting $\mathring{\R}(h)(X,Y)= \sum_i h\big(\Rm(e_i,X)Y,e_i\big)$ for an orthonormal basis $e_i$, we have the following expression of the linearization: for $h$ satisfying $\int_M\textup{tr}_{g^D}h dv(g)=0$,
+    \begin{align}
+    P_{{g^D}}(h):=& \;d_{g^D}\mathbf{\Phi}_{g^D}(h) = \frac{1}{2}\nabla^*_{g^D}\nabla_{g^D} h  -\mathring{\R}_{g^D}(h)+\frac{1}{2}\Big(\Ric_{g^D}\circ h+h\circ \Ric_{g^D} - \frac{\overline{\R}({g^D})}{2}h\Big)\nonumber\\
+    &+ \frac{1}{4\vol({g^D})}\int_M\Big\langle\Ric({g^D})-\frac{\R({g^D})}{2}, h\Big\rangle_{g^D} dv_{g^D}{g^D} - \delta_{{g^D}}^*B_{g^D}h+\delta^*_{g^D}\tilde{B}_{g^D} h.\label{bar P g}
+    \end{align}
+    which would reduce to $ P:=  \frac{1}{2}\nabla^*\nabla  -\mathring{\R} $ if the metric $g^D$ were Einstein and $\tilde{B} = B$.
+    
+    \subsubsection{Approximate obstructions}
+    Let us define the projection of $\mathbf{O}(\mathbf{g}_o)$ and the $\mathbf{O}(\mathbf{b}_j)$ on $(M,g^D)$ by cut-off:
+    \begin{equation}
+        \tilde{\mathbf{O}}(\mathbf{g}_o):=\chi_{M_o(b\epsilon)}\mathbf{O}(\mathbf{g}_o),\label{tildOgo}
+    \end{equation}
+    \begin{equation}
+        \tilde{\mathbf{O}}(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}(\mathbf{b}_j), \text{ and } \tilde{\mathbf{O}}_0(\mathbf{b}_j):=\chi_{N_j(b\epsilon)}\mathbf{O}_0(\mathbf{b}_j) \label{tildOgb}
+    \end{equation}
+    and finally the approximate kernel on $(M,g^D_t)$,
+    \begin{equation}
+        \tilde{\mathbf{O}}(g^D):= \bigoplus_j\tilde{\mathbf{O}}(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(\mathbf{g}_o) \text{ and } \tilde{\mathbf{O}}_0(g^D):= \bigoplus_j\tilde{\mathbf{O}}_0(\mathbf{b}_j) \oplus \tilde{\mathbf{O}}(\mathbf{g}_o).\label{tildOgD}
+    \end{equation}
+    
+    We are interested in the operator $\mathbf{\Psi}_{g^D}: \big(g^D+C^{2,\alpha}_{\beta,*}(g^D)\cap \tilde{\mathbf{O}}(g^D)^\perp\big)\times \tilde{\mathbf{O}}(g^D)\to r_D^{-2}C^\alpha_\beta(g^D)$,
+    \begin{equation}
+        \mathbf{\Psi}_{g^D}(g,\tilde{\mathbf{o}}):=\mathbf{\Phi}_{g^D}(g) +\tilde{\mathbf{o}}.\label{def Psi gD}
+    \end{equation}
+    
+    \subsubsection{Einstein modulo obstructions metrics}
+    
+    \begin{defn}[Einstein modulo obstructions metric]\label{gluing modulo obstructions}
+        For any $(t,v)\in \mathbf{R}^+_*\times \tilde{\mathbf{O}}_0(g^D)$ close enough to $(0,0)$ there exists a \emph{unique} solution $\hat{g}_{t,v}$ to the equation 
+        $$\mathbf{\Phi}(\hat{g}_{t,v})\in \tilde{\mathbf{O}}(g^D_t),$$
+        satisfying the following conditions: 
+        \begin{enumerate}
+            \item $\|\hat{g}_{t,v}-g^D_t\|_{C^{2,\alpha}_{\beta,*}}\leqslant C (t^2+\|v\|_{L^2}^2)$, for some $C>0$,
+            \item $\hat{g}_{t,v}-(g^D_t+v)$ is $L^2(g^D_t)$-orthogonal to $\tilde{\mathbf{O}}_0(g^D_t)$, and
+            \item $\tilde{B}_{g^D_t}\hat{g}_{t,v} = 0$.
+        \end{enumerate}
+        It is called an \emph{Einstein modulo obstructions} desingularization of $(M_o,\mathbf{g}_o)$. We will denote  $-\hat{\mathbf{o}}_{t,v}=\mathbf{\Phi}(\hat{g}_{t,v})\in \tilde{\mathbf{O}}(g^D_t),$ for which $ \mathbf{\Psi}_{g^D_t}(\hat{g}_{t,v},\hat{\mathbf{o}}_{t,v})=0  $.
+    \end{defn}
+    \begin{rem}
+        Note that if the obstructions vanish for a metric $\hat{g}_{t,v}$, then it is Einstein. Indeed, we know that $\tilde{B}_{\hat{g}_{t,v}}E(\hat{g}_{t,v})=0$ and by the first condition, $\hat{g}_{t,v}$ and $g^D$ are very close to each other hence $\tilde{B}_{\hat{g}_{t,v}}\delta^*_{g^D_t}$ restricted to the orthogonal of $\tilde{\mathbf{K}}_o$ (the image of $\tilde{B}_{\hat{g}_{t,v}}$) is injective.
+    \end{rem}
+   
+   \section{Boundary problems for Ricci-flat ALE metrics and orbifold}
+   
+   Let us look at the problem at a linear level, i.e. search for solutions of 
+   \begin{equation}
+       \left\{\begin{aligned}
+            P_\mathbf{b} h &=0,\\
+            h &= \phi \text{ on } \epsilon^{-1}\mathbb{S}^3\slash\Gamma.
+       \end{aligned}\right.\label{boundary ALE}
+   \end{equation}
+   for some boundary condition $\phi: \epsilon^{-1}\mathbb{S}^3\slash\Gamma \to \operatorname{Sym}^2(T\mathbb{R}^4\slash\Gamma)$. Similarly, on the orbifold, the problem becomes:
+   \begin{equation}
+       \left\{\begin{aligned}
+            P_{\mathbf{g}_o} h &=0,\\
+            h &= \phi \text{ on } \epsilon\mathbb{S}^3\slash\Gamma.
+       \end{aligned}\right.\label{boundary orb}
+   \end{equation}
+   for some small $\epsilon>0$. 
+   
+   \subsection{Asymptotics of the (co)kernel and obstructions}
+   
+   Let us classify the $L^2$-infinitesimal deformations of $\mathbf{b}$ by their order of decay at infinity:
+   $$ \mathbf{O}(\mathbf{b}) = \bigoplus_{j = 4}^{j_{\max}} \mathbf{O}^{(j)}(\mathbf{b}) $$
+   in the following way. Let $j_{\max}$ be the maximum of $j\geqslant 4$ such that there exists $\mathbf{o}\in \mathbf{O}(\mathbf{b})$ with $ \mathbf{o} = \mathcal{O}(r^{-j}) $. Define $\mathbf{O}^{(j_{\max})}(\mathbf{b})$ as the subspace of $\mathbf{O}(\mathbf{b})$ spanned by the tensors in $r^{-j_{\max}}$ at infinity. We then define $\mathbf{O}^{(j_{\max}-1)}(\mathbf{b})$ as the subspace of $\mathbf{O}(\mathbf{b})$ spanned by the tensors in $r^{-(j_{\max}- 1)}$ at infinity and $L^2(\mathbf{b})$-orthogonal to $\mathbf{O}^{(j_{\max})}(\mathbf{b})$. We then iteratively define the subspaces $\mathbf{O}^{(j)}(\mathbf{b})$ which are $L^2(\mathbf{b})$-orthogonal to each other by construction.
+   
+   The most important aspect of these infinitesimal deformations for the obstructions to the desingularization of Einstein metrics is their asymptotic terms. More precisely, if $\mathbf{o}\in \mathbf{O}^{(j+2)}(\mathbf{b})$, then at infinity $\mathbf{o} = r^{-2-j} \phi_{j} + \mathcal{O}(r^{-3-j})$, where $\phi_{j}$ is a $2$-tensor whose coefficients are spherical harmonics associated to the $j$-th eigenvalue. Denote 
+   $ \mathbb{O}^{[j]}(\mathbf{b}) $ the space of spherical harmonics $\phi_{j}$ appearing as the asymptotic term of an element of $\mathbf{O}^{(j+2)}(\mathbf{b})$. The link with obstructions is the following result.
+   
+   \begin{prop}\label{resolutino modulo obst linear}
+        Let $H_2$ be a quadratic harmonic $2$-tensor in Bianchi gauge (say the quadratic terms of a Ricci flat orbifold). There exists a symmetric $2$-tensor $h_2$ and $\mathbf{o}\in \mathbf{O}^{(4)}(\mathbf{b})$ solutions to
+        $$ P_\mathbf{b}(h_2) = \mathbf{o}, $$
+        with $h_2 = H_2 + \mathcal{O}(r^{-2+\epsilon})$. Moreover, $\mathbf{o} = 0$ if and only if $ r^{-2}H_2 \perp_{L^2(\mathbb{S}^3)}  \mathbb{O}^{[2]}(\mathbf{b}) $. Note that $\mathbb{O}^{[2]}(\mathbf{b})\neq \emptyset$ and there are \emph{always} obstructions to solve this kind of equation.
+   \end{prop}
+   \begin{proof}[Idea of proof]
+        Consider a cut-off function $\chi$ supported at infinity of $(N,\mathbf{b})$. The goal is to find $h'$ decaying at infinity (in $\mathcal{O}(r^{-2+\epsilon})$) such that 
+        $$ P_\mathbf{b}(\chi H_2 + h') = \mathbf{o}, $$
+        where we remark that 
+        $$ P_{\mathbf{b}}h'\perp \mathbf{O}(\mathbf{b}). $$
+        We must therefore have 
+        $$\mathbf{o} = \pi_{\mathbf{O}(\mathbf{b})}P_\mathbf{b}(\chi H_2).$$
+        Conversely, if $P_\mathbf{b}(\chi H_2)-\mathbf{o}$ decays and is orthogonal to the cokernel $\mathbf{O}(\mathbf{b})$, then there exists a decaying $h'$ such that $-P_\mathbf{b}(h') = P_\mathbf{b}(\chi H_2)-\mathbf{o}$.
+        
+        By integration by parts of $P_\mathbf{b}(\chi H_2)$ against $v\in\mathbf{O}(\mathbf{b})$ with $v = V^4 + \mathcal{O}(r^{-5})$, we find that
+        $\left(P_\mathbf{b}(\chi H_2),v\right)_{L^2(\mathbf{b})}$ is proportional to $\int_{\mathbb{S}^3\slash\Gamma} \langle H_2,V^4 \rangle_{\mathbf{e}} dv_{\mathbb{S}^3\slash\Gamma}$.
+   \end{proof}
+   
+   \begin{rem}
+        A similar result is true for $H_i$ with homogeneous harmonic polynomials of order $i$ as coefficients, but it would also involve other asymptotics of the other $\mathbf{O}^{(j+2)}(\mathbf{b})$ for $j\leqslant i$. For instance, if $\mathbf{o}_4 \in \mathbf{O}^{(4)}(\mathbf{b})$ has some $r^{-2-i} \phi_i$ in its development, then there will also be $\mathbf{o}_4$ in the obstructions.
+   \end{rem}
+   
+   \subsection{Solving the linearized boundary problem on a Ricci-flat ALE space}
+   
+   On a given Ricci-flat ALE space, solving \eqref{boundary ALE} is always possible, but something happens if $\phi$ has some spherical harmonics coinciding with the element of some $\mathbb{O}^{[2]}(\mathbf{b})$ for instance. 
+   
+   Essentially, if for simplicity that $\mathbf{O}(\mathbf{b}) = \mathbf{O}^{(4)}(\mathbf{b})$, the idea is that the kernel of $P_{\mathbf{b}}$ is composed of symmetric $2$-tensors asymptotic to all harmonic polynomials \textbf{except} the ones of the form $r^2\phi_2$ for $\phi_2\in\mathbb{O}^{[2]}(\mathbf{b})$ which are \textbf{replaced} by the associated elements of $\mathbf{O}(\mathbf{b})$ which are asymptotic to $\frac{\phi_2}{r^4}$.
+   
+   
+   \begin{prop}
+        Assume for simplicity that $\mathbf{O}(\mathbf{b}) = \mathbf{O}^{(4)}(\mathbf{b})$ (as for Eguchi-Hanson for instance). Let $\phi: \epsilon^{-1}\mathbb{S}^3\slash\Gamma \to \operatorname{Sym}^2(T\mathbb{R}^4\slash\Gamma)$.
+        
+        \begin{enumerate}
+            \item If $\phi \perp \mathbb{O}^{[2]}(\mathbf{b})$, then, the solution of \eqref{boundary ALE} is uniformly bounded by a function $\|\phi\|_{L^2}$ (but independently of $\epsilon$) on the interior of $\epsilon^{-1}\mathbb{S}^3\slash\Gamma$.
+            
+            More precisely, if $\phi = \phi_j$ where $\phi_j$ has eigenfunctions of the spherical Laplacian associated to the $j$-th eigenvalue as coefficient, then, as $\epsilon\to 0$, we have:
+            $$ h = (\epsilon r)^j\phi_j + \mathcal{O}(\epsilon^j r^{j-1}) $$
+            at infinity for the solution $h$ of \eqref{boundary ALE}.
+            \item If $\phi$ is not orthogonal to $\mathbb{O}^{[2]}(\mathbf{b})$, then, it is \textbf{not} uniformly bounded in independently of $\epsilon$ in the interior of $\epsilon^{-1}\mathbb{S}^3\slash\Gamma$.
+            
+            More precisely, if $\phi = \phi_2 \in \mathbb{O}^{[2]}(\mathbf{b})$, and if $\mathbf{o}\in\mathbf{O}(\mathbf{b})$ is the associated element, then:
+            $$ h \approx \epsilon^{-4}\mathbf{o} $$
+            in the interior of $\epsilon^{-1}\mathbb{S}^3\slash\Gamma$.
+        \end{enumerate}
+   \end{prop}
+   
+   There are similar results for orbifolds where the kernel of $P_o$ includes every $\frac{\phi_j}{r^{2+j}}$ except those which appear in the developments of the elements of $\mathbf{O}(\mathbf{g}_o)$, the $L^2$-kernel.
+   
+   \subsection{Solving the boundary value problem modulo obstructions}
+   
+   It is not satisfying to solve the boundary value $\phi_2\in \mathbb{O}^{[2]}(\mathbf{b})$ by some approximation of $\mathbf{o} = \frac{\phi_2}{r^4} +...$ for several reasons:
+   \begin{enumerate}
+       \item The Dirichlet to Neumann map will not match that of the orbifold where the solution is asymptotic to $H_2=r^2\phi_2$,
+       \item the solution is not bounded independently of $\epsilon$ -- it is in contradiction (at the linear level for now...) with the convergence to $\mathbf{b}$ of the rescalings of the degeneration of Einstein metrics.
+   \end{enumerate}
+   
+   We can however solve it modulo obstruction using Proposition \ref{resolutino modulo obst linear} in order to ``replace'' $\frac{\phi_2}{r^4}$ by $r^2\phi_2$. That is solve:
+   \begin{equation}
+       \left\{\begin{aligned}
+            P_{\mathbf{g}_o} h &\in \mathbf{O}(\mathbf{b}) \text{ or } \chi\mathbf{O}(\mathbf{b}) \text{ for some cut-off } \chi \text{ supported in a large region inside } \epsilon^{-1}\mathbb{S}^3\slash\Gamma,\\
+            h &= \phi \text{ on } \epsilon^{-1}\mathbb{S}^3\slash\Gamma,
+       \end{aligned}\right.\label{boundary orb obst}
+   \end{equation}
+   and chose the solutions growing polynomially at infinity.
+   \begin{rem}
+    Here the solution is probably not unique as we can compensate portions of $\phi_2$ by either the element asymptotic to $\frac{\phi_2}{r^4}$ or $r^2\phi_2$? This kind of non uniqueness is expected as in the end, there is $\mathbf{O}(\mathbf{b})\oplus \mathbf{O}(\mathbf{g}_o)$ degrees of freedom.
+   \end{rem}
+   
+   The boundary value for all of the $2$-tensors $h_j$ satisfying
+   $$ P_{\mathbf{b}} h_j \in \mathbf{O}(\mathbf{b}), $$
+   and $h_j = r^j\phi_j + ...$ will be $\epsilon^{-j}\phi_j +\mathcal{O}(\epsilon^{4-j})$ on $\epsilon^{-1}\mathbb{S}^3\slash\Gamma$. The $h_j$ are unique up to the harmonic $2$-tensors growing slower at infinity.
+   
+   
+   
+   \subsection{Limiting behavior of the Dirichlet to Neumann maps on the ALE and the orbifold}
+   
+   Let us look at the linearized Dirichlet problem when $\epsilon\to 0$. 
+   \begin{conj}
+        There is no cokernel for the operator "modulo obstructions". The kernel should be composed of approximations of $ \epsilon^2 h_2 - \epsilon^{-4}\mathbf{o} $ for $h_2 \sim r^2\phi_2$ and $\mathbf{o}\sim r^{-4}\phi_2$.
+   \end{conj}
+   
+   The Dirichlet to Neumann map "sees" this kernel.
+   
+   
+   
+   \subsection{Matching boundary values}
+   
+   The orbifold is solution of $\Ric(\mathbf{g}_o) = \Lambda \mathbf{g}_o$ with boundary $$\mathbf{e} + \sum_{i=2}^{+\infty} \epsilon^{i}\phi_i$$ on $\epsilon \mathbb{S}^3\slash\Gamma$, and the Ricci-flat ALE metric is solution of $\Ric(\mathbf{b}) = 0$ with boundary condition $$\mathbf{e} + \sum_{j=2}^{+\infty} \epsilon^{j+2}\psi_j$$
+   on $\epsilon^{-1} \mathbb{S}^3\slash\Gamma$.
+   
+   \begin{conj}
+        Matching the two Dirichlet and Neumann conditions when considering the cut-off of obstructions should (formally) correspond to the development in Section \ref{formal dvp}.
+   \end{conj}
+   \begin{rem}
+        If we do not consider cut-offs of the obstructions (far away from the gluing region), we need to match the obstructions on the ALE on the orbifold and vice versa. It is unclear to me how to do that in a systematic way past the first asymptotics...
+   \end{rem}
+    The advantage of matching the metrics and their derivatives on a hypersurface is that it must be much easier to preserve analyticity (what if there are log-terms however?) if we do it "directly" by fixed point. The hope is that we could maybe "read" the obstructions in the development of the boundary function in spherical harmonics obtained by fixed point, no? Can we have any control on its value?
+   
+
+\section{Matching the unobstructed part of the boundary values}
+
+Suppose that $(M_0,g_0)$ is an Einstein orbifold which, for simplicity, we assume has only one orbifold point, and $(Z, g_Z)$ a Ricci-flat ALE space. 
+We assume that both $Z$ and the orbifold point are modelled on the two ends of $\RR^4/\Gamma$.  Let $r$ denote a smooth function which is 
+positive on the smooth locus of $M_0$, vanishes at the orbifold point $p$,
+and which equals $\mathrm{dist}_{g_0}(p, \cdot)$ in a neighborhood of $p$.  Similarly, let $\rho$ denote a radial function on $Z$; this can be chosen
+to be strictly positive, linearly growing at infinity, and such that
+\[
+g_Z = d\rho^2 + \rho^2 h(\rho, y),
+\]
+\todo[inline]{There are probably $dr^2$ and $dr.dx^i$ terms as well}
+where $h(\rho, y)$ is a family of metrics on the link $Y$ of the tangent cone at infinity, $T_\infty Z$ which is polyhomogeneous in the 
+variable $s = 1/\rho$ as $s \to 0$.   Let $M_{r_0} = \{q \in M_0: r(q) \geq r_0\}$, and define $Z_\lambda  = \{ q \in Z:  \rho(q) \leq 1/\lambda\}$. 
+Define $\epsilon$ by $\lambda = \epsilon/r_0$.  We shall seek to metrically join perturbations of the the two spaces $(Z_{\lambda} , \epsilon^2 g_Z)$ 
+and $(M_{r_0}, g_0)$.   The matching takes place along the interface $Y_{r_0}  = \{r = r_0\} = \{\rho = 1/\lambda\}$.  The metric $h(1/\lambda, y)$ 
+converges (as $\lambda \to 0$) to the round metric $h_0$ on $Y = S^3/\Gamma$, with an expansion
+\[
+h(\lambda) \sim h_0 + \sum_{j} \lambda^{\gamma_j} h_j(y),
+\]
+where $\gamma_0 < \gamma_1 < \gamma_2 < \ldots $ is a sequence of positive integers with $\gamma_0 = 4$ (?)\todo{Yes!} and the $h_j$
+are symmetric $2$-tensors on $Y$.  Similarly, for $r_0$ sufficiently small, the family of metrics $r_0^{-2} g_0|_{Y_{r_0}}$ also has an expansion
+\[
+r_0^{-2} g_0|_{Y_{r_0}} \sim  h_0 + \sum_{\gamma_j'} r_0^{\gamma_j'} h_j'(y),
+\]
+\todo[inline]{There are probably $dr^2$ and $dr.dx^i$ terms as well}
+where, as before,  $\gamma_j'$ is an increasing sequence of positive integers and the $h_j'$ are symmetric $2$-tensors. 
+
+If $P_\Gamma$ denotes the gauged linearized Einstein operator on $C(Y) = \RR^4/\Gamma$, then 
+\[
+P_\Gamma = \del_r^2 + \frac{3}{r} \del_r + \frac{1}{r^2} P_Y
+\]
+where $P_Y$ is a self-adoint elliptic operator on $Y$.  Similarly, let $P_Z$ and $P_{M_0}$ be the corresponding operators on $Z$ and $M_0$,
+respectively. 
+
+The function space $\calC^{2,\alpha}(Y; S^2T^*M_0|_Y)$ admits a decomposition $\bigoplus_j \calE_j$ into eigenspaces for
+$P_Y$.    If $w \in \mathrm{ker}(P_Z)$, then $\phi$ admits an asymptotic expansion 
+\[
+w \sim \sum \rho^{\mu_j^-} w_j(y),
+\]
+where $\mu_\ell^\pm$ are the two roots of 
+\[
+\mu^2 + 2\mu - \nu_\ell = 0, \qquad i.e.\ \mu_\ell^\pm =  -1 \pm \sqrt{1 + \nu_\ell} 
+\]
+and the leading coefficient $w_0$ is an eigenfunction of $P_Y$ with eigenvalue $\nu_0$.   Assuming the $\nu_\ell$ are counted with multiplicity, 
+choose $N \in \NN$ to be the maximum of all indices $\ell$ for which $|w| \sim \rho^{\mu_\ell^-}$, where $w$ varies over all elements of 
+the $L^2$ nullspace of $P_Z$, and all indices $\ell$ such that $P_{M_0}w=0$ has a nontrivial solution $w$ with $|w| \sim
+r^{\mu_\ell^+}$ as $r \to 0$. 
+
+Accordingly, decompose
+\[
+\calC^{2,\alpha}(Y; S^2T^*Z|_Y) = \Pi_N \calC^{2,\alpha}(Y;  S^2T^*Z|_Y) \oplus \Pi_N^\perp \calC^{2,\alpha}(Y; S^2T^*Z|_Y),
+\]
+where $\Pi_N$ is the $L^2$-orthogonal projection onto the direct sum of the first $N$ eigenspaces of $P_Y$. 
+
+\begin{prop} If $\phi$ is any sufficiently small element of $\calC^{2,\alpha}(Y;  S^2T^*M_0|_Y)$, then there exists a 
+Bianchi-gauged Einstein metric $g_M(\phi)$ on $M_{r_0}$ such that 
+\[
+\Pi_N^\perp g_M(\phi)|_{\del M_{r_0}} = \Pi_N^\perp \phi.
+\]
+Moreover, the map $\phi \mapsto g_M(\phi)$ depends analytically on $\phi$.  This metric satisfies
+\[
+||g_M(\phi)||_{2,\alpha} \leq C ||\phi||_{2,\alpha},
+\]
+where $C$ is independent of $r_0$. 
+\end{prop}
+\begin{proof}
+Assume for the moment that $M_{r_0}$ is nondegenerate, i.e.,\ there exist no solutions of $P_{M_{r_0}} w = 0$ such that
+$w = 0$ on $\del M_{r_0}$.  Define a bounded extension operator $\calE: \calC^{2,\alpha}(Y) \to \calC^{2,\alpha}(M_0)$
+such that $\calE(\phi)$ has support in $r \leq 2r_0$.  If $\calN$ denotes the gauged Einstein operator, then we consider
+the map
+\[
+\calC^{2,\alpha}(Y) \oplus \calC^{2,\alpha}_D(M_{r_0}) \ni (\phi, w)  \longmapsto \calN( \calE(\phi) + w).
+\]
+Here $\calC^{2,\alpha}_D$ is the subspace of sections which vanish at $\del M_{r_0}$.  It is a straightforward application of the standard
+implicit function theorem proved in Appendix C that there exists a constant $C > 0$ and a smooth mapping $H: \calC^{2,\alpha}(Y) 
+\to \calC^{2,\alpha}_D(M_{r_0})$ defined on  $\{ \phi: ||\phi||_{2,\alpha} \leq C \}$ such that
+\[
+\calN( \calE(\phi) + H(\phi)) \equiv 0,
+\]
+and this accounts for all solutions in a neighborhood of $0$.   
+
+Given the structure of the operator $\calN$, it is also the case that the mapping $H$ is real analytic. However, if we
+restrict $\phi$ and $w$ to lie in spaces $E_r(Y)$ and $E_r(M_0)$ of real analytic functions on $Y$ and $M_0$, 
+respectively, then $H$ can be chosen to be real analytic on these spaces as well, and the actual solution $\calE(\phi) + w$
+is real analytic in $M_0$.  (N.B. We need to be careful about the extension operator here -- can choose a real analytic
+mapping, e.g. the Poisson operator.) 
+
+By this approach, there is an estimate for the $E_r$ norm of $w$ in terms of the $E_r$ norm of $\phi$, but without
+further restriction, the constant in this estimate is not independent of $r_0$.   We claim that this uniformity in $r_0$
+can be achieved provided $\Pi_N \phi = 0$.   
+
+\end{proof}
+
+$g_Z(\phi,\lambda)$ on $Z_\lambda$ such that
+\[
+\Pi_N^\perp  g_Z(\phi,\lambda)|_{\del Z_\lambda} = \Pi_N^\perp \phi,
+\]
+and similarly, a metric
+
+In addition,
+$\lambda \mapsto g_Z(\phi, \lambda)$ is log analytic.  
+
+ 
+    \section{Converging developments of Einstein metrics}
+    
+    Let us prove that the polyhomogeneous developments at infinity of Ricci-flat ALE metrics and on large annuli with small curvature in Einstein $4$-metrics are convergent.
+    
+    \subsection{Known properties of the developments of Ricci-flat ALE $4$-metrics}
+    
+    \begin{prop}
+     Let $(N,g_b)$ be a Ricci-flat ALE metric asymptotic to $\mathbb{R}^4\slash\Gamma$.
+     
+     There exist coordinates at infinity so that:
+     \begin{enumerate}
+         \item $g_b-\mathbf{e} = H^4 + \mathcal{O}(r^{-5})$, $H^4\sim r^{-4}$ harmonic traceless and divergence-free, 
+         \item $B_\mathbf{e}g_b = 0$,
+         \item the difference $\nabla_\mathbf{e}^2g_b$ decays at infinity, and
+         \item there is an expansion:
+     $$g_b-g_e = \sum_{m,a}r^{-m}\log^ar H_m^a(x)$$
+     with $a\leqslant m-2$ and $H_m^a: \mathbb{S}^3\to Sym^2(T^*\mathbb{R}^4)$ whose coefficients in an orthonormal basis of $\mathbb{R}^4$ is a linear combination of the first $m-2$ harmonics of the sphere.
+     \end{enumerate}
+     \todo[inline]{This last result can be found in Youmin Chen's paper in harmonic coordinates -- but this should be the same in Bianchi gauge.}
+    \end{prop}
+    
+    Our goal in the rest of this section is to prove the following theorem.
+    \begin{thm}
+        Let $(N,g_b)$ be a Ricci-flat ALE metric. Then there exists coordinates at infinity for which $g_b$ is in Bianchi gauge with respect to the Euclidean metric and has a converging polyhomogeneous development in a sense made precise in the next sections.
+    \end{thm}
+    \begin{rem}
+        It is likely that the development of $g_b$ is actually homogeneous (i.e. without logarithmic terms) like Kronheimer's instantons, see \cite[***]{kro}. However we do not need this and polyhomogeneous developments will be necessary anyway when considering Einstein desingularizations of orbifolds.
+    \end{rem}
+
+    \subsection{Spaces of converging asymptotic developments}
+   Let us first define our space $H^2$ thanks to spherical harmonics.
+    
+    \begin{defn}
+        Let $ u $ be an $L^2$ function on $\mathbb{S}^3$ and consider its $L^2$-decomposition in spherical harmonics
+        $$ u = \sum_k \sum_lu_k^l\phi_k^l , $$
+        where for each $k$, the $\phi_k^l$ form an $L^2$-orthonormal basis of the space of eigenfunctions associated to the $k$-th eigenvalue of the spherical Laplacian.
+        
+        We define its $H^2$ norm as follows:
+        $$\|u\|^2_{H^2(\mathbb{S}^3)} := |u_0|^2 + \sum_{k,l} k(k+4-2) |u_k^l|^2.$$
+    \end{defn}
+    \begin{rem}
+        It is equivalent to the usual $H^2$-norm: $\|u\|_{L^2} + \|\nabla u\|_{L^2} +\|\nabla^2 u\|_{L^2}$.
+    \end{rem}
+     Let us now define the following Banach spaces $A^0_\epsilon$ of converging expansions outside a ball of radius $\epsilon^{-1}$. 
+    \begin{defn}
+        For $u(r,x) = \sum_{m,a}r^{-m}\log^ar u_m^a(x)$ with $x\in \mathbb{S}^3 \mapsto u_m^a(x) \in E$ where $E$ is some vector subbundle of $(T^*\mathbb{R}^4)^{l_-}\times (T\mathbb{R}^4)^{l_+}$ satisfying:
+        \begin{itemize}
+            \item $a\leqslant m-2$,
+            \item $u_m^a$ is a linear combination of the $m-2$ first harmonics of the Laplacian of $\mathbb{S}^3$.
+        \end{itemize}
+        We define the norm:
+    $$\|u\|_{0,\epsilon}:= \sup \epsilon^{-m}\log^a\epsilon \|u_m^a\|_{H^2(\mathbb{S}^3)}. $$
+        
+    We then define the norm of $A^k_\epsilon$, $$\|u\|_{k,\epsilon} = \sum_{l=0}^k \|\nabla^lu\|_{0,\epsilon},$$
+    where we define the (a priori) formal sum $$ \nabla^l u  = \sum_{m,a\geqslant 0}\nabla^l \Big(r^{-m}\log^ar u_m^a(x)\Big) = \sum_{n,b\geqslant 0} r^{-n}\log^bru_n^{b,(l)}(x)$$
+    with $\nabla$ taken with respect to the Euclidean metric $dr^2 + r^2g_{\mathbb{S}^3}$ term by term. 
+    \end{defn}
+    \begin{rem}
+        We might sometimes need to choose a convenient norm on this bundle $E$. For instance, for symmetric $2$-tensors on $\mathbb{R}^4$ identified with $4\times 4$ matrices, we will choose it to be submultiplicative (taking for instance the operator norm) to have a Banach algebra structure.
+    \end{rem}
+    \begin{rem}
+        We chose $H^2(\mathbb{S}^3)$ here because it is well behaved both with respect to decompositions in spherical harmonics (which are $H^2$-orthogonal) and with products because it forms a Banach algebra (see \cite{pal}).
+    \end{rem}
+    \begin{rem}
+        Since the elements $u_m^a$ are only combinations of the first harmonics, one can prove that a tensor $u\in A_\epsilon^0$ is real-analytic outside the \emph{open} ball of radius $\epsilon^{-1}$. 
+    \end{rem}
+ 
+    We also define the subset $\mathring{A}_{\epsilon,-4}^k$ of elements with $u_m^a= 0$ if $m<4$, or if $m=4$ and $a>0$.
+    \begin{rem}
+        The motivation for the definition of $\mathring{A}_{\epsilon,-4}^k$ is that there always exist ALE coordinates where the difference between the metric and the asymptotic Euclidean metric decays in $r^{-4}$. Similarly the $L^2$-kernel of the linearization of Ricci curvature decays in $r^{-4}$ at infinity.
+    \end{rem}
+    
+    We have the following properties for our norms. 
+    \begin{prop}\label{properties A epsilon k}
+    Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
+    \begin{enumerate}
+        \item By construction,
+    $$\|h\|_{A_\epsilon^k}\leqslant \|h\|_{A_\epsilon^l}$$
+    if $k\leqslant l$. 
+    \item Moreover, the linear maps
+    $$ h\in A^{k+2}_\epsilon\to \nabla^lh\in A^{k+2-l}_\epsilon $$
+    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in A^{k+2}_\epsilon\mapsto \Delta h \in A^{k+2-l}_\epsilon$. 
+    \item For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
+    $$ \|Q(u_1,...,u_l)\|_{A^{k}_\epsilon} \leqslant C\|u_1\|_{A^{k}_\epsilon}\ldots \|u_l\|_{A^{k}_\epsilon},$$ where $C>0$ depends on $Q$.
+    \item The map $h\in \mathring{A}_{\epsilon,-4}^k\mapsto(\mathbf{e}+h)^{-1}\in A_\epsilon^k$ is also $\log$-analytic. 
+    \end{enumerate}
+    \end{prop}
+    \begin{proof}
+        The first two points are direct consequences of the definition.
+        
+        The space $A^0_\epsilon$ is a Banach algebra on functions because $H^2(\mathbb{S}^3)$ is a Banach algebra and by Cauchy product formula. The generalization to tensors and multilinear operations is quite straightforward by looking at the tensors in coordinates. 
+        
+        Equipping the space of symmetric $2$-tensors with a Banach algebra norm yields the same result and the control:
+        $$ \|u\circ v\|_{0,\epsilon}\leqslant \|u\|_{0,\epsilon}\|v\|_{0,\epsilon}$$
+        where $\circ$ is the matrix composition. From the expression
+        $$ (\mathbf{e}+h)^{-1} = \sum_{k}^{+\infty}(-h)^k, $$
+        where $(-h)^k = (-h)\circ\ldots\circ(-h)$, we find the result.
+    \end{proof}
+    
+    \subsection{Boundary conditions and asymptotic development of Ricci-flat ALE metrics}
+    
+
+    Let us now add boundary conditions and get ready to use our implicit function theorem, Theorem \ref{implicit fct theorem log}. We start by standard results on eigenfunctions of the Laplacian on the sphere and their basic controls in different norms.
+    
+    \begin{lem}
+    \todo[inline]{Not sure if needed anymore}
+        Let $\phi_m$ be an eigenfunction of the Laplacian on $\mathbb{S}^{n-1}$, then, there exists $C = C(n)$ such that we have the following control:
+        $$C^{-1}\|\phi_m\|_{L^2}\leqslant\|\phi_m\|_{L^\infty}\leqslant C m^{\frac{n}{2}-1}\|\phi_m\|_{L^2}.$$
+        We moreover have the control:
+        $$\|\nabla^2\phi_m\|_{C^\alpha}\leqslant m \|\phi_m\|_{C^\alpha}.$$
+    \end{lem}
+    
+    For this, we define the spaces $A_{\epsilon,h}^{k+2}$ as the subset of $A_\epsilon^{k+2}$ spaces of harmonic tensors decaying at infinity and $A_{\epsilon,0}^{k+2}$ as the tensors with zero boundary condition at $2\epsilon^{-1}\mathbb{S}^3$. We define a projection on $A_{\epsilon,h}^{k+2}$ parallel to $A_{\epsilon,0}^{k+2}$.
+    
+    \begin{defn}
+        Let $h\in A^{k+2}_\epsilon$ be a $2$-tensor with $$h(r,x) = \sum_{m,a}r^{-m}\log^a{r}h_m^a(x).$$
+        Assume that for any $m,a$, $$h_m^a=\sum_l\tilde{h}_{m,l}^a,$$
+        where $\tilde{h}_{m,l}^a$ are eigenfunctions associated to the $l$-th eigenvalue of the spherical Laplacian, and define
+        $$\pi_Hh:= \sum_{m,a}2^{-m}\epsilon^m\log^a(2\epsilon^{-1})\sum_l(2^{-1}\epsilon r)^{-2-l}\tilde{h}_{m,l}^a(x).$$
+        This is the unique harmonic symmetric $2$-tensor decaying at infinity whose restriction to $ 2\epsilon^{-1} $ is equal to the restriction of $h$.
+    \end{defn}
+    \begin{prop}
+        The projection $\pi_H: A^{k+2}_\epsilon\to A^{k+2}_\epsilon$ is continuous.
+    \end{prop}
+    \begin{proof}
+        Let us naturally control the $A_\epsilon^{k+2}$-norm of $\pi_Hh$. Let us start with the $A_\epsilon^0$-norm:
+        \begin{align*}
+            \|\pi_Hh\|_{A_\epsilon^0} &= \sum_l 2^{2+l} \Big\|\sum_{m,a}2^{-m}\epsilon^m\log^a(2\epsilon^{-1})\tilde{h}_{m,l}^a \Big\|_{H^2(\mathbb{S}^3)}\\
+            &\leqslant\sum_l 2^{2+l} \sum_{m,a}2^{-m}\epsilon^m\log^a(2\epsilon^{-1})\|\tilde{h}_{m,l}^a \|_{H^2(\mathbb{S}^3)}\\
+            &\leqslant  4C\sum_{m,a}\epsilon^m\log^a(2\epsilon^{-1}) \|h_{m}^a \|_{H^2(\mathbb{S}^3)}\\
+            &=4C\|h\|_{A_\epsilon^0},
+        \end{align*}
+        where we used the fact that the eigenfunctions of the spherical Laplacian are $H^2$-orthogonal.
+        
+        \todo[inline]{To prove with $A_\epsilon^{k+2}$ -- seems reasonable knowing that there are not too many harmonics associated to a given decay rate $m$. We could also slightly change the definition of $A_\epsilon^k$ to have both continuity of taking the second derivative and an easier proof here}
+    \end{proof}
+    
+    In particular, the space $A_{\epsilon,0}^{k+2} = \ker_{A_{\epsilon,0}^{k+2}} \pi_H$ is closed and therefore a Banach space.
+    
+    \begin{lem}\label{invertibility linearization}
+        The map $\mathbf{\Phi}: A^{k+2}_\epsilon\to A^{k}_\epsilon$ defined by
+        $$\mathbf{\Phi}: h\mapsto \Ric(\mathbf{e}+h)+ \delta^*_{\mathbf{e}}B_{\mathbf{e}}(h)$$
+        is $\log$-analytic. Its linearization at $0$ restricted to $A_{\epsilon,0}^{k+2}$ is moreover a homeomorphism.
+    \end{lem}
+    \begin{proof}
+         Looking at the expressions of $\Ric$ and $\delta_\mathbf{e}^*B_\mathbf{e}$ in coordinates, we find:
+         $$\Ric (\mathbf{e}+h)+ \delta^*_{\mathbf{e}}B_{\mathbf{e}}(h) = Q_1\Big((\mathbf{e}+h)^{-1},\nabla^2 h\Big) + Q_2\Big((\mathbf{e}+h)^{-1},(\mathbf{e}+h)^{-1},\nabla h,\nabla h\Big).$$
+        
+    
+    The composition of $\log$-analytic functions is $\log$-analytic by Theorem \ref{composition log}. Therefore, by the above Proposition \ref{properties A epsilon k}, the map $\mathbf{\Phi}$ is indeed a $\log$-analytic map between Banach spaces.
+    
+    Now, the linearization of $\mathbf{\Phi}$ at $0$ is simply $-\frac{1}{2}\Delta_{\mathbb{R}^4}:A_{\epsilon,0}^{k+2}\to A^k_\epsilon$ which is continuous by definition of the norms. It is moreover injective on symmetric $2$-tensors satisfying $h_{|\mathbb{S}^n} \equiv 0$ by the classification of harmonic tensors (or functions) on $\mathbb{R}\backslash B(0,\epsilon)$. 
+    
+    It is also surjective because we allowed logarithmic terms, see for instance \cite[Proposition 4.1]{che}, where the inverse is explicited -- up to adding harmonic terms to ensure that the condition $h_{|\mathbb{S}^n} \equiv 0$ is satisfied. This inverse is moreover continuous by Banach's inverse theorem.
+    \end{proof}
+    
+    
+    Let us define our operator $\mathbf{\Psi}:A_{\epsilon,H}^{k+2}\times A_{\epsilon,0}^{k+2}\to A_{\epsilon}^k$ by:
+    $$ \mathbf{\Psi}(H,h_0):= \mathbf{\Phi}(H,h_0). $$
+    
+    \begin{thm}
+        For any $ H $ harmonic decaying at infinity small enough, there exists a unique $2$-tensor $h_0(H)\in A_{\epsilon,0}^{k+2}$ such that $$\mathbf{\Psi}(H,h_0(H)) = 0.$$
+        Moreover, $H\mapsto h_0(H)$ is $\log$-harmonic.
+    \end{thm}
+    \begin{proof}
+        The map $\mathbf{\Psi}$ is $\log$-analytic and its linearization in the $A_{\epsilon,0}^{k+2}$ direction is invertible by Lemma \ref{invertibility linearization}. By our implicit function theorem Theorem \ref{implicit fct theorem log} in the Appendix, there exists a $\log$-analytic map $H\mapsto h_0(H)$ from $A_{\epsilon,H}^{k+2}$ to $A_{\epsilon,0}^{k+2}$ in a neighborhood of $0$ so that the set of zeroes of $\mathbf{\Psi}$ about $(0,0)$ is parametrized by $A_{\epsilon,H}^{k+2}$ and given by: 
+        $$\mathbf{\Psi}(H,h_0(H))$$
+        for $H$ in a neighborhood of  $0\in A_{\epsilon,H}^{k+2}$.
+    \end{proof}
+    
+  
+    
+    \subsection{Asymptotic development of Einstein metric in large annuli}
+    Let $A_\mathbf{e}(\epsilon,\epsilon^{-1})$ be an annulus of radii $\epsilon$ and $\epsilon^{-1}$ about zero in $\mathbb{R}^4$. We want to make sense of a notion of "$\log$-analytic" norm for converging polyhomogeneous tensors in $\epsilon r$ and $(\epsilon^{-1}r)^{-1}$.
+    
+    \paragraph{A preserved family of developments}
+    
+    Let us first restrict the harmonics of the developments of our tensors. Define the family $ \mathcal{T} $ of formal developments:
+    $$\sum_{m,n,a,b,l} u_{m,n;l}^{a,b}(\epsilon^{-1} r)^{-m}\log^a(\epsilon r^{-1})(\epsilon r)^n\log^n(\epsilon^{-1} r) u_{m,n;l}^{a,b}$$
+    for $u_{m,n;l}^{a,b}$ spherical harmonics associated to the $l$-th eigenvalue with $u_{m,n;l}^{a,b} = 0$ if $l>\max(m,n)$.
+    
+    \begin{lem}
+       The family is closed under differentiation (term by term), multiplication and inverse of the Laplacian (up to harmonic functions).
+    \end{lem}
+    \begin{proof}
+       The proof follows from Y. Chen's Section 3.
+    \end{proof}
+       
+       
+    \paragraph{A Banach space of converging developments}
+       
+    \begin{defn}
+        For $u(r,x) = \sum_{m,n,a,b}(\epsilon^{-1} r)^{-m}\log^a(\epsilon r^{-1})(\epsilon r)^n\log^n(\epsilon^{-1} r) u_{m,n}^{a,b}(x)$ with $x\in \mathbb{S}^3 \mapsto u_{m,n}^{a,b}(x) \in E$ where $E$ is some vector subbundle of $(T^*\mathbb{R}^4)^{l_-}\times (T\mathbb{R}^4)^{l_+}$ satisfying:
+        \begin{itemize}
+            \item $a\leqslant m-2$,
+            \item $u_m^a$ is a linear combination of the $m-2$ first harmonics of the Laplacian of $\mathbb{S}^3$.\todo{À adapter}
+        \end{itemize}
+        We define the norm:
+    $$\|u\|_{0,\epsilon}:= \sup\Big(\max\big( \epsilon^{-m}\log^a,\epsilon^{-n}\log^b\epsilon) \|u_{m,n}^{a,b}\|_{H^2(\mathbb{S}^3)}\big)\Big). $$
+        
+    We then define the norm of $A^k_\epsilon$, $$\|u\|_{k,\epsilon} = \sum_{l=0}^k \|\nabla^lu\|_{0,\epsilon},$$
+    where we define the (a priori) formal sum $$ \nabla^l u  = \sum_{m,a\geqslant 0}\nabla^l \Big((\epsilon^{-1} r)^{-m}\log^a(\epsilon r^{-1})(\epsilon r)^n\log^n(\epsilon^{-1} r) u_{m,n}^{a,b}(x)\Big)$$
+    with $\nabla$ taken with respect to the Euclidean metric $dr^2 + r^2g_{\mathbb{S}^3}$ term by term. 
+    \end{defn}
+   
+   
+    \begin{prop}\label{properties A epsilon k}
+    Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
+    \begin{enumerate}
+        \item By construction,
+    $$\|h\|_{A_\epsilon^k}\leqslant \|h\|_{A_\epsilon^l}$$
+    if $k\leqslant l$. 
+    \item Moreover, the linear maps
+    $$ h\in A^{k+2}_\epsilon\to \nabla^lh\in A^{k+2-l}_\epsilon $$
+    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in A^{k+2}_\epsilon\mapsto \Delta h \in A^{k+2-l}_\epsilon$. 
+    \item For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
+    $$ \|Q(u_1,...,u_l)\|_{A^{k}_\epsilon} \leqslant C\|u_1\|_{A^{k}_\epsilon}\ldots \|u_l\|_{A^{k}_\epsilon},$$ where $C>0$ depends on $Q$.
+    \item The map $h\in \mathring{A}_\epsilon^k\mapsto(\mathbf{e}+h)^{-1}\in A_\epsilon^k$ is also $\log$-analytic. 
+    \end{enumerate}
+    \end{prop}
+    \begin{proof}
+        \todo[inline]{To be proven, but seems very reasonable}
+    \end{proof}
+    
+    \paragraph{Boundary conditions.}
+    \begin{defn}
+        Let $h\in A^{k+2}_\epsilon$ be a $2$-tensor. We define
+        $\pi_Hh$ as the unique harmonic symmetric $2$-tensor decaying at infinity whose restriction to $ r= \epsilon^{-1} $ and $r=\epsilon$ is equal to the restriction of $h$.
+    \end{defn}
+    
+    It is easy to explicit this projection in the form $\pi_Hh = \sum_{k\geqslant 0}(\epsilon r_e)^k \tilde{H}_{k}^+    + (\epsilon^{-1} r_e)^{-2-k} \tilde{H}_{k}^-$ where the $\tilde{H}_{k}^\pm$ are homogeneous with $|\tilde{H}_{k}^+|_{g_e} \sim r_e^0$ and which, once restricted to the sphere are eigenvectors associated to $-k(k+2)$. Indeed, if we decompose in spherical harmonics $ h_{|S_e(\epsilon)} =: \sum_{k} H_{k}(\epsilon)$ and $ h_{|S_e(\epsilon^{-1})} =: \sum_{k} H_{k}(\epsilon^{-1})$, we have the system
+    \begin{equation}
+  \left\{
+      \begin{aligned}
+        &H_{k}(\epsilon^{-1}) = \tilde{H}_{k}^+ + \epsilon^{4+2k} \tilde{H}_{k}^-, \\
+        &H_{k}(\epsilon) = \epsilon^{2k}\tilde{H}_{k}^+ + \tilde{H}_{k}^-,
+      \end{aligned}
+    \right.\label{dvp h}
+\end{equation}
+and therefore,
+\begin{equation}
+  \left\{
+      \begin{aligned}
+        &\tilde{H}_{k}^+ = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon^{-1}) -\epsilon^{4+2k}H_{k}(\epsilon) \big), \\
+        &\tilde{H}_{k}^- = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon) - \epsilon^{2k} H_{k}(\epsilon^{-1})\big),
+      \end{aligned}
+    \right.\label{système}
+\end{equation}
+    
+    
+    \begin{prop}
+        The projection $\pi_H: A^{k+2}_\epsilon\to A^{k+2}_\epsilon$ is continuous.
+    \end{prop}
+    \begin{proof}
+        \todo[inline]{To be proven, but seems very reasonable}
+    \end{proof}
+    
+        In particular, the space $A_{\epsilon,0}^{k+2} = \ker_{A_{\epsilon,0}^{k+2}} \pi_H$ is closed and therefore a Banach space.
+    
+    \begin{lem}\label{invertibility linearization}
+        The map $\mathbf{\Phi}: A^{k+2}_\epsilon\to A^{k}_\epsilon$ defined by
+        $$\mathbf{\Phi}: h\mapsto \Ric(\mathbf{e}+h)+ \delta^*_{\mathbf{e}}B_{\mathbf{e}}(h)$$
+        is $\log$-analytic. Its linearization at $0$ restricted to $A_{\epsilon,0}^{k+2}$ is moreover a homeomorphism.
+    \end{lem}
+    \begin{proof}
+        \todo[inline]{To be proven, but seems very reasonable}
+    \end{proof}
+    
+    
+    Let us define our operator $\mathbf{\Psi}:A_{\epsilon,H}^{k+2}\times A_{\epsilon,0}^{k+2}\to A_{\epsilon}^k$ by:
+    $$ \mathbf{\Psi}(H,h_0):= \mathbf{\Phi}(H,h_0). $$
+    
+    \begin{thm}
+        For any $ H $ harmonic decaying at infinity small enough, there exists a unique $2$-tensor $h_0(H)\in A_{\epsilon,0}^{k+2}$ such that $$\mathbf{\Psi}(H,h_0(H)) = 0.$$
+        Moreover, $H\mapsto h_0(H)$ is $\log$-harmonic.
+    \end{thm}
+    \begin{proof}
+        \todo[inline]{To be proven, but seems very reasonable}
+    \end{proof}
+    
+    \paragraph{Dirichlet-to-Neumann map on annuli.}
+    
+    We have an explicit (linear) Dirichlet-to-Neumann map from \eqref{système}.
+    
+    
+    \subsection{Development of Einstein metrics on manifold with "orbifold" boundary}
+    
+    Let us consider the orbifold $M_o$ with boundary at $\{r = r_o\}$ assumed to be small enough\todo{to decide later}. Let us assume for now by simplicity that $(M_o,g_o)$ is non degenerate (if not we can consider the map $\{\text{cut-off cokernel}\} \oplus C^{2,\alpha}\cap\{\textup{orthogonal of the kernel}\} \to C^{\alpha}$).
+    
+    We will actually consider the metric $\tilde{g}_o$ which is exactly Euclidean for $r<2 r_o$.
+    
+    
+    \subsubsection{A space of $\log$-analytic boundary conditions}
+    
+    Let us define a function spaces for $\log$-analytic maps from $ r_o\mathbb{S}^3\slash\Gamma $ to $\operatorname{Sym}^2(T^*(\mathbb{R}^4\slash\Gamma))$ which are the typical perturbation from the terms of an ALE space at scale $\epsilon$ with converging development on $\rho \geqslant 1$.
+    \begin{defn}[Space of $\log$-analytic boundary conditions]
+        We define a Banach space $B_\epsilon$ of maps $h: r_o\mathbb{S}^3\slash\Gamma \to \operatorname{Sym}^2(T^*(\mathbb{R}^4\slash\Gamma))$ with 
+        $$h= \sum_{m,n,a,b\in \mathbb{N}} (\epsilon r_o^{-1})^m\log^a(\epsilon r_o^{-1}) r_o^n\log^b(r_o) h_{m,n}, $$ 
+        where the coefficients of the $2$-tensors $h_{m,n}^{a,b}$ in a constant basis of the cover $\mathbb{R}^4$ are among the first $\min(m,n)$ eigenfunctions of the Laplacian of the cover $r_o\mathbb{S}^3\slash\Gamma$, and $a\leqslant m$, $b\leqslant n$.
+        
+        The norm is then given by $$\|h\|_{B_\epsilon}:=\sum_{m,n,a,b} \|h_{m,n}^{a,b}\|_{H^2(R_o\mathbb{S}^3)}.$$
+        
+        We then again consider $B_\epsilon^k$ to be the sum of the norms of the first $k$ derivatives.
+    \end{defn}
+    
+    \begin{rem}
+        If there are no logarithmic terms and $r_o = 1$, the map is clearly real-analytic and the norm is equivalent to the usual norms used to obtain a Banach space of real-analytic maps. 
+    \end{rem}
+    
+    The motivation for this space of function is the following observations:
+    \begin{itemize}
+        \item the Einstein metric $g_o = \mathbf{e} + \sum H_i$ with $|H_i|\sim r^i$ restricted to $r=r_o$ belongs to this space.
+        \item the Einstein metric $g_b := \mathbf{e} + \sum H^j$ with $|H^{j}|\sim \rho^{-j} = (\epsilon^{-1}r)^{-j}$ also belongs to this space when restricted to $r=r_o$.
+    \end{itemize}
+    
+    This space also have good properties:
+    \begin{prop}\label{properties B epsilon k}
+    Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
+    \begin{enumerate}
+        \item By construction,
+    $$\|h\|_{B_\epsilon^k}\leqslant \|h\|_{B_\epsilon^l}$$
+    if $k\leqslant l$. 
+    \item Moreover, the linear maps
+    $$ h\in B^{k+2}_\epsilon\to \nabla^lh\in B^{k+2-l}_\epsilon $$
+    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in B^{k+2}_\epsilon\mapsto \Delta h \in B^{k+2-l}_\epsilon$. 
+    \item For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
+    $$ \|Q(u_1,...,u_l)\|_{B^{k}_\epsilon} \leqslant C\|u_1\|_{B^{k}_\epsilon}\ldots \|u_l\|_{B^{k}_\epsilon},$$ where $C>0$ depends on $Q$.
+    \item The map $h\in \mathring{B}_\epsilon^k\mapsto(\mathbf{e}+h)^{-1}\in B_\epsilon^k$ is also $\log$-analytic. 
+    \end{enumerate}
+    \end{prop}
+    
+    \subsubsection{A space of $\log$-analytic $2$-tensors in the interior}
+    
+    \begin{defn}
+     
+    \todo[inline]{Should we just take sum of powers of $\epsilon$, $\log(\epsilon)$ tensors with some of their derivatives in $H^2(M_o)$...?}
+    
+    \end{defn}
+    
+    We can now embed the previous space of boundary $2$-tensors in the interior.
+    
+    \begin{defn}
+     Let us define $\mathcal{E}: B_\epsilon\to A_\epsilon(M_o)$ by:
+     $$\mathcal{E}(h):= \chi_{r_1,r_o} \sum_{m,n,a,b} (\epsilon^{-1}r)^{m}\log^a(\epsilon^{-1}r)^{m}r^n\log^b(r) h_{m,n}^a,b$$
+     where $\chi_{r_o,r_1}$ is supported in $r_o<r<2r_1$ and equal to $1$ in $r_o<r<r_1$.
+    \end{defn}
+    
+    \begin{prop}
+        The map $\mathcal{E}$ is continuous and injective.
+    \end{prop}
+    
+    \subsubsection{From boundary condition to Einstein metrics}
+    
+    \todo[inline]{As in the usual situation in Hölder spaces we want to use the right implicit function theorem.}
+    
+    
+    
+    \subsection{Development of Einstein metrics on manifold with "ALE" boundary}
+    
+    We now mimic the results of the previous section for Ricci-flat ALE metrics cut at a large radius $R_0>1$.
+    
+    
+    \subsubsection{A space of $\log$-analytic boundary conditions}
+    
+    Let us define a function spaces for $\log$-analytic maps from $ R_o\mathbb{S}^3\slash\Gamma $ to $\operatorname{Sym}^2(T^*(\mathbb{R}^4\slash\Gamma))$ which are the typical perturbation from the terms of an orbifold at scale $\epsilon^{-1}$ with converging development on $r \leqslant 1$.
+    \begin{defn}[Space of $\log$-analytic boundary conditions]
+        We define a Banach space $B_\epsilon$ of maps $h: R_o\mathbb{S}^3\slash\Gamma \to \operatorname{Sym}^2(T^*(\mathbb{R}^4\slash\Gamma))$ with 
+        $$h= \sum_{m,n,a,b\in \mathbb{N}} (\epsilon R_o)^m\log^a(\epsilon R_o) R_o^{-n}\log^b(R_o) h_{m,n}^{a,b}, $$ 
+        where the coefficients of the $2$-tensors $h_{m,n}$ in a constant basis of the cover $\mathbb{R}^4$ are among the first $\min(m,n)$ eigenfunctions of the Laplacian of the cover $R_o\mathbb{S}^3\slash\Gamma$.
+        
+        The norm is then given by $$\|h\|_{B_\epsilon}:=\sum_{m,n,a,b} \|h_{m,n}^{a,b}\|_{H^2(R_o\mathbb{S}^3)}.$$
+        
+        We then again consider $B_\epsilon^k$ to be the sum of the norms of the first $k$ derivatives.
+    \end{defn}
+    
+    The motivation for this space of function is the following observations:
+    \begin{itemize}
+        \item the Einstein metric $g_o = \mathbf{e} + \sum H_i$ with $|H_i|\sim r^i=(\epsilon\rho)^i$ restricted to $r=\epsilon R_o$ belongs to this space.
+        \item the Einstein metric $g_b := \mathbf{e} + \sum H^j$ with $|H^{j}|\sim \rho^{-j}$ also belongs to this space when restricted to $\rho=R_o$.
+    \end{itemize}
+    
+    This space also have good properties:
+    \begin{prop}\label{properties B epsilon k}
+    Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
+    \begin{enumerate}
+        \item By construction,
+    $$\|h\|_{B_\epsilon^k}\leqslant \|h\|_{B_\epsilon^l}$$
+    if $k\leqslant l$. 
+    \item Moreover, the linear maps
+    $$ h\in B^{k+2}_\epsilon\to \nabla^lh\in B^{k+2-l}_\epsilon $$
+    are continuous with operator norm less than $1$ when $l\in \{1,2\}$ and so is the map $ h\in B^{k+2}_\epsilon\mapsto \Delta h \in B^{k+2-l}_\epsilon$. 
+    \item For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
+    $$ \|Q(u_1,...,u_l)\|_{B^{k}_\epsilon} \leqslant C\|u_1\|_{B^{k}_\epsilon}\ldots \|u_l\|_{B^{k}_\epsilon},$$ where $C>0$ depends on $Q$.
+    \item The map $h\in \mathring{B}_\epsilon^k\mapsto(\mathbf{e}+h)^{-1}\in B_\epsilon^k$ is also $\log$-analytic. 
+    \end{enumerate}
+    \end{prop}
+    
+    \subsubsection{A space of $\log$-analytic $2$-tensors in the interior}
+    
+    \begin{defn}
+    
+    \todo[inline]{Should we just take sum of powers of $\epsilon$, $\log(\epsilon)$ tensors with some of their derivatives in $H^2(Z)$...?}
+     
+    \end{defn}
+    
+    We can now embed the previous space of boundary $2$-tensors in the interior.
+    
+    \begin{defn}
+     Let us define $\mathcal{E}: B_\epsilon\to A_\epsilon(M_o)$ by:
+     $$\mathcal{E}(h):= \chi_{R_1,R_o} \sum_{m,n,a,b} (\epsilon^{-1}r)^{m}\log^a(\epsilon^{-1}r)r^n\log^b(r) h_{m,n}^{a,b}$$
+     where $\chi_{R_o,R_1}$ is supported in $R_1/2<\rho<R_o$ and equal to $1$ in $R_1<\rho<R_o$.
+    \end{defn}
+    
+    \begin{prop}
+     The map $\mathcal{E}$ is continuous and injective.
+    \end{prop}
+    
+    \subsubsection{From boundary condition to Einstein metrics}
+    
+    \todo[inline]{As in the usual situation in Hölder spaces we want to use the right implicit function theorem.}
+    
+    
+    \section{Locally polyhomogeneous developments on trees of singularities}
+
+\subsection{Locally polyhomogeneous developments on annuli}
+
+ \begin{defn}[Locally polyhomogeneous expansion on degenerating flat annuli]\label{homog expan annulus}
+        We will say that a family of $2$-tensors $h^s$ on $(A_\mathbf{e}(s,bs^{-1}),\mathbf{e})$ for $0<s<s_0$ admits a \emph{locally polyhomogeneous decomposition of order $m$} for $m\in \mathbb{Z}$ if there exists a decomposition $$h^s = \phi_{s^{-1}}^*h^s_b + \phi_{s}^*h^s_o + h^s_{A},$$ where $\phi_s(x):= sx$, and where $\phi_{s^{-1}}^*h^s_b$, $h^s_{H}$ and $\phi_{s}^*h^s_o$ equal developments converging and uniformly (in $s$) bounded in $r^m(r^\epsilon+r^{-\epsilon})C^0(\mathbf{e})$ for all $\epsilon>0$, for all $0<s<s_0$ satisfying:
+        \begin{enumerate}
+            \item $h^s_o = \sum_{i,l\in \mathbb{N}} s^{2i-m-2}(\log s)^l h_o^{(i,l)}$, where the $h_o^{(i,l)}$ are independent of $s$ and supported in $A(1,b)$,
+            \item $h^s_b = \sum_{j,l\in \mathbb{N}} s^{2j+m+2}(\log s)^l h_b^{(j,l)}$, where the $h_b^{(j,l)}$ are independent of $s$, and supported in $A(1,b)$,
+            \item $h^s_{A} = \sum_{i,j,k,l\in \mathbb{N}}\chi(s r)(1-\chi(s^{-1} r)) H_{i,k,l}^j$ is a converging sum of $2$-tensors
+            $$H_{i,k,l}^j = r^m(\log r)^k(sr)^i(s^{-1}r)^{-j} (\log s)^l\tilde{H}_{i,k,l}^j,$$ where the coefficients of $\tilde{H}_{i,k,l}^j$ are $0$-homogeneous.
+        \end{enumerate}
+    \end{defn}
+        \begin{rem}\label{restriction polyhomogeneous}
+        The conditions on the powers of $s$ in the developments of $h_o^s$ and of $h_b^s$ are consistent with the condition on the powers of $r$ on $h_H^s$. Indeed, if we restrict
+        \begin{align}
+            \phi_s^*\big(r^m(\log r)^k(sr)^i(s^{-1}r)^{-j} (\log s)^l\big) = s^{m+2+2i}r^{m+i-j}(\log (sr))^k(\log s)^l
+        \end{align}
+        to the annulus $A_\mathbf{e}(1,b)$, we see that it has power of $s$ of the form $m+2+2i$\todo{Euh, différent d'au dessus du coup} for $i\in\mathbb{N}$, and the same holds with $\phi_{s^{-1}}$.
+    \end{rem}
+    
+    \begin{exmp}
+        If a family of $2$-tensors of class $C^2$, $(h^s)_s$, admits a locally polyhomogeneous decomposition of order $m$, then $(\nabla_{\mathbf{e}}^*\nabla_{\mathbf{e}} h^s)_s$ admits one of order $m-2$.
+    \end{exmp}
+    
+    The following proposition which is a partial converse to the above example is the key result ensuring that we will have a converging polyhomogeneous expansion of the obstructions. It states that having a locally polyhomogeneous expansion is stable under the operations we are interested in.
+    
+    \begin{prop}\label{stabilité dvp par Rge et Qge}
+        Let $s_0>0$ and assume that for $0<s<s_0$, $v^s$ is a family of $2$-tensors which admits a locally polyhomogeneous expansion of order $-2$ on $A_\mathbf{e}(s,bs^{-1})$, then $h^s = R_{\mathbf{e}}(v^s)$ admits a locally polyhomogeneous decomposition of order $0$ on $A_\mathbf{e}(bs,s^{-1})$.
+        
+        Similarly, if a family of $2$-tensors $h^s$ with small enough norm admits a locally polyhomogeneous expansion of order $0$. Then $v^s=Q^{(l)}_\mathbf{e}(h^s,...,h^s)$ where $Q^{(l)}_\mathbf{e}$ is the $l$-linear term of the development of $\mathbf{\Phi}_\mathbf{e}$ admits a locally polyhomogeneous expansion of order $-2$.
+        \todo[inline]{I should be more precise on the function spaces and controls here for later}
+    \end{prop}
+    \subsection{Locally polyhomogeneous developments on trees of singularities}
+
+
+    \begin{defn}[Locally polyhomogeneous expansion on a tree of singularities]\label{homog expan tree}
+        We will say that a family of $2$-tensors $h^t$ on $(M,g^D_t)$ for $t=(t_j)_j$, $t_j>0$ in a neighborhood of zero admits a \emph{locally polyhomogeneous decomposition of order $m$} for $m\in \mathbb{Z}$ if there exists a decomposition $$h^t = h^t_{o}+\sum_jh^t_{b_j} + h^t_{H_j},$$ where, $h^t_{o}$, $h^t_{b_j}$ and $h^t_{H_j}$ equal expansions converging and uniformly bounded in $r_D^mC^0(g^D_t)$ satisfying, if we denote $t^{\frac{l}{2}}:= \Pi_j t_j^{\frac{l_j}{2}}$ and $ (\log t)^l:= \Pi_j (\log t_j)^{l_j}$ for $l = (l_j)_j\geqslant 0$, 
+        \begin{enumerate}
+            \item $h^t_o = \sum_{k\geqslant 0} t^{\frac{k}{2}}(\log t)^lh_o^{(k,l)}$, where the $h_o^{(k,l)}$ are independent of $t$ and supported in $M_o(\epsilon)$,
+            \item $h^t_{b_j} = T_j^{\frac{m+2}{2}}\sum_{k\geqslant 0} t^{\frac{k}{2}}(\log t)^lh_b^{(k,l)}$, where the $h_b^{(k,l)}$ are independent of $t$, and supported in $N_k(\epsilon)$,
+            \item on each $A_j(t,b\epsilon)$, $h^t_{H_j} = T_j^{\frac{m+2}{2}}t_j^\frac{-m-2}{4} \sum_{k\geqslant 0}t^\frac{k}{2}(\log t)^lh_{H_j^l}$, where $\phi_{T_j^{-1/2}t_j^{-1/4}}^*h^t_{H_j^k}$ admits a locally polyhomogeneous decomposition of order $m$ in $s = \epsilon^{-1}t_j^{1/4}$.
+        \end{enumerate}
+    \end{defn}
+    
+    \begin{exmp}
+        For $t$ small enough, $g^D_t$ admits a locally polyhomogeneous decomposition of order $0$, and $r_D^{m}g^D_t$ admits one of order $m$. More interestingly, $\mathbf{\Phi}_{g^D_t}(g^D_t)$ admits a locally polyhomogeneous decomposition of order $-2$ by the next proposition.
+    \end{exmp}
+    
+    
+\section{Rewriting locally polyhomogeneous decompositions on a blow-up}
+    
+    Consider the two distance parameters $r_o:= \phi_{s^{-1}}^* r = s^{-1}r$ and $r_b:=\phi_{s}^* r= sr$ which are related by 
+    $$ s^{-2} = \frac{r_o}{r_b}. $$
+      
+    
+    \subsection{Weighted norms on the blow-up space}
+    
+    Let $f:(r_o,\frac{1}{r_b})\mapsto \mathbb{R}$ be a smooth function on the blow-up space. We define $$\|f\|_{\tilde{C}^{k}_{\beta}}:= \sup_{M_o\times N} r_o^{-\beta}(r_b^{-1})^{-\beta} \sum_{i+j\leqslant k}\big|(r_o^{i}\nabla_{\mathbf{o}}^i)(r_b^{j}\nabla_{\mathbf{b}}^j) f \big|.$$
+    \begin{rem}
+        Seeing $f$ as a function of $r_b$ or of $r_b^{-1}$ does not change much. Indeed if we replace $ r_b\partial_{r_\mathbf{b}}$ by $-r_b^{-1}\partial_{r_\mathbf{b}^{-1}}$, we find a comparable norm.
+    \end{rem}
+    The restriction of a function bounded in $\tilde{C}^{k}_{\beta}$ to the naïve desingularization given by $s^{-2} = \frac{r_o}{r_b}$ is exactly $ C^k_\beta $ (best seen on an annulus).
+    
+    The blow-up of the set of annuli $A_\mathbf{e}(s,s^{-1})$ is the product (or union?) $ A_\mathbf{e}(1,+\infty)_{r_o} \times A_\mathbf{e}(0,1)_{r_b}$ with the identification $ s^{-1} r_o = sr_b =r $ giving back the annulus.
+    
+    \subsection{Polyhomogeneous developments}
+    
+  We say that a function $f : \mathbb{S}^3 \times [0,\epsilon_0] \times [0,\epsilon_0] \to \mathbb{R}$ is locally converging polyhomogeneous of order $0$ if:
+  \begin{align*}
+      f(x,r_o,r_b^{-1}) =& \sum_{j,m} (r_b)^{-j}\log^l(r_b^{-1}) f_o^{(i,k)}(x,r_o)\\
+      &+ \sum_{i,k}(r_o)^{i}\log^k(r_o) f_b^{(i,k)}(x,r_b^{-1}) \\
+      &+ \sum_{ijkl} (r_b)^{-j}\log^l(r_b^{-1})(r_o)^{i}\log^k(r_o) \tilde{F}^{jl}_{ik}(x)
+  \end{align*}
+    where $ f_o^{(i,k)}(x,r_o)$ is supported in $1<r_o<b$ and $ f_b^{(i,k)}(x,r_b^{-1})$ is supported in $b^{-1}<r_b^{-1}<1$, and where all of the sums are ($C^0$)bounded.
+    
+   
+  \section{Formal developments of Einstein desingularizations}\label{formal dvp}
+  
+  
+      Here we present how one can find (and explicit) a polyhomogeneous development of the metric. There is no reason for it to be convergent however. 
+\begin{defn}
+    For a section $s$ on $(\mathbb{R}^4\slash\Gamma)\backslash\{0\}$, we will write $s\propto t^\frac{l}{2}r_o^kr_b^l$ if for all $l\in\mathbb{N}$ and $\epsilon>0$, there exists a constant $C>0$ such that $|\nabla^ls|_\mathbf{e}\leqslant C_lt^\frac{l-\epsilon}{2} r_o^kr_b^l(r_b^\epsilon+r_o^{-\epsilon})$ as $t\to 0$.
+\end{defn}
+\begin{rem}
+    One has $t^\frac{l}{2}(\log t)^a r_o^kr_b^l(\log r_o)^b (\log r_b)^c\propto t^\frac{l}{2}r_o^kr_b^l$ for all $a,b,c >0$.
+\end{rem}
+
+\begin{prop}\label{dvp formel desing}
+    Given $(M_o,\mathbf{g}_o)$ an Einstein orbifold singular at $p$ of singularity $\mathbb{R}^4\slash\Gamma$, and denote $g^D_t$ its desingularization at $p$ by $(N,\mathbf{b})$ at scale $t>0$. Consider the asymptotic expansions in homogeneous symmetric $2$-tensors of $\mathbf{g}_o$ at $p$, $\mathbf{g}_o = \mathbf{e} + \sum_{i\geqslant 0} H_i,$ where $H_i\propto r_o^i$, and of $\mathbf{b}$ at infinity, 
+    $\mathbf{b} = \mathbf{e} + \sum_{j\geqslant 4} H^j,$ where  $H^j\propto r_b^{-j}$.
+    
+    Then, there exist polyhomogeneous $2$-tensors, $H^j_i \propto r^{i}_or_b^{-j} = t^\frac{j}{2} r^{i-j}$ for $i,j\geqslant 0$ on $\mathbb{R}^4\slash\Gamma$, $\underline{h}_i$ on $N$ and $\overline{h}^j$ on $M_o$ such that we have the following properties.
+    \begin{enumerate}
+        \item $H^0_i = H_i$ and $H_0^j = H^j$,
+        \item the formal series
+        $g_{o}^t:=\mathbf{g}_o + \sum_{j\geqslant 4} \overline{h}^j,$
+        satisfies the formal equation $\mathbf{\Phi}_{\tilde{g}_o}(g^t_o) \in \tilde{\mathbf{O}}(\mathbf{g}_o)$, where $\tilde{g}_o = \chi_{M_o(\epsilon)}\mathbf{g}_o + \big(1-\chi_{M_o(\epsilon)}\big)\mathbf{e}$, and $ g_o^t\perp \mathbf{O}(\mathbf{g}_o) $
+        \item and the formal series
+        $b^t:=\mathbf{b} + \sum_{i\geqslant 2}\underline{h}_i$
+        satisfies formally the equation 
+        $\mathbf{\Phi}_{\tilde{b}}(b^t) \in \tilde{\mathbf{O}}(\mathbf{b})$,
+        where $\tilde{b} = \chi_{N(\epsilon)}\mathbf{b} + \big(1-\chi_{N(\epsilon)}\big)\mathbf{e}$, and $ b^t\perp \mathbf{O}(\mathbf{b}) $
+        \item at infinity on $N$, we have the (converging?) development,
+        \begin{equation}
+            \underline{h}_i = H_i+\sum_{j\geqslant 4} H^j_i,
+        \end{equation}
+        \item and on $M_o$ we have the following (converging?) development at $p_o$,
+        \begin{equation}
+            \overline{h}^j = H^j+\sum_{i\geqslant 2}H^j_i,
+        \end{equation}
+    \end{enumerate}
+    Since the asymptotic terms $H_i^j$ match, we obtain a formal solution by gluing $\mathbf{b}^t$ to $\mathbf{g}_o^t$.
+\end{prop}
+    \begin{proof}
+    The operators
+    $$
+    \begin{aligned}
+      L_{\mathbf{g}_o}: \big(\tilde{\mathbf{O}}(\mathbf{g}_o)^\perp\cap C^{2,\alpha}_{\beta,*}(\mathbf{g}_o) \big)\times \tilde{\mathbf{O}}(\mathbf{g}_o) &\to r^{-2}_oC^{\alpha}_\beta(\mathbf{g}_o),\\
+      (h,\tilde{\mathbf{o}}_o)&\mapsto P_{\mathbf{g}_o}(h) + \tilde{\mathbf{o}}_o.
+    \end{aligned}
+    $$
+    and
+    $$
+    \begin{aligned}
+      L_{\mathbf{b}}: \big(\tilde{\mathbf{O}}(\mathbf{b})^\perp\cap C^{2,\alpha}_{\beta,*}(\mathbf{g}_o) \big)\times \tilde{\mathbf{O}}(\mathbf{b}) &\to r^{-2}_bC^{\alpha}_\beta(\mathbf{g}_o),\\
+      (h,\tilde{\mathbf{o}}_b)&\mapsto P_{\mathbf{b}}(h) + \tilde{\mathbf{o}}_b.
+    \end{aligned}
+    $$
+    are invertible and we will denote $L_{\mathbf{g}_o}^{-1}$ and $ L_{\mathbf{b}}^{-1}$ their respective inverses.
+    
+        The idea is to alternate between solving an equation on the orbifold and solving an equation on the ALE. Indeed, the former will determine the polyhomogeneous tensors which are $L^2$ in a neighborhood of $0$ and the latter, the ones which are $L^2$ at infinity. On the orbifold, tensors in $\mathcal{O}(r^{-2+\epsilon})$ for $\epsilon>0$ around zero are $L^2$. On the ALE, tensors in $\mathcal{O}(r^{-\epsilon})$ are determined by \cite{biq1,ozu2}. The first iterations have been developed in \cite{biq1,biq2,ozu2,ozu3}.
+        
+        When the terms up to order $n$ have been determined, we find the next ones as the terms compensating the multilinear errors created. That is:
+        \begin{equation}
+  \left\{
+      \begin{aligned}
+       &P_{\mathbf{g}_o}\overline{h}^{n+1}+\sum_{\{l,(j_1,...,j_l)\}}\Ric_{\mathbf{g}_o}^{(l)}(\overline{h}^{j_1},...,\overline{h}^{j_l}) - \Lambda \overline{h}^{n+1} \in \tilde{\mathbf{O}}(\mathbf{g}_o), \\
+        &\overline{h}^{n+1} - \big(H^{n+1}+H^{n+1}_2+...+H^{n+1}_n\big)\propto r_b^{n+1}r_o^{n+1}, \text{ for all $\epsilon>0$.}\label{equation orbifold}
+      \end{aligned}
+    \right.
+\end{equation}
+    from which we determine the terms $H^{n+1}_{n+1}$ and the higher order terms $H^{n+1}_{k}$ for $k\geqslant n+1$ thanks to the asymptotic development $ \overline{h}^{n+1}=H^{n+1}+H^{n+1}_2+...+H^{n+1}_n+\sum_{k\geqslant n+1}H^{n+1}_{k}$. We then solve
+    \begin{equation}
+  \left\{
+      \begin{aligned}
+        &P_\mathbf{b}(\underline{h}_{n+1}) +\sum_{\{l,(j_1,...,j_l)\}}\Ric_{\mathbf{b}}^{(l)}(\underline{h}_{j_1},...,\underline{h}_{j_l}) -\Lambda \underline{h}_{n-1}\in \tilde{\mathbf{O}}(\mathbf{b}), \\
+        &\underline{h}_{n+1} - \big(H_{n+1}+ H_{n+1}^4 +...+ H_{n+1}^{n} + H_{n+1}^{n+1} \big)\propto r_o^{n+1}r_b^{n+2}, \text{ for all $\epsilon>0$,}\label{equation bulle}
+      \end{aligned}
+    \right.
+\end{equation}
+    from which we determine the terms $H^{n+1}_{n+1}$ and more generally the higher order terms $ H^k_{n+1} $. This ensures that all of the terms $H_i^j\propto r_o^ir_b^{-j}$ satisfy the equations:
+    $$ P_\mathbf{e}(H^j_i) + \sum_{l} \sum_{\{i_1,...,i_l,j_1,...j_l|...\}}\Ric^{(l)}_\mathbf{e}(H_{i_1}^{j_1},...,H_{i_l}^{j_l}) = \Lambda H^j_{i-2}.$$
+
+    Schematically, after $n$ iterations, the situation is as follows: we have determined all of the $H_i^j$ for $i\leqslant n$ or $j\leqslant n$ and there remain to understand the terms with $i> n$ and $j> n$ symbolized by ``?''.
+    
+    \begin{tabular}{l|lllllllll}
+    &$\mathbf{b}$ & $\underline{h}_2$ &  $\underline{h}_3$ & $...$ & $\underline{h}_n$ & & & & \\
+    \hline
+    $\mathbf{g}_o$ & $\mathbf{e}$ & $H_2$ &$H_3$ & $...$ &$H_n$&$H_{n+1}$&$H_{n+2}$ & $H_{n+3}$& ...\\
+    $\overline{h}^4$ & $H^4$&$H^4_2$&$H^4_3$ &$...$&$H_n^4$ & $H_{n+1}^4$ &$H_{n+2}^{4}$&$H_{n+3}^{4}$ &...\\
+     $\overline{h}^{5}$ & $H^5$&$H^5_2$&$H^5_3$ & $...$& $H_n^5$ &  $H_{n+1}^5$ & $H_{n+2}^5$ &$H_{n+3}^{5}$& ...\\
+     $...$ & $...$& $...$& $...$ & $...$& $...$ &  $...$ & $...$& $...$& $...$\\
+     $\overline{h}^{n}$ &  $H^n$& $H^n_2$& $H^n_3$ & $...$& $H_n^n$ &  $H^n_{n+1}$ & $H^n_{n+2}$ &$H^n_{n+3}$&  ...\\
+      &  $H^{n+1}$& $H^{n+1}_2$& $H^{n+1}_3$ & $...$& $H^{n+1}_n$ &  $?$ & $?$& $?$&...\\
+      &  $H^{n+2}$& $H^{n+2}_2$& $H^{n+2}_3$ & $...$& $H^{n+2}_n$ &  $?$ & $?$& $?$&...\\
+     & $H^{n+3}$& $H^{n+3}_2$& $H^{n+3}_3$ & $...$& $H^{n+3}_n$ &  $?$ & $?$& $?$&...\\
+     & ...& ...& ...& ...& ...& ...& ...& ...& ...
+    \end{tabular}
+    \end{proof}
+    \begin{rem}
+    It is important to note that the above approximations $g_{o}^t$ and $b^t$ will however not converge a priori, and that they will only provide Einstein metrics only at a formal level when the obstructions vanish.
+    \end{rem}
+    \begin{rem}
+    This can be iterated to trees of singularities and to multiple singularities as a power series in $t= (t_j)_j$, but this makes it even harder to keep track of the obstructions.
+    \end{rem}
+    
+    
+  \section{$\log$-analytic maps between Banach spaces}
+  
+    Let us extend the classical inverse and implicit function theorems for real-analytic maps to maps with \emph{converging} polyhomogeneous developments. We mostly follow the strategy of \cite{bt} and extend it to the presence of powers of logarithms.
+
+    Let $X$ and $Y$ be Banach spaces (over $\mathbb{R}$) and $U\subset X$ open. We say that $f: \mathbb{R}\times U\to Y$ is real-\emph{analytic} at $x_0$ if for $\|x-x_0\|$ small enough, one has:
+    $$ f(x) = f(x_0)+ \sum_{k=1}^\infty m_k(x-x_0)^k $$
+    where the different $m_k: X^k\to Y$ are symmetric $k$-linear and satisfy: there exists $r>0$ such that for all $k$,
+    $$ \sup_{k\geqslant 1} r^k\|m_k\| <+\infty, $$
+    where $\|m_k\| := \sup_{\forall l,\|x_l\|\leqslant 1} \|m_k(x_1,...,x_k)\|$. The supremum of the $r$ as above is the \emph{radius of convergence} of $f$ at $x_0$.
+    
+    We say that $F : (-\epsilon,\epsilon)\times U \to Y$ for $\epsilon>0$ is $\log$-\emph{analytic} at $x_0$ if there exists $f: (-\epsilon,\epsilon)\times (-\epsilon\log \epsilon,\epsilon\log \epsilon) \times U \to Y$ real-analytic at $(0,0,x_0)$ such that
+    $$F(t,x) = f(s,s\log |s|,x)$$ 
+    for all $ s\in (-\epsilon,\epsilon) $ and $x\in U$. 
+    
+    \todo[inline]{It might be some $s\log^\alpha s$ instead}
+    
+    \begin{defn}
+    More generally, we say that $F:\mathcal{U}\subset X\to Y$ is $\log$-analytic if around each $x_0\in X$, there exists a finite linearly independent family of vectors $e_1,...,e_n\in X$\todo{the number of vectors clearly depends on the point} and a complement $X'$ such that $$\mathbb{R}e_1\oplus...\oplus \mathbb{R}e_n\oplus X'=X$$ such that 
+    $$F(s_1e_1+...+s_ne_n+x') = f(s_1,s_1\log|s_1|,...,s_n,s_n\log|s_n|,x') $$
+    for $f : \mathbb{R}^{2n}\times X'$ real-analytic on the associated neighborhood of $x_0$.
+    \todo[inline]{Is that a good definition?}
+    \end{defn}
+    
+    
+    \subsection{$\log$-analytic inverse and implicit function theorems}
+    
+    Let $(E_r,\|\cdot\|_r)$ be the Banach space of functions $u: B_{\mathbb{R}\times X}(0,r^2)\times B_{\mathbb{R}\times X}(0,r)\to Y$ with 
+    $$ u\left((s,x),(t,y)\right) = \sum_{m,n,a,b\geqslant 0} u_{m,n}^{a,b}(x,y)s^m\log^a|s|\cdot t^n\log^b|t|, $$
+    \todo[inline]{We should add a bound on $a,b$, probably $a\leqslant m$ and $b\leqslant n$}
+    where $u_{m,n}^{a,b}(x,y) = \sum_{p,q} u_{m,n;p,q}^{a,b}x^py^q$ is real-analytic from $X\times X$ to $Y$
+    $$\|u\|_r = \sum_{m,n,a,b,p,q\geqslant 0} \|u_{m,n;p,q}^{a,b}\|r^{2(m+p)+(n+q)}$$
+    which can also be seen as:
+    $$\|u\|_r = \sum_{m,n,a,b\geqslant 0} \|u_{m,n}^{a,b}\|_r r^{2m+n},$$
+    where $$\|u_{m,n}^{a,b}\|_r:= \sum_{p,q\geqslant 0}\|u_{m,n;p,q}^{a,b}\|r^{2p+q}$$
+    as in \cite{bt}.
+    
+    Denote $$F_r:=\{u\in E_r, u((s,x);(0,0))=0,\; \forall (s,x)\} =  \{u\in E_r, u_{m,0;p,0}^{a,b}=0, \; \forall m,p,a,b\}.$$ 
+    Following \cite{bt}, we define for any $w\in E_r$ and $u\in F_r$
+    \begin{align*}
+        L_wu((s,x),(t,y)) =&\; \partial_{(t,y)} u\left[(s,x),(t,y)\right] w ((s,x),(t,y)) \\
+        &-\partial_{(t,y)}u\left[(s,x),(0,0)\right] w ((s,x),(0,0)).
+    \end{align*}
+    We will also denote $w_0((s,x),(t,y)) = (t,y)$.
+    
+    Let us then define a \emph{linear} operator:
+    $L(u): F_r\to F_r$
+    which is chosen to satisfy: $ L_{w_0} \circ L = \operatorname{I}_{F_r}$, the identity of $F_r$, that is:
+    \begin{equation}
+        \partial_{(t,y)} \big(L(u)\big)\left[(s,x),(t,y)\right](t,y) = \sum_{m,n,a,b,p,q\geqslant 0,\\ n+q\geqslant1} u_{m,n;p,q}^{a,b} x^py^qs^m\log^a|s|\cdot
+             t^n\log^b|t|\label{prop Lu}
+    \end{equation}
+    thanks to the formula:
+    $$ \partial_{t} t^n\log^b|t| = nt^{n-1}\log^{b}|t| + bt^{n-1}\log^{b-1}|t|$$
+    for $t>0$, as well as $ y\partial_yy^n = n y^n$. Finding the right linear transformation $L$ on the coefficients $u_{m,n}^{a,b}$ amounts to inverting the $(b_n+2)\times (b_n+2)$ matrix with diagonal $(n,...,n)$ and subdiagonal $(0,1,...,b_n-1,b_n)$, where $b_n$ is the maximum of $b$ such that there is a (non zero) $t^n\log^b|t|$ term in the sum. The coefficients seem to be bounded by $\max(1/n,b_n/n)$\todo{if needed}.
+    
+    
+    We then have the following property.
+    
+    \begin{lem}\label{control Lw o L}
+        The linear operator $L_w\circ L : F_r\to F_r$ satisfies: $$\|L_w\circ L\|\leqslant \frac{\|w\|_r}{r}.$$
+    \end{lem}
+    \begin{proof}
+        As in \cite{bt}, using \eqref{prop Lu}, for $u\in F_r$, with
+        $$ u\left((s,x),(t,y)\right) = \sum_{m,n,a,b\geqslant 0} u_{m,n}^{a,b}(x,y)s^m\log^a|s|\cdot t^n\log^b|t|,$$
+        and for $p',q',a',b'\geqslant0$, define
+        $$w = x^{p'}y^{q'} s^{m'}\log^{a'}|s|\cdot t^{n'}\log^{b'}|t|,$$
+        we find:
+        \begin{align*}
+            L_w\circ L u\left((s,x),(t,y)\right) =&\;\sum_{m,n,a,b,p,q\geqslant 0,\; n+q\geqslant1} u_{m,n;p,q}^{a,b} x^py^qs^m\log^a|s|\cdot
+             t^n\log^b|t|\\&\times x^{p'}y^{q'} s^{m'}\log^{a'}|s|\cdot t^{n'}\log^{b'}|t|\\
+            &- \sum_{m\geqslant 0,a \geqslant 0}(u_{m,1;p,0}^{a,b}+u_{m,0;p,1}^{a,b})x^ps^m\log^a|s|\\
+            &\times x^{p'} s^{m'}\log^{a'}|s|\epsilon(q',b'),
+        \end{align*}
+       where $\epsilon(q',b') = 1$ if $(q',b') = (0,0)$ and $\epsilon(q',b') = 0$ otherwise.
+       
+        And we therefore find: 
+        \begin{align*}
+            \|L_w \circ L u\|_r &\leqslant \sum_{M\geqslant 0, N\geqslant 1} r^{2M+N}\sum_{m+p+p' = M , n+q+q'=N+1} \| u_{m,n;p,q}^{a,b}\|\\
+            &=\frac{1}{r} \Big( \sum_{m,p,n,q\geqslant 0, n+q\geqslant 1} r^{2(m+p)+(n+q)} \| u_{m,n;p,q}^{a,b} \| \Big)r^{p'+q'}\\
+            &= \frac{\|w\|_r\|u\|_r}{r} 
+        \end{align*}
+        By bilinearity of $ (u,w)\mapsto L_w\circ L u $, and triangle inequality we conclude that for arbitrary $(w,u)\in E_r\times F_r$
+        $$\|L_w\circ L u\|_r \leqslant \frac{\|w\|_r\|u\|_r}{r}.$$
+    \end{proof}
+    
+    This lets us prove the main step of the proof of our inverse and implicit function theorems in next subsection.
+    \begin{prop}
+        Suppose that $F$ is a $\log$-analytic map from a neighborhood of ${\mathbb{R}\times X}$ to itself and that $F(0)=0$ as well as $dF[0] = \operatorname{I}_{\mathbb{R}\times X}$, the identity of ${\mathbb{R}\times X}$. Then, there exist open neighborhoods $\mathcal{U}$ and $\mathcal{V}$ of $0\in {\mathbb{R}\times X}$ and a $\log$-analytic function $G : V\to {\mathbb{R}\times X}$ such that we have:
+        $$ F(t,y) = (s,x),\; (t,y)\in \mathcal{U}\; \iff\; G(s,x) = (t,y),\; x\in \mathcal{V}. $$
+    \end{prop}
+    \begin{proof}
+        For $r>0$ sufficiently small, let $v,w\in E_r$ defined for $((s,x),(t,y))\in B_{\mathbb{R}\times X}(0,r^2)\times B_{\mathbb{R}\times X}(0,r)$ by:
+        $$v((s,x),(t,y)):=F(t,y)-(s,x)\; \text{ and }\; w((s,x),(t,y)) = v((s,x),(t,y))-(t,y).$$
+        And denote the coefficients of the expansion of $F$:
+        $$F(t,y) = \sum_{n,b,p\geqslant 0} F^b_{n;p} t^n\log^b|t| y^p. $$
+        
+        Then, 
+        $$ w((s,x),(t,y)) = -(s,x) + \sum_{b \geqslant 0,\;n+p\geqslant 2} F_{n;p}^bt^n\log^b|t| y^p $$
+        because $dF[0] = F = \operatorname{I}_{\mathbb{R}\times X}$. This yields:
+        $$ \|w\|_r \leqslant r^2 + \sum_{b \geqslant 0,\;n+p\geqslant 2} \|F_{n;p}^b\|r^{n+p}\leqslant r^2 C(F) $$
+        for some constant $C(F)>0$. 
+        
+        Now, by definition of $v$, $w$ and $w_0$, and \eqref{prop Lu} we have:
+        $ L_v\circ L-I_{\mathbb{R}\times X} = L_w\circ L. $
+        In particular, by Lemma \ref{control Lw o L}, we find:
+        $$\|L_v\circ L-I_{\mathbb{R}\times X}\|\leqslant r C(F)$$
+        for $r>0$ sufficiently small. Therefore, choosing $r$ small enough, $L_v\circ L$ is an isomorphism of $F_r$ and we can define $u_0$ uniquely by:
+        \begin{equation}
+            L_v \circ Lu_0 ((s,x),(t,y)) = (t,y)\label{def u0}
+        \end{equation}
+        
+        As in \cite{bt}, by defining
+        \begin{equation}
+            G(s,x):= \partial_{(t,y)}(Lu_0)[(s,x),(0,0)](s,x)\label{def G}
+        \end{equation}
+        we find:
+        \begin{align*}
+            (t,y) - G(s,x) &=L_v \circ Lu_0 ((s,x),(t,y)) -\partial_{(t,y)}(Lu_0)[(s,x),(0,0)](s,x)\\
+            &= L_v \circ Lu_0 ((s,x),(t,y)) +\partial_{(t,y)}(Lu_0)[(s,x),(0,0)]v((s,x),(0,0))\\
+            &=\partial_{(t,y)}(L u_0)[(s,x),(t,y)] (v((s,x),(t,y)))\\
+            &=\partial_{(t,y)}(L u_0)[(s,x),(t,y)] (F(t,y)-(s,x))
+        \end{align*}
+        where we successively used \eqref{def u0} and \eqref{def G}, the fact that $v((s,x),(0,0)) = -(s,x)$, the definition of $L_v$, and the definition of $v$.
+        
+        In particular, as in the statement of the Proposition, in well-chosen neighborhoods of $0$, $F(t,y)=(s,x)$ if and only if $ G(s,x)=(t,y)$ because $\partial_{(t,y)}(L u_0)[(s,x),(t,y)]$ is a bijection. It is clear that $G$ is $\log$-analytic and this proves the proposition.
+    \end{proof}
+    
+    
+    \subsection{Inverse and implicit function theorems}
+    
+    Up to a translation from $x_0\in X$ and a linear transformation by $\left(dF[x_0]\right)^{-1}$, we have the following general inverse function theorem.
+    
+    \begin{thm}\label{inverse fct theorem log}
+    		Let $F:\mathbb{R}\times X \to Y$ be a $\log$-analytic map and assume that the linearization of $F$ at $(s_0,x_0)\in \mathbb{R}\times X$ is invertible. Then there exists a local inverse $G: \mathcal{V}\subset Y\mapsto \mathcal{U}\subset\mathbb{R}\times X$ which is $\log$-analytic in the following sense:
+    		$$ G = \tilde{G}\circ (d_{x_0}F)^{-1} $$
+    		where $\tilde{G}:\mathbb{R}\times X \to \mathbb{R}\times X $ is $\log$-analytic.
+    \end{thm}
+    \todo[inline]{We need no logarithm at the linear level linearization -- The "$\mathbb{R}$" factor on the image $Y$, where logarithmic terms may appear is the image of the $\mathbb{R}$ factor of $\mathbb{R}\times X$ by the linearization of $F$.}
+    
+    
+    This classically also implies the following implicit function theorem.
+    
+    \begin{thm}\label{implicit fct theorem log}
+         Let $X$, $Y$ and $Z$ be Banach spaces, and let $\mathcal{U}\subset X\times Y$ be open, $(x_0,y_0)\subset X\times Y$ and $F:\mathcal{U}\to Z$ be $\log$-analytic. Assume that the partial derivative $\partial_xF[x_0,y_0]$ is a homeomorphism.
+         
+         Then, there exists an open neighborhood $\mathcal{V} \subset Y$ of $y_0$, $\mathcal{W}\subset\mathcal{U}$ neighborhood of $(x_0,y_0)$ and $ \phi:\mathcal{V}\to X$ $\log$-analytic such that:
+         $$F^{-1}(\{F(x_0,y_0)\})\cap W = \{(\phi(y),y), y\in \mathcal{V} \}.$$
+    \end{thm}
+    \begin{proof}
+    The idea is to invert $H(x,y):=(y,F(x,y))$...
+    \end{proof}
+    
+    Another consequence which might very well be important for us is the fact that the composition of $\log$-analytic maps is also $\log$-analytic.    
+    
+\begin{thm}\label{composition log}
+		A composition of $\log$-analytic maps is $\log$-analytic.
+\end{thm}    
+    
+   \end{document}
