@@ -851,44 +851,55 @@ and therefore,
 
 
 
-\subsubsection{Linear problem on the ALE and orbifold spaces}
-
-\paragraph{Linearization of Einstein operator on a compact orbifold.}
+\subsubsection{Linear problem on compact orbifold spaces}
 
 
-    On an orbifold, the linear operator $L_o:\tilde{\mathbf{O}}(g_o)\oplus H^{s+1/2}(M_o)\cap \tilde{\mathbf{O}}(g_o)^\perp\to H^{s-3/2}(M_o)$,
-    $$ L_o(\mathbf{o}_o,h)\mapsto  $$
-    is an isomorphism. 
-    
-    The leading terms of the elements of the kernel on the orbifold: if there is some $\phi_m$ associated to the m-th eigenvalue of the spherical Laplacian, then the associated element of the kernel of $L_{g_o}$ has a development:
-    $$ r^{-2-m}\phi_m + \mathcal{O}(r^{-2-m+1}) $$
-    hence, restricted to some small $r$, one mostly sees that first term (it's the only one remaining as $r\to 0$)...
-    
+Let us describe the kernel/cokernel of the linearization at $g_o$: $L_o$.
+
+\paragraph{Kernel and cokernel on $M_o$}
+
+We will describe our kernel for tensors in $H^s_N(M_o)$, i.e. tensors so that $ (1+r)^Nh \in H^s(M_o)$. Since $L_o$ is formally self-adjoint, it is standard to obtain the cokernel from the kernel.
+
+\begin{lem}
+    Let $N>0$, the kernel of $L_o$ on symmetric $2$-tensors in $H^s_N$ is as follows:
+    \todo[inline]{Find a way to word it:}
+    \begin{itemize}
+        \item $\mathbf{O}(g_o)$,
+        \item tensors with leading term $ r^{-2-n}\phi_n $ for $n<N$, \textbf{except} the ones with leading term equal to one of the leading terms of an element of $\mathbf{O}(g_o)$.
+    \end{itemize}
+    \todo[inline]{It might be more complicated than this for the terms in the development on $\mathbf{O}(g_o)$ -- are we sure that there are no harmonic terms in the higher order terms of the elements of $\mathbf{O}(g_o)$? A difficult aspect is -- in any case, that will be finite dimensional -- could that still rule out an infinite number of higher and higher order!?}
+    \todo[inline]{It is probably not the case: we can add a lower order element of the kernel to make things orthogonal to the $L^2$-kernel ??}
+\end{lem}
+\begin{proof}
+     This is an extension of \cite{biq1} to the situation when $\mathbf{O}(g_o)\neq 0$. 
+     
+     \todo[inline]{Need a proof?}
+\end{proof}
+\paragraph{Kernel and cokernel on $M_o'$}
+    Now, we turn to the cut-off manifold $M'_o$. The main remark is that the restriction of any element of the previous kernel in $H^s_N$ to $M'_o$ is in $H^s(M'_o)$.
+
+\begin{cor}
+    The kernel of $L_o$ on $H^s(M'_o)$ is composed of the restrictions of the elements of a $H^s_N(M_o)$ to $M'_o$ for arbitrary $N$.
+\end{cor}
+
+\paragraph{Linear Dirichlet to Neumann problem on $M'_o$}
 
 
-** Kernel/cokernel of the linearization on the orbifold/ALE
+\begin{lem}
+    \todo[inline]{Can we make sense of a "limiting" DtN problem? Or do we want to just say that we can attain something that is "transverse" to the "limiting" cokernel}
+\end{lem}
 
-** Kernel/cokernel of the linearization on the orbifold/ALE with boundary
+\begin{cor}
+    \todo[inline]{Say that the Dirichlet-to-Neumann operator is invertible on large enough harmonics (Larger than those appearing in $\mathbf{O}(g_o)$)}
+\end{cor}
 
-** Linear Dirichlet to Neumann problem on the orbifold/ALE with boundary
 
-** invertibility for the Linear Dirichlet to Neumann problem projected on the high frequencies 
-\paragraph{Linearization on an ALE space.}
+\subsubsection{Linearization on an ALE space.}
 
-    On an ALE space, the linear operator $L_Z:\tilde{\mathbf{O}}(g_Z)\oplus H^{s+1/2}(Z)\cap \tilde{\mathbf{O}}(g_Z)^\perp\to H^{s-3/2}(Z)$,
-    $$ L_Z(\mathbf{o}_Z,h)\mapsto  $$
-    is an isomorphism. 
-    
-    Here, the leading term for the Dirichlet problem from some $\phi_m$ is this time in $r^m\phi_m + \mathcal{O}(r^{m-1})$. 
-    
+\todo[inline]{Should just be the same as in the orbifold case}
 
 \subsubsection{Linear problem on a flat annulus}
 
-** Explicit solution
-
-** Kernel/cokernel
-
-** invertibility for the Linear Dirichlet to Neumann problem projected on the high frequencies
 
     \todo[inline]{See notations:}
     Let us now consider the Dirichlet-to-Neumann map obtained on the annulus.
@@ -938,9 +949,14 @@ and therefore,
         We see that the kernel of the operator corresponds to restrictions of constant $2$-tensors, i.e. $H_0(\epsilon) = H_0(\epsilon^{-1})$. We also see that the cokernel is composed of elements satisfying $ H'_0(\epsilon)=-\epsilon^4H'_0(\epsilon^{-1})$.
     \end{proof}
     
+    In particular, except for the first harmonic, the Dirichlet-to-Neumann map is invertible.
+    \begin{cor}
+        \todo[inline]{To state}
+    \end{cor}
+    
 \subsection{The non linear situation}
 
-** Application of log-analytic implicit function theorem
+\todo[inline]{Application of log-analytic implicit function theorem}
 
 \section{Reduction to finite dimensions, and Einstein metrics modulo obstructions}
 
@@ -974,7 +990,7 @@ and therefore,
     
 \subsubsection{Einstein modulo obstructions metrics}
     
-    \todo[inline]{We do not want to redefine these topologies}
+    \todo[inline]{We do not want to redefine these topologies... ?}
     
     \begin{defn}[Einstein modulo obstructions metric]\label{gluing modulo obstructions}
         For any $(t,v)\in \mathbb{R}^+_*\times \tilde{\mathbf{O}}_0(g^D)$ close enough to $(0,0)$ there exists a \emph{unique} solution $\hat{g}_{t,v}$ to the equation 
