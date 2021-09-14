@@ -856,37 +856,61 @@ and therefore,
 
 Let us describe the kernel/cokernel of the linearization at $g_o$: $L_o$.
 
-\paragraph{Kernel and cokernel on $M_o$}
+\paragraph{A graded $L^2$-kernel.}
+
+Let us classify the $L^2$-infinitesimal deformations of ${g_o}$ by their order of decay at the singular point $p$:
+   $$ \mathbf{O}({g_o}) = \bigoplus_{i = 0}^{i_{\max}} \mathbf{O}^{(i)}({g_o}) $$
+   in the following way.
+   
+   Let $i_{\max}$ be the maximum of $i\geqslant 0$ such that there exists $\mathbf{o}\in \mathbf{O}({g_o})$ with $ \mathbf{o} = \mathcal{O}(r^{i}) $ at $p$ (it is well-defined because $\mathbf{O}({g_o})$ is finite dimensional). Define $\mathbf{O}^{(i_{\max})}({g_o})$ as the subspace of $\mathbf{O}({g_o})$ spanned by the tensors in $r^{i_{\max}}$ at $p$. We then define $\mathbf{O}^{(i_{\max}-1)}({g_o})$ as the subspace of $\mathbf{O}({g_o})$ spanned by the tensors in $r^{i_{\max}- 1}$ at infinity and $L^2({g_o})$-orthogonal to $\mathbf{O}^{(i_{\max})}({g_o})$. We then iteratively define the subspaces $\mathbf{O}^{(i)}({g_o})$ which are $L^2({g_o})$-orthogonal to each other by construction.
+   
+   The most important aspect of these infinitesimal deformations for the obstructions to the desingularization of Einstein metrics and to understand the elements of the kernel growing polynomially at infinity is their asymptotic terms. More precisely, if $\mathbf{o}\in \mathbf{O}^{(i)}({g_o})$, then at $p$, $\mathbf{o} = r^{i} \phi_{i} + \mathcal{O}(r^{i+1-\epsilon})$ for all $\epsilon>0$, where $\phi_{i}$ is a $2$-tensor whose coefficients are spherical harmonics associated to the $i$-th eigenvalue. 
+   
+   \begin{defn}[Space of harmonics $\mathbb{O}(g_o)$]
+   Denote 
+   $ \mathbb{O}^{(i)}({g_o}) $ the space of spherical harmonics $\phi_{i}$ appearing as the asymptotic term of an element of $\mathbf{O}^{(i)}({g_o})$. We will also define $\mathbb{O}({g_o})=\sum_{i=0}^{i_{\max}}\mathbb{O}^{(i)}({g_o})$.
+   \end{defn}
+
+\paragraph{Kernel and cokernel on $M_o$.}
 
 We will describe our kernel for tensors in $H^s_N(M_o)$, i.e. tensors so that $ (1+r)^Nh \in H^s(M_o)$. Since $L_o$ is formally self-adjoint, it is standard to obtain the cokernel from the kernel.
 
+We start by a standard lemma on the Fredholm properties of $L_{g_o}$.
 \begin{lem}
-    Let $N>0$, the kernel of $L_o$ on symmetric $2$-tensors in $H^s_N$ is as follows:
-    \todo[inline]{Find a way to word it:}
+    Let $k$ be a $2$-tensor on $M_o$ with $k = H^s_{2-\epsilon}(M_o)$ for $s\geqslant0$ and some small enough $\epsilon>0$. Then, there exists $h = H^{s+2}_{-\epsilon}(M_o)$ at $p$ such that:
+    $$L_{g_o}h = k-\pi_{\mathbf{O}(g_o)}k = \pi_{\mathbf{O}(g_o)^\perp}k.$$
+\end{lem}
+
+We are ready to describe completely the kernel of $L_o$ on tensors exploding polynomially fast at $p$.
+\begin{prop}
+    Let $N>0$, the kernel of $L_o$ on symmetric $2$-tensors in $H^s_N$ is composed of:
     \begin{itemize}
         \item $\mathbf{O}(g_o)$,
-        \item tensors with leading term $ r^{-2-n}\phi_n $ for $n<N$, \textbf{except} the ones with leading term equal to one of the leading terms of an element of $\mathbf{O}(g_o)$.
+        \item tensors with leading term $ r^{-2-n}\phi_n$ for $n<N$, \textbf{and} $\phi_n \perp_{L^2(\mathbb{S}^3)}\mathbb{O}^{(i)}(g_o) $.
     \end{itemize}
-    \todo[inline]{It might be more complicated than this for the terms in the development on $\mathbf{O}(g_o)$ -- are we sure that there are no harmonic terms in the higher order terms of the elements of $\mathbf{O}(g_o)$? A difficult aspect is -- in any case, that will be finite dimensional -- could that still rule out an infinite number of higher and higher order!?}
-    \todo[inline]{It is probably not the case: we can add a lower order element of the kernel to make things orthogonal to the $L^2$-kernel ??}
-\end{lem}
+    
+As a consequence, for any $m>i_{\max}$, there exists an element asymptotic to $r^m\phi_m$ in the kernel of $L_{g_o}$.
+\end{prop}
 \begin{proof}
-     This is an extension of \cite{biq1} to the situation when $\mathbf{O}(g_o)\neq 0$. 
+    \todo[inline]{to copy from the iPad...}
      
-     \todo[inline]{Need a proof?}
+    
 \end{proof}
+
+
 \paragraph{Kernel and cokernel on $M_o'$}
     Now, we turn to the cut-off manifold $M'_o$. The main remark is that the restriction of any element of the previous kernel in $H^s_N$ to $M'_o$ is in $H^s(M'_o)$.
 
 \begin{cor}
     The kernel of $L_o$ on $H^s(M'_o)$ is composed of the restrictions of the elements of a $H^s_N(M_o)$ to $M'_o$ for arbitrary $N$.
-\end{cor}
+\end{cor} 
 
 \paragraph{Linear Dirichlet to Neumann problem on $M'_o$}
 
-
 \begin{lem}
     \todo[inline]{Can we make sense of a "limiting" DtN problem? Or do we want to just say that we can attain something that is "transverse" to the "limiting" cokernel}
+    
+    \todo[inline]{The approximate kernel and cokernel of DtN we should (approximately) have the elements of $\mathbb{O}(g_o)$!}
 \end{lem}
 
 \begin{cor}
@@ -897,6 +921,16 @@ We will describe our kernel for tensors in $H^s_N(M_o)$, i.e. tensors so that $ 
 \subsubsection{Linearization on an ALE space.}
 
 \todo[inline]{Should just be the same as in the orbifold case}
+
+\paragraph{$L^2$-kernel.}
+
+Let us classify the $L^2$-infinitesimal deformations of ${g_Z}$ by their order of decay at infinity:
+   $$ \mathbf{O}({g_Z}) = \bigoplus_{j = 4}^{j_{\max}} \mathbf{O}^{(j)}({g_Z}) $$
+   in the following way. Let $j_{\max}$ be the maximum of $j\geqslant 4$ such that there exists $\mathbf{o}\in \mathbf{O}({g_Z})$ with $ \mathbf{o} = \mathcal{O}(r^{-j}) $. Define $\mathbf{O}^{(j_{\max})}({g_Z})$ as the subspace of $\mathbf{O}({g_Z})$ spanned by the tensors in $r^{-j_{\max}}$ at infinity. We then define $\mathbf{O}^{(j_{\max}-1)}({g_Z})$ as the subspace of $\mathbf{O}({g_Z})$ spanned by the tensors in $r^{-(j_{\max}- 1)}$ at infinity and $L^2({g_Z})$-orthogonal to $\mathbf{O}^{(j_{\max})}({g_Z})$. We then iteratively define the subspaces $\mathbf{O}^{(j)}({g_Z})$ which are $L^2({g_Z})$-orthogonal to each other by construction.
+   
+   The most important aspect of these infinitesimal deformations for the obstructions to the desingularization of Einstein metrics is their asymptotic terms. More precisely, if $\mathbf{o}\in \mathbf{O}^{(j+2)}({g_Z})$, then at infinity $\mathbf{o} = r^{-2-j} \phi_{j} + \mathcal{O}(r^{-3-j})$, where $\phi_{j}$ is a $2$-tensor whose coefficients are spherical harmonics associated to the $j$-th eigenvalue. Denote 
+   $ \mathbb{O}^{[j]}({g_Z}) $ the space of spherical harmonics $\phi_{j}$ appearing as the asymptotic term of an element of $\mathbf{O}^{(j+2)}({g_Z})$. The link with obstructions is the following result.
+
 
 \subsubsection{Linear problem on a flat annulus}
 
@@ -967,6 +1001,8 @@ We will describe our kernel for tensors in $H^s_N(M_o)$, i.e. tensors so that $ 
 ** Invertibility of linear DtN problem
 
 ** Application of log-analytic implicit function theorem
+
+\subsection{An Einstein modulo obstructions equation}
  \subsubsection{Cut-off of the kernel}
  
  \todo[inline]{To arrange ->}
@@ -1007,7 +1043,32 @@ We will describe our kernel for tensors in $H^s_N(M_o)$, i.e. tensors so that $ 
         Note that if the obstructions vanish for a metric $\hat{g}_{t,v}$, then it is Einstein. Indeed, we know that $\tilde{B}_{\hat{g}_{t,v}}E(\hat{g}_{t,v})=0$ and by the first condition, $\hat{g}_{t,v}$ and $g^D$ are very close to each other hence $\tilde{B}_{\hat{g}_{t,v}}\delta^*_{g^D_t}$ restricted to the orthogonal of $\tilde{\mathbf{K}}_o$ (the image of $\tilde{B}_{\hat{g}_{t,v}}$) is injective.
     \end{rem}
    
+\subsection{Linearized Einstein modulo obstructions equation}
 
+\subsubsection{On the orbifold}
+
+\paragraph{Invertibility on $M_o$.}
+
+\paragraph{Invertiblity on $M'_o$.}
+
+\paragraph{Linear Dirichlet-to-Neumann problem.}
+
+
+
+\subsubsection{On the ALE space}
+
+
+\paragraph{Invertibility on $Z$.}
+
+\paragraph{Invertiblity on $Z'$.}
+
+\paragraph{Linear Dirichlet-to-Neumann problem.}
+
+
+
+\subsection{Einstein modulo obstructions Dirichlet-to-Neumann map}
+
+\todo[inline]{Application of implicit functionstheorem}
 
 \appendix
 
