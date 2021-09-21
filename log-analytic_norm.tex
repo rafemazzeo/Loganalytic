@@ -456,47 +456,62 @@ with only finitely many powers of $\log t$ associated to any monomial $t^j$.  If
 we assume that the coefficients $a_{jk}$ depend on $y$ and lie in some Banach space of functions, and moreover, that
 this series converge in that Banach norm. 
 
-In this section we study a scale of topologies on log-analytic functions $u(r,y)$ defined on the nappe of a cone
+In this section we study a scale of topologies on log-analytic functions $u(r,y)$ defined on the annular region
 \[
-A_{r_1, r_2} = \{ (r,y) \in C(S^3/\Gamma):  r_1 \leq r \leq r_2 \}.
+A_{r_1, r_2} = \{z \in \RR^4: r_1 \leq |z| \leq r_2\} = \{ (r,y) \in C(S^3):  r_1 \leq r \leq r_2 \},
 \]
-Since this has two boundary components, we combine the log-analytic expansions at the two ends into
-a single series, and assume that the coefficients of this series lie in some Sobolev space $H^s( S^3/\Gamma)$
+and then, by restriction to invariant functions, also on the quotient $A_{r_1, r_2}/\Gamma$. 
+Some of the methods below take advantage of the global Euclidean structure on this annulus, which simplifies
+some of the considerations. It should be possible to reframe the results of this section on annuli
+in more general Riemannian cones, but we do not pursue this here. 
+
+Since the annulus has two boundary components, we combine the log-analytic expansions at the two ends into
+a single series, and assume that the coefficients of this series lie in some Sobolev space $H^s( S^3)$
 (typically with $s > 3/2$), but with additional spectral hypotheses on each coeffficient. 
 \begin{defn}
 Consider first the space $\calT$ of log-analytic functions $u$ on $A_{r_1, r_2}$,
 \[
-u(r,y) = \sum_{j, \ell = 0}^\infty \sum_{k = 0}^{j} \sum_{m=0}^{\ell-2}  a_{j k \ell m}(y) 
-(r/r_2)^j ( \log (r/r_2))^k (r_1/r)^\ell (\log (r_1/r))^m
+u(r,y) = \sum_{j, k = 0}^\infty \sum_{a = 0}^{j} \sum_{b=0}^{k-2}  a_{j a k b}(y) 
+(r/r_2)^j ( \log (r/r_2))^a (r_1/r)^k (\log (r_1/r))^b
 %\left( \frac{r}{r_2}\right)^j  
 %\left(\log \left( \frac{r}{r_2}\right) \right)^k \left( \frac{r_1}{r} \right)^\ell \left( \log \left( \frac{r_1}{r} \right) \right)^m
 \]
-where each $a_{jk \ell m}(y)$ lies in the sum of the first $n = n(j,\ell)$ spherical harmonics on $S^3/\Gamma$, where $n(j,\ell) 
-= \min \, \{ j, \ell-2\}$.  
+where each $a_{j a k b }(y)$ lies in the sum of the first $n = n(j,k)$ spherical harmonics on $S^3$, where $n(j,k)
+= \min \, \{ j, k-2\}$.  
 
-We also consider the slightly more general situation where each $a_{j k \ell m}$ takes values in a bundle $E = \pi^* E_0$, where
-$E_0$ is a bundle over $S^3/\Gamma$ and $\pi: A_{r_1, r_2} \to S^3/\Gamma$ is the natural projection. We shall
-be particularly interested in the case where $E$ is the bundle of symmetric $2$-tensors. 
+We can also define this space in the slightly more general situation where each $a_{j a k b }$ takes values in a bundle $E = \pi^* E_0$, where
+$E_0$ is a bundle over $S^3$ and $\pi: A_{r_1, r_2} \to S^3$ is the natural projection. We are 
+particularly interested in the case where $E$ is the bundle of symmetric $2$-tensors. 
 \end{defn}
+\begin{rem}
+The spectral condition on the coefficients may seem a bit strange, but observe that if $\phi(y)$ lies in the sum of the first $j$ spherical
+harmonics, then $r^j \phi(y)$ is a sum of terms of the form $r^\ell \psi(z)$ where $\ell \geq 0$ and $\psi(z)$ 
+is a polynomial of degree less than or equal to $\ell$ in the Euclidean coordinate $z \in \RR^44$. Similarly, using 
+specifically that we are in dimension $4$, any term $r^{-k} \phi(y)$ with $\phi(y)$ in the span of the form $k-2$ 
+spherical harmonics is a sum of products of terms of the form $r^{-\ell} \psi(z)$ where $\psi(z) = \del_z^\gamma \, r^{-2}$ 
+is some Euclidean derivative of the Green function for the Laplacian in this dimension, and $\ell \geq 1$.  The extra $\log r$ 
+factors do not affect this interpretation. 
+\label{meaningT}
+\end{rem}
 
 \begin{lem}\label{stability T}
-The space $\calT$ is closed under differentiation and multiplication. Furthermore, if $f \in \calT$, then there exists some
-$u \in \calT$ such that $\Delta u = f$. 
+The space $\calT$ is closed under multiplication, and also with respect to differentiation with respect to the
+Euclidean variable $z$. Furthermore, if $f \in \calT$, then there exists some $u \in \calT$ such that $\Delta u = f$. 
 \end{lem}
 \begin{proof}
-The first two assertions are straightforward.  As for the third, observe that if $\phi_m$ is a spherical harmonic of degree $m$,
-so $\Delta_{S^3/\Gamma} \phi_m = - m(m+2) \phi_m$, $\lambda_m = m (m+2)$, then
+The first two assertions are straightforward, especially given Remark~\ref{meaningT}. As for the third, observe that if 
+$\Delta_{S^3} \phi_m = - m(m+2) \phi_m$, i.e., $\phi_m$ is a spherical harmonic of degree $m$, then % $\lambda_m = m (m+2)$, then
 % The proof follows from Y. Chen's Section 3, see also Meyers where the main ideas are from. For the inverse, it comes from the explicit formula:
 \begin{equation}
 \begin{split}
-\Delta ( & r^{j+2}(\log r)^k \phi_m) = \\
-& \left( (  (j+2)^2-m(m+2)) r^j (\log r)^k + 2 k (j+1) r^j (\log r)^{k-1} + k(k-1) r^j (\log r)^{k-2}\right) \phi_m,
-%l (n+2k+2)r^k\log^{l-1} r\phi_m + l(l-1)r^k\log^{l-2} r\phi_m
+\Delta ( & r^{j+2}(\log r)^a \phi_m) = \\
+& \left( (  (j+2)^2-m(m+2)) r^j (\log r)^a + 2 a (j+1) r^j (\log r)^{a-1}\right. \\ & 
++ \left. a(a-1) r^j (\log r)^{a-2}\right) \phi_m,
 \end{split}
 \label{laplacien phg}
 \end{equation}
-Since $(j+2)^2 - m(m+2) > 0$ if $m \leq j$, it is easy to deduce that there exists a linear combination $u$ of
-the functions $r^{j+2} (\log r)^i \phi_m$, $0 \leq i \leq j$, such that $\Delta u = r^j (\log r)^k \phi_m$. 
+Since $(j+2)^2 - m(m+2) > 0$ if $m \leq j$, it is easy to deduce that there exists a linear combination of
+the functions $r^{j+2} (\log r)^c \phi_m$, $0 \leq c \leq a$, such that $\Delta u = r^j (\log r)^a \phi_m$. 
 \end{proof}
 
 
@@ -535,38 +550,26 @@ We now introduce a doubly-indexed scale of norms on elements of $\calT$:
 For any $s > 3/2$ and $\alpha > 0$, define the Banach space $\calA_{s,\alpha}^0$ to consist of 
 the space of all functions $u \in \calT$ such that
 \[
-\|u\|_{s,\alpha}^2:= \sum_{j, k, \ell, m} (1+j)^{2\alpha}(1+\ell)^{2\alpha} \|u_{j k \ell m}\|_{H^s(S^3/\Gamma)}^2 < \infty. 
+\|u\|_{s,\alpha}^2:= \sum_{j,a, k, b} (1+j)^{2\alpha}(1+k)^{2\alpha} \|u_{j a k b}\|_{H^s(S^3}^2 < \infty. 
 \]
 
 If $p \in \NN$, the space $\calA^p_{s,\alpha}$ consists of those functions $u \in \calT$ such that 
-$\nabla^i u \in \calA^0_{s,\alpha}$ for all $0 \leq i \leq p$; here $\nabla$ is the standard covariant derivative 
-on the cone, and we denote the corresponding norm by $\|u\|_{s,\alpha,p}$. 
+$\nabla^i u \in \calA^0_{s,\alpha}$ for all $0 \leq i \leq p$, where $\nabla$ is the standard covariant derivative 
+on $\RR^4$. We denote the corresponding norm by $\|u\|_{s,\alpha,p}$. 
 \label{norms}
 \end{defn}
 
-Observe that if $u \in \calA^p_{s,\alpha}$ for some $p, s, \alpha$, then its restriction to the bottom boundary $\{r =r_1\}$ is
+Observe that if $u \in \calA^p_{s,\alpha}$ for some $p$ and $s$ and for $\alpha > 1/2$, then its restriction to the bottom boundary 
+$\{r =r_1\}$, 
 \[
-u(r_1,y)=\sum_{j k \ell} u_{j k \ell 0}(y) \left(\frac{r_1}{r_2} \right)^j \left( \log \left(\frac{r_1}{r_2} \right) \right)^k
+u(r_1,y)=\sum_{j, a, k} u_{j a k 0}(y)  (r_1/r_2)^j ( \log (r_1/r_2) )^a,
 \]
-is log-analytic in the variable $t = r_1/r_2$ with values in  $H^s(S^3/\Gamma)$.  The analogous statement is true for
-the restriction at the upper boundary $\{r = r_2\}$. 
+is log-analytic in the variable $t = r_1/r_2$ with values in  $H^s(S^3)$.  The restriction $\alpha > 1/2$ ensures that
+the sum of the $u_{j a k 0}$ over $k$ converges.  There is an analogous result for the restriction at the upper boundary $\{r = r_2\}$. 
 
-Next, if $u \in \calA^p_{s,\alpha}$, then its scale-invariant normal derivative at either boundary, $r\del_r u|_{r = r_j}$ lies in 
-$H^{s-1}(\mathbb{S}^3)$, and is log-analytic in $t = \frac{r_1}{r_2}$.
+%Next, if $u \in \calA^p_{s,\alpha}$, then its scale-invariant normal derivative at either boundary, $r\del_r u|_{r = r_j}$ lies in 
+%$H^{s-1}(\mathbb{S}^3)$, and is log-analytic in $t = \frac{r_1}{r_2}$.
 
-\begin{lem}
-For any $u \in \calA^p_{s,\alpha}$, let $\calH(u)$ be the harmonic function on the truncated cone which has
-boundary values $u(r_1,y)$ and $u(r_2, y)$ at the two boundaries, considered as lying again in $\calA^p_{s,\alpha}$.
-Then $\calH$ is a continuous mapping on $\calA^p_{s,\alpha}$ for any $s \geq 0$.
-
-If $s \geq 3/2$ and $\alpha \geq 0$, and if $u, v \in \calA^p_{s,\alpha}$, then
-\[
-||uv||_{s,\alpha,p} \leq C ||u||_{s,\alpha,p} ||v||_{s,\alpha,p}.
-\]
-\end{lem}
-\begin{proof}
-The second assertion follows from the fact that $(1+j +j')\leqslant(1+j)(1+j')$ for nonnegative $j,j'$.
-\end{proof}
 
 % \begin{rem}
 %     If one considers 
@@ -583,8 +586,20 @@ The second assertion follows from the fact that $(1+j +j')\leqslant(1+j)(1+j')$ 
 
  % vector bundle $E$ in $\mathbb{R}^4$ simply by looking at them in the coordinates given by an orthonormal basis of $\mathbb{R}^4$ and consider a specific convenient norm on this bundle $E$. For instance, for symmetric $2$-tensors on $\mathbb{R}^4$ identified with $4\times 4$ matrices, we will choose it to be submultiplicative (taking for instance the operator norm) to have a Banach algebra structure. 
 
+Here is the basic multiplication theorem: 
+\begin{lem}
+If $s \geq 3/2$ and $\alpha \geq 0$, and if $u, v \in \calA^p_{s,\alpha}$, then
+\[
+||uv||_{s,\alpha,p} \leq C ||u||_{s,\alpha,p} ||v||_{s,\alpha,p}.
+\]
+\end{lem}
+\begin{proof}
+This follows from the fact that $(1+j +j')\leqslant(1+j)(1+j')$ for nonnegative $j,j'$.
+\end{proof}
+
+The following are useful facts that will be used extensively below.
 \begin{prop}\label{properties A epsilon k}
-Let $h$ be a symmetric $2$-tensor and $u_1,...,u_l$ be tensors on a neighborhood of the infinity of $\mathbb{R}^4$. 
+Let $h$ and $u_1,...,u_\ell$ be symmetric $2$-tensors. 
 \begin{enumerate}
 \item By construction, 
 \[
@@ -599,9 +614,9 @@ are continuous with operator norm less than $1$ provided $\ell =1$ or $2$. The m
 $\calA^{p+2}_{s,\alpha} \ni u \mapsto \Delta u \in \calA^{p}_{s,\alpha}$ is also continuous. 
 \item If $Q$ is a multilinear form, then%For a multilinear form $Q$ composed of various contractions with the metric $\mathbf{e}$,
 \[
-\|Q(u_1,...,u_n)\|_{s,\alpha} \leqslant C\|u_1\|_{s,\alpha} \ldots \|u_n\|_{s,\alpha}
+\|Q(u_1,...,u_\ell)\|_{s,\alpha,p} \leqslant C\|u_1\|_{s,\alpha,p} \ldots \|u_\ell\|_{s,\alpha,p}
 \]
-where $C>0$ depends on $Q$.
+where $C>0$ depends on $Q$. 
 \item Considering these norms on spaces of symmetric $2$-tensors, if $\mathbf{e}$ is the flat product
 metric on the cone, then the map
 \[
@@ -830,46 +845,82 @@ where $(-h)^k = (-h)\circ\ldots\circ(-h)$.
 %         where $(-h)^k = (-h)\circ\ldots\circ(-h)$, we find the result.
 %     \end{proof}
     
-    \subsection{Boundary conditions.}
-    \begin{defn}
-        Let $h\in \calA^{k+2}_{s,\alpha}$ be a $2$-tensor. We define
-        $\pi_Hh$ as the unique harmonic symmetric $2$-tensor whose restriction to $ r= r_1 $ and $r=r_2$ is equal to the restriction of $h$ on the same spheres.
-    \end{defn}
+\subsection{Boundary conditions.}
+Given any $u \in\calT$, let $\pi_H(u)$ be the unique harmonic function on $A_{r_1,r_2}$ with boundary values
+$u(r_1,y)$ and $u(r_2, y)$ at the two boundaries.  
+
+\begin{lem}
+If $u \in \calA^p_{s,\alpha}$, then the harmonic function $\calH(u)$ lies in $\calA^p_{s,\alpha}$. Moreover, 
+$\calH: \calA^p_{s,\alpha} \to \calA^p_{s,\alpha}$ is continuous for any $s \geq 0$.
+\end{lem}
+\begin{proof}
+We can write $\pi_H(u)$ as a sum of two terms, $U^e + U^i$, where $U^e$ is a harmonic function defined and bounded 
+for $r \geq r_1$ and $U^i$ is harmonic on the ball $\{r \leq r_2\}$.  Write 
+\[
+U^e = \sum_{\ell \geq 0} U_\ell^e (r_1/r)^\ell, \qquad \mbox{and}\qquad U^i = \sum_{\ell \geq 0} U_\ell^i (r/r_2)^{\ell},
+\]
+where each $U_{\ell}^{i/e}$ is an $\ell^{\mathrm{th}}$ spherical harmonic.  Similarly, write
+\[
+u(r_1, y) = \sum_{\ell = 0}^\infty  u_\ell^1(y), \qquad u(r_2, y) = \sum_{\ell=0}^\infty u_\ell^2(y),
+\]
+where again, $u_\ell^{e/i}$ is a $\ell^{\mathrm{th}}$ spherical harmonic.    Evaluating the harmonic functions at the two endpoints
+and comparing with the expansion for $u$ there gives 
+\[
+\begin{split}
+& U_\ell^e + U_\ell^i t^\ell = u_\ell^1 \\
+& t^\ell U_\ell^e + U_\ell^i = u_\ell^2,
+\end{split}
+\]
+where $r_1/r_2 = t$. Solving this system gives
+\[
+U_\ell^e = \frac{1}{1-t^{2\ell}} ( u_\ell^1 - t^\ell u_\ell^2), \qquad U_\ell^i = \frac{1}{1-t^{2\ell}} ( -t^\ell u_\ell^1 + u_\ell^2).
+\]
+
+Now recall the log-analytic expansion for $u$ at these two endpoints: 
+\[
+u(r_1,y) =\sum_{j, a, k} u_{jak0}(y) t^j (\log t)^a , \qquad u(r_2,y) = \sum_{j, k, b} u_{j 0 k b}(y) t^k (\log t)^b.
+\]
+Writing the projection onto the $\ell^{\mathrm{th}}$ spherical harmonic as $\Pi_\ell$, we see that
+\[
+\Pi_\ell \left(\sum_{j, a, k} u_{jak0}(y) t^j (\log t)^a)\right) = u_\ell^1, \qquad \Pi_\ell \left( \sum_{j, k, b} u_{j 0 k b}(y) t^k (\log t)^b \right) = u_\ell^2.
+\]
+
+%     \begin{equation}
+%         \pi_Hh = \sum_{k\geqslant 0}(\epsilon r_e)^k \tilde{H}_{k}^+    + (\epsilon^{-1} r_e)^{-2-k} \tilde{H}_{k}^-\label{projection harmonic annulus}
+%     \end{equation}
+%     where the $\tilde{H}_{k}^\pm$ are homogeneous with $|\tilde{H}_{k}^+|_{g_e} \sim r_e^0$ and whose coefficients (in the canonical basis of $\mathbb{R}^4$), once restricted to the sphere are eigenvectors associated to $-k(k+2)$. Indeed, if we decompose in spherical harmonics $ h_{|S_e(\epsilon)} =: \sum_{k} H_{k}(\epsilon)$ and $ h_{|S_e(\epsilon^{-1})} =: \sum_{k} H_{k}(\epsilon^{-1})$, we have the system
+%     \begin{equation}
+%   \left\{
+%       \begin{aligned}
+%         &H_{k}(\epsilon^{-1}) = \tilde{H}_{k}^+ + \epsilon^{4+2k} \tilde{H}_{k}^-, \\
+%         &H_{k}(\epsilon) = \epsilon^{2k}\tilde{H}_{k}^+ + \tilde{H}_{k}^-,
+%       \end{aligned}
+%     \right.\label{dvp h}
+% \end{equation}
+% and therefore,
+% \begin{equation}
+%   \left\{
+%       \begin{aligned}
+%         &\tilde{H}_{k}^+ = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon^{-1}) -\epsilon^{4+2k}H_{k}(\epsilon) \big), \\
+%         &\tilde{H}_{k}^- = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon) - \epsilon^{2k} H_{k}(\epsilon^{-1})\big),
+%       \end{aligned}
+%     \right.\label{système}
+% \end{equation}
     
-    Without loss of generality, for simpler formulas, we will restrict ourselves to the situation where $r_1 = \epsilon$ and $r_2 = \epsilon^{-1}$. The general situation of an annulus $\calA_e(r_1',r_2')$ is reduced to this by a change of variable $r' = \sqrt{r_1'r_2'}$ which gives $ \epsilon = \sqrt{\frac{r_1'}{r_2'}} $.
-    \\
-    
-    We can explicit the projection $\pi_H$ in the following form 
-    \begin{equation}
-        \pi_Hh = \sum_{k\geqslant 0}(\epsilon r_e)^k \tilde{H}_{k}^+    + (\epsilon^{-1} r_e)^{-2-k} \tilde{H}_{k}^-\label{projection harmonic annulus}
-    \end{equation}
-    where the $\tilde{H}_{k}^\pm$ are homogeneous with $|\tilde{H}_{k}^+|_{g_e} \sim r_e^0$ and whose coefficients (in the canonical basis of $\mathbb{R}^4$), once restricted to the sphere are eigenvectors associated to $-k(k+2)$. Indeed, if we decompose in spherical harmonics $ h_{|S_e(\epsilon)} =: \sum_{k} H_{k}(\epsilon)$ and $ h_{|S_e(\epsilon^{-1})} =: \sum_{k} H_{k}(\epsilon^{-1})$, we have the system
-    \begin{equation}
-  \left\{
-      \begin{aligned}
-        &H_{k}(\epsilon^{-1}) = \tilde{H}_{k}^+ + \epsilon^{4+2k} \tilde{H}_{k}^-, \\
-        &H_{k}(\epsilon) = \epsilon^{2k}\tilde{H}_{k}^+ + \tilde{H}_{k}^-,
-      \end{aligned}
-    \right.\label{dvp h}
-\end{equation}
-and therefore,
-\begin{equation}
-  \left\{
-      \begin{aligned}
-        &\tilde{H}_{k}^+ = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon^{-1}) -\epsilon^{4+2k}H_{k}(\epsilon) \big), \\
-        &\tilde{H}_{k}^- = \frac{1}{1-\epsilon^{4+4k}}\big(H_{k}(\epsilon) - \epsilon^{2k} H_{k}(\epsilon^{-1})\big),
-      \end{aligned}
-    \right.\label{système}
-\end{equation}
-    
-    \begin{prop}
-        The projection $\pi_H: \calA^{k+2}_{s,\alpha}\to \calA^{k+2}_{s,\alpha}$ is continuous.
-    \end{prop}
-    \begin{proof}
-        Let us start by writing the explicit developments of the boundary conditions $h_{S(\epsilon)\cup S(\epsilon^{-1})}$ for $h\in \mathcal{T}$ with
-        $$h(r,x):=\sum_{m,a,n,b}\Big(\frac{r}{\epsilon^{-1}}\Big)^{m}\Big(\frac{r}{\epsilon}\Big)^{-n}\log^a\Big(\frac{r}{\epsilon^{-1}}\Big)\log^b\Big(\frac{r}{\epsilon}\Big) h_{manb}(x) $$
+    % \begin{prop}
+    %     The projection $\pi_H: \calA^{k+2}_{s,\alpha}\to \calA^{k+2}_{s,\alpha}$ is continuous.
+    % \end{prop}
+    % \begin{proof}
+
+        % Let us start by writing the explicit developments of the boundary conditions $h_{S(\epsilon)\cup S(\epsilon^{-1})}$ for $h\in \mathcal{T}$ with
+        % $$h(r,x):=\sum_{m,a,n,b}\Big(\frac{r}{\epsilon^{-1}}\Big)^{m}\Big(\frac{r}{\epsilon}\Big)^{-n}\log^a\Big(\frac{r}{\epsilon^{-1}}\Big)\log^b\Big(\frac{r}{\epsilon}\Big) h_{manb}(x) $$
+
+Now to proceed with the proof, it is obvious (???) that the norms of the $U_\ell^{e/i}$ are bounded by the norms of $u_\ell^{1}$, $u_\ell^2$, and these
+norms are bounded by the $\calA^p_{s,\alpha}$ norm of $u$. 
         
-        At $S(\epsilon)$, with the above notations of we have: 
+----------------------------------------------
+
+      At $S(\epsilon)$, with the above notations of we have: 
         \begin{equation}
             H_l(\epsilon) = \sum_{m,n,b}\epsilon ^{2n}\log^b(\epsilon^{-2}) h_{m,n;l}^{0,b}\label{Hepsilon}
         \end{equation}
@@ -888,9 +939,10 @@ and therefore,
             &\leqslant C \sum_{k}(1+k)^{2\alpha}\Big(\|H_k(\epsilon^{-1})\|^2_{H^s}+\|H_k(\epsilon)\|^2_{H^s}\Big)\\
             &\leqslant 2C\|h\|_{s,\alpha}^2.
         \end{align*}
-    \end{proof}
+\end{proof}
     
         In particular, the linear subspace $\mathring{\calA}_{s,\alpha}^{k+2} = \ker_{\calA_{s,\alpha}^{k+2}} \pi_H$ is closed and therefore a (sub)Banach space.
+
 
 \section{$\log$-analytic maps between Banach spaces}
 \todo[inline]{Should we use another notation than $r$, $\epsilon$?}
