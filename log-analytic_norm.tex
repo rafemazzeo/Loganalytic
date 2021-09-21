@@ -859,11 +859,12 @@ for $r \geq r_1$ and $U^i$ is harmonic on the ball $\{r \leq r_2\}$.  Write
 \[
 U^e = \sum_{\ell \geq 0} U_\ell^e (r_1/r)^\ell, \qquad \mbox{and}\qquad U^i = \sum_{\ell \geq 0} U_\ell^i (r/r_2)^{\ell},
 \]
-where each $U_{\ell}^{i/e}$ is an $\ell^{\mathrm{th}}$ spherical harmonic.  Similarly, write
+where each $U_{\ell}^{i/e}$ lies in $\calE_\ell$, the eigenspace of the $\ell^{\mathrm{th}}$ spherical harmonic.  
+Similarly, write
 \[
 u(r_1, y) = \sum_{\ell = 0}^\infty  u_\ell^1(y), \qquad u(r_2, y) = \sum_{\ell=0}^\infty u_\ell^2(y),
 \]
-where again, $u_\ell^{e/i}$ is a $\ell^{\mathrm{th}}$ spherical harmonic.    Evaluating the harmonic functions at the two endpoints
+where again, $u_\ell^{e/i} \in \calE_\ell$.  Evaluating the harmonic functions at the two endpoints
 and comparing with the expansion for $u$ there gives 
 \[
 \begin{split}
@@ -880,7 +881,7 @@ Now recall the log-analytic expansion for $u$ at these two endpoints:
 \[
 u(r_1,y) =\sum_{j, a, k} u_{jak0}(y) t^j (\log t)^a , \qquad u(r_2,y) = \sum_{j, k, b} u_{j 0 k b}(y) t^k (\log t)^b.
 \]
-Writing the projection onto the $\ell^{\mathrm{th}}$ spherical harmonic as $\Pi_\ell$, we see that
+Writing the projection onto $\calE_\ell$ as $\Pi_\ell$, we see that
 \[
 \Pi_\ell \left(\sum_{j, a, k} u_{jak0}(y) t^j (\log t)^a)\right) = u_\ell^1, \qquad \Pi_\ell \left( \sum_{j, k, b} u_{j 0 k b}(y) t^k (\log t)^b \right) = u_\ell^2.
 \]
@@ -915,8 +916,13 @@ Writing the projection onto the $\ell^{\mathrm{th}}$ spherical harmonic as $\Pi_
         % Let us start by writing the explicit developments of the boundary conditions $h_{S(\epsilon)\cup S(\epsilon^{-1})}$ for $h\in \mathcal{T}$ with
         % $$h(r,x):=\sum_{m,a,n,b}\Big(\frac{r}{\epsilon^{-1}}\Big)^{m}\Big(\frac{r}{\epsilon}\Big)^{-n}\log^a\Big(\frac{r}{\epsilon^{-1}}\Big)\log^b\Big(\frac{r}{\epsilon}\Big) h_{manb}(x) $$
 
-Now to proceed with the proof, it is obvious (???) that the norms of the $U_\ell^{e/i}$ are bounded by the norms of $u_\ell^{1}$, $u_\ell^2$, and these
-norms are bounded by the $\calA^p_{s,\alpha}$ norm of $u$. 
+Now to proceed with the proof, observe that
+\[
+||\pi_H(u)||_{s,\alpha,p} \leq ||U^e||_{s,\alpha,p} + ||U^i||_{s,\alpha,p} \leq  ||u(r_1,y)||_{s,\alpha,p} + ||u(r_2, y)||_{s,\alpha,p},
+\]
+and finally that the $\calA^p_{s,\alpha}$ norms of the $u(r_j,y)$ are bounded by the corresponding
+norms on the entire annulus.  (Needs a preparatory lemma.) 
+
         
 ----------------------------------------------
 
